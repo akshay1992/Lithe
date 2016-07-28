@@ -1,2 +1,5 @@
 /docs/html
 /docs/latex
+.DS_Store
+**/.DS_Store
+/build
