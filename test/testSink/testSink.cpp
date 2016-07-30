@@ -29,6 +29,7 @@ TEST_F(SinkTest, testcInputs)
 	
 	for(int i=0; i<sink.getNumInputs(); i++)
 	{		
-		EXPECT_TRUE(sink.getInputs()[i] == NULL);
+		EXPECT_TRUE(sink.getInputs()[i].block_ref == NULL);
+		EXPECT_EQ(sink.getInputs()[i].index , -1);
 	}
 }

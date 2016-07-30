@@ -22,7 +22,8 @@ TEST_F(BlockTest, utInitInputVectors)
 
 	for(int i=0; i< block.getNumInputs(); i++)
 	{
-		EXPECT_TRUE( block.getInputs()[i]==NULL );
+		EXPECT_TRUE( block.getInputs()[i].block_ref == NULL );
+		EXPECT_EQ( block.getInputs()[i].index, -1 );
 	}
 }
 
@@ -38,6 +39,7 @@ TEST_F(BlockTest, utInitOutputVectors)
 
 	for(int i=0; i< block.getNumOutputs(); i++)
 	{
-		EXPECT_TRUE( block.getOutputs()[i]==NULL );
+		EXPECT_TRUE( block.getOutputs()[i].block_ref == NULL );
+		EXPECT_EQ( block.getOutputs()[i].index, -1 );
 	}
 }
