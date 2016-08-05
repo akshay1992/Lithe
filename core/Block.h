@@ -3,27 +3,15 @@
 
 #include <vector>
 
-class Block;
+#include "Terminal.h"
+class Terminal;
 
-// \brief A terminal is an abstraction of the inlets and outlets of a block
-class Terminal
-{
-public:
-	Terminal( Block &block_reference, int terminal_index)		:
-		block_ref(&block_reference),
-		index(terminal_index)
-	{	}
+/*!
+	\brief Abstract class for each module block
+ 
+	TODO: More info here. 
 
-	Terminal(void)		:
-		block_ref(NULL),
-		index(-1)
-	{	}
-
-	Block* block_ref;
-	int index;
-};
-
-/// \brief Abstract class for each module block
+*/
 class Block 
 {
 public:
@@ -32,11 +20,22 @@ public:
 
 	const std::vector<Terminal> getInputs(void) { return inputs; }
 	const std::vector<Terminal> getOutputs(void) { return outputs; }
-	int getNumInputs(void) { return inputs.size(); }
-	int getNumOutputs(void) { return outputs.size(); }
+	Terminal getInput(int index = 0);
+	Terminal getOutput(int index = 0);
+	int getNumInputs(void);
+	int getNumOutputs(void);
 
-	bool isValidOutput(int outletIndex) { return outletIndex < getNumOutputs(); }
-	bool isValidInput(int inletIndex) { return inletIndex < getNumInputs(); }
+	/// @brief Returns true if the specified outlet index is valid. 
+	bool isValidOutput(int outletIndex) 
+	{ 
+		return (outletIndex < getNumOutputs()) && (outletIndex >= 0); 
+	}
+	
+	/// @brief Returns true if the specified inlet index is valid. 
+	bool isValidInput(int inletIndex) 
+	{ 
+		return (inletIndex < getNumInputs()) && (inletIndex >= 0); 
+	}
 
 	void setOutput(int outletIndex, Block &destination_block, int inletIndex);
 	void setOutput(int outletIndex, Terminal destination);
@@ -46,7 +45,11 @@ public:
 	int getID(void)  { return id; }
 
 protected:
+	/// Unique ID for each block. 
 	int id;
+
+	/// This is used to give each block a unique ID
+	static int running_count;
 	std::vector<Terminal> inputs;
 	std::vector<Terminal> outputs;
 };

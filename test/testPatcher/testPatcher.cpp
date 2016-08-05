@@ -11,7 +11,7 @@ void PatcherTest::SetUp() {};
 
 void PatcherTest::TearDown() {};
 
-TEST_F(PatcherTest, singleBlockSinkPatch)
+TEST_F(PatcherTest, singleBlockSink_GOODPatch)
 {
 	Sink sink(1);
 	Block block(1, 1);

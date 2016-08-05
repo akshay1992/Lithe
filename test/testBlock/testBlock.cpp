@@ -43,3 +43,42 @@ TEST_F(BlockTest, utInitOutputVectors)
 		EXPECT_EQ( block.getOutputs()[i].index, -1 );
 	}
 }
+
+TEST_F(BlockTest, isValidInputTest)
+{
+	Block b = Block(2, 12);
+
+	EXPECT_TRUE( b.isValidInput(1) );
+	EXPECT_TRUE( b.isValidInput(0) );
+	
+	EXPECT_FALSE( b.isValidInput(-1) );
+	EXPECT_FALSE( b.isValidInput(3) );
+}
+
+TEST_F(BlockTest, isValidOutputTest)
+{
+	Block b = Block(1, 5);
+
+	EXPECT_TRUE( b.isValidOutput(1) );
+	EXPECT_TRUE( b.isValidOutput(3) );
+	EXPECT_TRUE( b.isValidOutput(4) );
+	EXPECT_TRUE( b.isValidOutput(0) );
+	EXPECT_TRUE( b.isValidOutput(2) );
+	
+	EXPECT_FALSE( b.isValidOutput(-1) );
+	EXPECT_FALSE( b.isValidOutput(5) );
+	EXPECT_FALSE( b.isValidOutput(6) );
+	EXPECT_FALSE( b.isValidOutput(-4) );
+}
+
+TEST_F(BlockTest, idTest)
+{
+	Block b(1, 2);
+	int id1 = b.getID();
+	
+	Block b1(2, 4);
+
+	EXPECT_EQ( b.getID(), id1 );
+	EXPECT_EQ( b1.getID(), id1+1);
+	EXPECT_NE( b.getID(), b1.getID());
+}

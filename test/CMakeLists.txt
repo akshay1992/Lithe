@@ -50,5 +50,6 @@ set_target_properties(libgmock PROPERTIES
 include_directories("${source_dir}/include")
 
 add_subdirectory(testBlock)
+add_subdirectory(testTerminal)
 add_subdirectory(testPatcher)
 add_subdirectory(testSink)
