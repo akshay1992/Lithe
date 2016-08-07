@@ -1,14 +1,15 @@
+add_subdirectory(allocore-build)
+
 file(GLOB lithe_core_SRCS
 	*.h *.cpp
 )
 
 # Declare the library
 add_library(lithe_core STATIC
-    ${lithe_core_SRCS} 
+	${lithe_core_SRCS}
 )
 
 # Link to allocore
-find_library( ${PROJECT_SOURCE_DIR}/core/allocore-build/ allocore)
 target_link_libraries(lithe_core allocore)
 
 # Specify here the include directories exported
