@@ -1,41 +1,66 @@
 #include "Patcher.h"
 #include <iostream>
 
-void Patcher::patch(Block &source, int outlet_index, Block &destination, int inlet_index)
+bool Patcher::patch(Block &source, int outlet_index, Block &destination, int inlet_index)
 {
-	if(source.isValidOutput(outlet_index) && destination.isValidInput(inlet_index))
+	try
 	{
-		source.setOutput(outlet_index, destination, inlet_index);
-		destination.setInput(inlet_index, source, outlet_index);		
+		Terminal sourceState = source.getOutput(outlet_index);
+		Terminal destinationState = destination.getInput(inlet_index);
 	}
-	else
+	catch(std::range_error)
 	{
-		// TODO: Error handling
-		std::cout << "ERROR" << std::endl;
+		throw std::range_error("Patching exception, invalid inlet/outlet index");
+		return false;
 	}
+
+	source.setOutput(outlet_index, destination, inlet_index);
+	destination.setInput(inlet_index, source, outlet_index);
+
+	return true;
 }
 
-void Patcher::patch(Block &source, int outlet_index, Sink &destination, int inlet_index)
+bool Patcher::unpatch(Block &source, int outlet_index, Block &destination, int inlet_index)
 {
-	if(source.isValidOutput(outlet_index) && destination.isValidInput(inlet_index))
+	try
 	{
-		source.setOutput(outlet_index, destination, inlet_index);
-		destination.setInput(inlet_index, source, outlet_index);		
+		Terminal sourceState = source.getOutput(outlet_index);
+		Terminal destinationState = destination.getInput(inlet_index);		
 	}
-	else
+	catch(std::range_error)
 	{
-		// TODO: Error handling
-		std::cout << "ERROR" << std::endl;
+		throw std::range_error("Unpatching exception, invalid inlet/outlet index");
+		return false;
 	}
+
+	if( Patcher::validatePatch(source, outlet_index, destination, inlet_index) )
+	{
+		source.resetOutput(outlet_index);
+		destination.resetInput(inlet_index);
+
+		return true;
+	}
+
+	return false;
 }
 
-void Patcher::unpatch(Patch patch)
+bool Patcher::validatePatch(Block &source, int outlet_index, Block &destination, int inlet_index)
 {
+	Terminal sourceTerminal = source.getOutput(outlet_index);
+	Terminal destinationTerminal = destination.getInput(inlet_index);
 
+	// if( sourceTerminal.block_ref == NULL || destinationTerminal.block_ref == NULL)
+	// 	return false;
+
+	// if( sourceTerminal.block_ref != &destination || destinationTerminal.block_ref != &source)
+	// 	return false;
+
+	// if ( sourceTerminal.index != destinationTerminal.myindex || destinationTerminal.index != sourceTerminal.myindex) return false;
+
+	return true;
 }
 
 void Patcher::refreshProcessOrder(void)
 {
 
 }
-

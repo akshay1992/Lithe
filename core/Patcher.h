@@ -4,25 +4,28 @@
 #include "Block.h"
 #include "Sink.h"
 #include <vector>
-#include <exception>
 
-/// Defines a patch by the terminal configs in each block
+/// Defines a patch by the \link Terminal Terminals \endlink of the two Block instances
 struct Patch
 {
 	Terminal source;
 	Terminal destination;
 };
 
+/** \brief Utility class used for patching Block instances
+*/
+
 class Patcher
 {
 public:
-	void patch(Block &source, int outlet_index, Block &destination, int inlet_index);
-	void patch(Block &source, int outlet_index, Sink &destination, int inlet_index);
-	void unpatch(Patch patch);
-	void refreshProcessOrder(void);
+	static bool patch(Block &source, int outlet_index, Block &destination, int inlet_index);
+	static bool unpatch(Block &source, int outlet_index, Block &destination, int inlet_index);
+	static void refreshProcessOrder(void);
 
 	std::vector<Patch> patches;
 	Sink* sink;
+
+	static bool validatePatch(Block &source, int outlet_index, Block &destination, int inlet_index);
 };
 
 #endif

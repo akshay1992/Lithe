@@ -18,18 +18,16 @@ TEST_F(SinkTest, testNumInputs)
 	Sink sink(nInputs);
 
 	EXPECT_EQ(sink.getNumInputs(), nInputs);
-	EXPECT_EQ(sink.getInputs().size(), nInputs);
-	EXPECT_EQ(sink.getNumInputs(), sink.getInputs().size());
 }
 
-TEST_F(SinkTest, testcInputs)
+TEST_F(SinkTest, testInputs)
 {
 	const int nInputs = 4;
 	Sink sink(nInputs);
 	
 	for(int i=0; i<sink.getNumInputs(); i++)
 	{		
-		EXPECT_TRUE(sink.getInputs()[i].block_ref == NULL);
-		EXPECT_EQ(sink.getInputs()[i].index , -1);
+		EXPECT_TRUE(sink.getInput(i).block_ref == NULL);
+		EXPECT_EQ(sink.getInput(i).index , -1);
 	}
 }

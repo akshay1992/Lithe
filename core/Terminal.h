@@ -5,7 +5,7 @@
 
 class Block;
 
-/// \brief Specifies type of terminal (used by Terminal )
+/// \brief Specifies type of Terminal
 enum TerminalType
 {
 	TERMINAL_TYPE_INVALID,
@@ -14,7 +14,7 @@ enum TerminalType
 };
 
 /*! 
-	\brief A terminal is an abstraction of the inlets and outlets of a block.
+	\brief An abstraction of the inlets and outlets of a Block.
 	
 	Terminals are usually a part of a Block. They specify connections using the block_ref. 
 */
@@ -33,10 +33,11 @@ public:
 		type(TERMINAL_TYPE_INVALID)
 	{	}
 
-	Terminal( TerminalType t_type )		:
+	Terminal( int myindex, TerminalType t_type )		:
 		block_ref(NULL),
 		index(-1),
-		type(t_type)
+		type(t_type), 
+		myIndex(myindex)
 	{	}
 
 	/// Enables a single sample delay. This is to ensure causality in feedback loops.
@@ -50,6 +51,9 @@ public:
 	/// Inlet/outlet index of the block that this Terminal is connected to.
 	int index;
 	TerminalType type;
+
+	/// Inlet/outlet index of the block that this Terminal is a PART OF.
+	int myIndex;
 
 private:
 	bool SampleDelayEnabled;

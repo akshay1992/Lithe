@@ -6,11 +6,11 @@
 #include "Terminal.h"
 class Terminal;
 
-/*!
-	\brief Abstract class for each module block
+/**
+	\brief Abstract class for each node in a directed graph. 
  
-	TODO: More info here. 
-
+	Each block has a defined number of inlets and outlets. Each instance also has 
+	a unique numerical ID that helps identify it in a graph. 
 */
 class Block 
 {
@@ -18,29 +18,25 @@ public:
 	/// Creates appropriate number of ports and initializes them to NULL pointers.
 	Block(int nInputs, int nOutputs);
 
-	const std::vector<Terminal> getInputs(void) { return inputs; }
-	const std::vector<Terminal> getOutputs(void) { return outputs; }
-	Terminal getInput(int index = 0);
-	Terminal getOutput(int index = 0);
+	// const std::vector<Terminal> getInputs(void) { return inputs; }
+	// const std::vector<Terminal> getOutputs(void) { return outputs; }
+	const Terminal getInput(int index = 0);
+	const Terminal getOutput(int index = 0);
 	int getNumInputs(void);
 	int getNumOutputs(void);
 
-	/// @brief Returns true if the specified outlet index is valid. 
-	bool isValidOutput(int outletIndex) 
-	{ 
-		return (outletIndex < getNumOutputs()) && (outletIndex >= 0); 
-	}
+	/// Returns true if the specified outlet index is valid. 
+	bool isValidOutput(int outletIndex);
 	
-	/// @brief Returns true if the specified inlet index is valid. 
-	bool isValidInput(int inletIndex) 
-	{ 
-		return (inletIndex < getNumInputs()) && (inletIndex >= 0); 
-	}
+	/// Returns true if the specified inlet index is valid. 
+	bool isValidInput(int inletIndex);
 
 	void setOutput(int outletIndex, Block &destination_block, int inletIndex);
 	void setOutput(int outletIndex, Terminal destination);
 	void setInput(int inletIndex, Block &source_block, int outletIndex);
 	void setInput(int inletIndex, Terminal source);
+	void resetOutput(int outletIndex);
+	void resetInput(int inletIndex);
 
 	int getID(void)  { return id; }
 

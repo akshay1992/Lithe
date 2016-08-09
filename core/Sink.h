@@ -6,12 +6,18 @@
 #include "allocore/sound/al_AudioScene.hpp"
 #include "allocore/sound/al_StereoPanner.hpp"
 
+/** \brief A type of Block that has no outlets
+
+	A sink is also the ending point for the directed graph from which the
+	processing order is determined. 
+
+*/
 class Sink : public Block
 {
 public:
 	Sink(int nInputs, int block_size = 512) 
 		: 
-		Block(nInputs, 0) ,
+		Block(nInputs, 0) //,
 		audio_block_size(512)
 	{
 		speaker_layout = al::HeadsetSpeakerLayout();
@@ -28,9 +34,19 @@ public:
 		listener->compile();
 	}
 
+    ~Sink()
+    {
+        delete panner;
+        delete scene;
+        for(int i=0; i<sources.size(); i++)
+        {
+            delete sources[i];
+        }
+    }
+
 private:
 	using Block::getNumOutputs;
-	using Block::getOutputs;
+	using Block::getOutput;
 
 	int audio_block_size;
 	al::StereoPanner *panner;
