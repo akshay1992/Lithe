@@ -1,3 +1,3 @@
 [submodule "allocore-build"]
-	path = core/allocore-build
+	path = allocore-build
 	url = git@github.com:akshay1992/allocore-build

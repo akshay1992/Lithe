@@ -1,7 +1,5 @@
-add_subdirectory(allocore-build)
-
 file(GLOB lithe_core_SRCS
-	*.h *.cpp
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp
 )
 
 # Declare the library
@@ -15,5 +13,5 @@ target_link_libraries(lithe_core allocore)
 # Specify here the include directories exported
 # by this library
 target_include_directories(lithe_core PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
