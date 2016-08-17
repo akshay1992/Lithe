@@ -51,3 +51,5 @@ include_directories("${source_dir}/include")
 
 add_subdirectory(testOutlet)
 add_subdirectory(testInlet)
+add_subdirectory(testNode)
+add_subdirectory(testSink)

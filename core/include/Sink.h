@@ -1,6 +1,30 @@
 #ifndef SINK_H
 #define SINK_H
 
+#include "Node.h"
+
+/**
+	@brief A sink is a type of node that only has inlets. 
+
+	All processing is initiated by a sink. 
+
+*/
+class Sink : public Node
+{
+public:
+	Sink(int inlets) :
+		Node::Node(inlets, 0) {}
+
+	void refreshProcessOrder()
+	{
+		
+	}
+
+private:
+	using Node::numOutlets;
+	using Node::getOutlet;
+};
+
 
 #endif // SINK_H
 
