@@ -24,7 +24,14 @@ public:
 
 	Node* parent_node;
 
+	void enableSampleDelay(void) { sampleDelay = true; sampleBuffer = Sample(); }
+	void disableSampleDelay(void) { sampleDelay = false; sampleBuffer = Sample(-2, -2, -2, -2); }
+	bool sampleDelayEnabled(void) { return sampleDelay; }
+
 	Outlet* connected_outlet = NULL;
+private:
+	bool sampleDelay;
+	Sample sampleBuffer;
 };
 
 

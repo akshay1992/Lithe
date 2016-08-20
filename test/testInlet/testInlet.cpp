@@ -44,30 +44,100 @@ TEST_F(InletTest, connectTest_NotConnected)
 }
 
 
-TEST_F(InletTest, getSample_noneConnected)
+TEST_F(InletTest, getSample_noneConnected_noDelay)
 {
 	Node node(1, 1);
 
 	Sample s;
 
-	EXPECT_EQ( node.getInlet().getSample().audio, s.audio);
-	EXPECT_EQ( node.getInlet().getSample().az, s.az);
-	EXPECT_EQ( node.getInlet().getSample().el, s.el);
-	EXPECT_EQ( node.getInlet().getSample().d, s.d);
+	Sample inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, s.audio);
+	EXPECT_EQ( inletSample.az, s.az);
+	EXPECT_EQ( inletSample.el, s.el);
+	EXPECT_EQ( inletSample.d, s.d);
 }
 
-TEST_F(InletTest, getSample_connected)
+TEST_F(InletTest, getSample_noneConnected_yesDelay)
 {
-	Node node(1, 1);	// Destination
-	Node node2(1, 1); // Source
+	Node node(1, 1);
+
+	Sample s;
+	node.getInlet().enableSampleDelay();
+
+	Sample inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, s.audio);
+	EXPECT_EQ( inletSample.az, s.az);
+	EXPECT_EQ( inletSample.el, s.el);
+	EXPECT_EQ( inletSample.d, s.d);
+
+	// Second time 
+	inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, s.audio);
+	EXPECT_EQ( inletSample.az, s.az);
+	EXPECT_EQ( inletSample.el, s.el);
+	EXPECT_EQ( inletSample.d, s.d);
+}
+
+TEST_F(InletTest, getSample_connected_noDelay)
+{
+	Node node(1, 0);	// Destination
+	Node node2(0, 1); // Source
 
 	Patcher::connect(node.getInlet(), node2.getOutlet());
+	node.getInlet().disableSampleDelay();
 
-	Sample s(0.1, -0.986, +0.885, 0.0);
+
+	Sample s(0.1, -0.986, +0.885, 0.2);
 	node2.getOutlet().setSample(s);
 
-	EXPECT_EQ( node.getInlet().getSample().audio, s.audio);
-	EXPECT_EQ( node.getInlet().getSample().az, s.az);
-	EXPECT_EQ( node.getInlet().getSample().el, s.el);
-	EXPECT_EQ( node.getInlet().getSample().d, s.d);
+	Sample inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, s.audio);
+	EXPECT_EQ( inletSample.az, s.az);
+	EXPECT_EQ( inletSample.el, s.el);
+	EXPECT_EQ( inletSample.d, s.d);
+
+	s = Sample(0.09, -0.42, +0.74, 0.6);
+	node2.getOutlet().setSample(s);
+
+	inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, s.audio);
+	EXPECT_EQ( inletSample.az, s.az);
+	EXPECT_EQ( inletSample.el, s.el);
+	EXPECT_EQ( inletSample.d, s.d);
+}
+
+TEST_F(InletTest, getSample_connected_yesDelay)
+{
+	Node node(1, 0);// Destination
+	Node node2(0, 1); // Source
+
+	node.getInlet().enableSampleDelay();
+	Patcher::connect(node.getInlet(), node2.getOutlet());
+
+	Sample set(0.1, -0.986, +0.885, 0.2);
+	Sample expected;
+
+	node2.getOutlet().setSample(set);
+	Sample inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, expected.audio);
+	EXPECT_EQ( inletSample.az, expected.az);
+	EXPECT_EQ( inletSample.el, expected.el);
+	EXPECT_EQ( inletSample.d, expected.d);
+
+	expected = set; // Expect previously set sample
+	set = Sample(0.9, -0.42, +0.45, 0.3); // Set new (different sample value)
+	
+	node2.getOutlet().setSample(set);
+	inletSample = node.getInlet().getSample();
+
+	EXPECT_EQ( inletSample.audio, expected.audio);
+	EXPECT_EQ( inletSample.az, expected.az);
+	EXPECT_EQ( inletSample.el, expected.el);
+	EXPECT_EQ( inletSample.d, expected.d);
 }

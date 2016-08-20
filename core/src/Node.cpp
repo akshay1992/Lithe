@@ -10,6 +10,7 @@ Node::Node(int numInlets, int numOutlets)
 	ID_counter++;
 
 	node_refs.push_back(this);
+	mProcessed = false;
 
 	for(int i=0; i<numInlets; i++)
 	{
@@ -57,6 +58,17 @@ int Node::getID(void)
 	return mID;
 }
 
+void Node::resetAll_ProcessState()
+{
+	for( int i=0; i<node_refs.size(); ++i)
+	{
+		if(node_refs[i] != NULL)
+		{
+			node_refs[i]->resetProcessState();
+		}
+	}
+}
+
 Node* Node::getNodeRef(int nodeID)
 {
 	if(nodeID < node_refs.size())
@@ -66,5 +78,35 @@ Node* Node::getNodeRef(int nodeID)
 	else
 	{
 		return NULL;
+	}
+}
+
+void Node::resetSortParams(int index = -1, int lowLink = -1, bool onStack = false)
+{	
+	for( int i=0; i<node_refs.size(); ++i)
+	{
+		if(node_refs[i] != NULL)
+		{
+			node_refs[i]->index = index;
+			node_refs[i]->lowLink = lowLink;
+			node_refs[i]->onStack = onStack;
+		}
+	}
+}
+
+void Node::resetSampleDelayState(bool state)
+{	
+	for( int i=0; i<node_refs.size(); ++i)
+	{
+		if(node_refs[i] != NULL)
+		{
+			for(int j=0; j<node_refs[i]->numInlets(); ++j)
+			{
+				if( state )				
+					node_refs[i]->getInlet(j).enableSampleDelay();
+				else
+					node_refs[i]->getInlet(j).disableSampleDelay();
+			}
+		}
 	}
 }

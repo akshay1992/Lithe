@@ -11,11 +11,11 @@
 class Node;
 class Inlet;
 
-// An outlet is something into which processed samples are dumped into. 
-// An outlet is passive. 
-// It gives a connected inlet a value when asked. 
-// Add a buffer?
-
+/** @brief An outlet terminal of a graph Node. 
+ 	Processed sample is dumped into an Outlet which can then be read by a connected inlet.
+ 	An Outlet is passive and unaware of any inlets connected to it. Therefore, any number of inlets may
+ 	be reading from the same outlet. This is the patch cable equivalent of mult-ing.
+ */
 class Outlet
 {
 public:
@@ -25,13 +25,10 @@ public:
 	
 	void disconnect();
 
-	bool isConnected(void);
-
 	Sample getSample();
 	void setSample(Sample s);
 
 	Node* parent_node;
-	Inlet* connected_inlet = NULL;
 private:
 	Sample mSample;
 };

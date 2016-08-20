@@ -55,3 +55,14 @@ TEST_F(NodeTest, getNodeRef_InvalidID)
 	EXPECT_FALSE(Node::getNodeRef(id-1) == NULL);
 	EXPECT_EQ(Node::getNodeRef(id-1), &n1);
 }
+
+TEST_F(NodeTest, ProcessState)
+{
+	Node n1(2,1);
+
+	EXPECT_FALSE(n1.hasProcessed());
+	n1.Process();
+	EXPECT_TRUE(n1.hasProcessed());
+	n1.resetProcessState();
+	EXPECT_FALSE(n1.hasProcessed());
+}

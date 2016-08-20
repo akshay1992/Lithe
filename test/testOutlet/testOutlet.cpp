@@ -25,10 +25,6 @@ TEST_F(OutletTest, connectTest_IsConnected)
 	Node node2(0, 1); 
 
 	node2.getOutlet(0).connect(node1.getInlet(0));
-
-	EXPECT_EQ( node2.getOutlet(0).connected_inlet->parent_node, &node1 );
-
-	EXPECT_TRUE( node2.getOutlet(0).isConnected() );
 }
 
 TEST_F(OutletTest, connectTest_NotConnected)
@@ -37,10 +33,6 @@ TEST_F(OutletTest, connectTest_NotConnected)
 	Node node2(0, 2); 
 
 	node2.getOutlet(0).connect(node1.getInlet(0));
-
-	EXPECT_TRUE( node2.getOutlet(0).isConnected() );
-	EXPECT_FALSE( node2.getOutlet(1).isConnected() );
-	EXPECT_FALSE( node1.getOutlet(0).isConnected() );
 }
 
 TEST_F(OutletTest, get_set_Sample)

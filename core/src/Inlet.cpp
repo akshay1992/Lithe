@@ -1,7 +1,8 @@
 #include "Inlet.h"
 
 Inlet::Inlet(Node* parent_node) :
-	parent_node(parent_node)
+	parent_node(parent_node),
+	sampleDelay(false)
 {
 
 }
@@ -18,10 +19,24 @@ void Inlet::disconnect()
 
 Sample Inlet::getSample() 
 { 
+	
 	if( isConnected() )
-		return connected_outlet->getSample();
+	{
+		if( sampleDelay )
+		{
+			Sample outSample = sampleBuffer;
+			sampleBuffer = connected_outlet->getSample();
+			return outSample;
+		}
+		else
+		{
+			return connected_outlet->getSample();
+		}
+	}
 	else
-		return Sample();
+	{
+		return Sample(); 
+	}
 }
 
 bool Inlet::isConnected(void)

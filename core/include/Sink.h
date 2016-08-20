@@ -2,7 +2,7 @@
 #define SINK_H
 
 #include "Node.h"
-
+#include <vector>
 /**
 	@brief A sink is a type of node that only has inlets. 
 
@@ -15,16 +15,17 @@ public:
 	Sink(int inlets) :
 		Node::Node(inlets, 0) {}
 
-	void refreshProcessOrder()
-	{
-		
-	}
+	void Process(void) override ;
+
+	void refreshProcessOrder();
+	std::vector<int> getProcessOrder(void);
 
 private:
-	using Node::numOutlets;
+	std::vector<int> NodeID_sequence;
 	using Node::getOutlet;
-};
+	using Node::numOutlets;
 
+};
 
 #endif // SINK_H
 

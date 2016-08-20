@@ -1,12 +1,25 @@
-#ifndef BLOCK_H
-#define BLOCK_H
+#ifndef MODULE_BASE_H
+#define MODULE_BASE_H
+
+#include "Node.h"
 
 // A block is a node with audio processing and parameters included. It is an abstract class. 
 // It has a virtual function to implement the DSP
 // It also has parameters along with ranges (take from allosystem?)
 
+class ModuleBase : private Node
+{
+public:
+	using Node::getID;
 
-#endif
+
+private:
+
+};
+
+
+
+#endif //MODULE_BASE_H
 
 // ----- OLD --------
 // #include <vector>
