@@ -15,8 +15,6 @@ public:
 	Sink(int inlets) :
 		Node::Node(inlets, 0) {}
 
-	void Process(void) override ;
-
 	void refreshProcessOrder();
 	std::vector<int> getProcessOrder(void);
 

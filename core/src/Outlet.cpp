@@ -13,6 +13,8 @@ void Outlet::connect(Inlet& inlet)
 
 Sample Outlet::getSample() 
 { 
+	if(! parent_node->isDoneProcessing() )
+		parent_node->Process();
 	return mSample; 
 }
 

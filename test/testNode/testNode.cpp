@@ -60,9 +60,9 @@ TEST_F(NodeTest, ProcessState)
 {
 	Node n1(2,1);
 
-	EXPECT_FALSE(n1.hasProcessed());
+	EXPECT_FALSE(n1.isDoneProcessing());
 	n1.Process();
-	EXPECT_TRUE(n1.hasProcessed());
-	n1.resetProcessState();
-	EXPECT_FALSE(n1.hasProcessed());
+	EXPECT_TRUE(n1.isDoneProcessing());
+	Node::resetAll_ProcessState();
+	EXPECT_FALSE(n1.isDoneProcessing());
 }

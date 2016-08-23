@@ -28,13 +28,18 @@ public:
 
 	int getID();
 
-	/// Tick audio sample. Remember to fill the Outlets with respective values
-	virtual void Process() { doneProceessing(); }
+	/// This is where the guts of the module's functionaliy goes
+	virtual void DSP()  {}
 
-	/// This is called by the Sink
-	void doneProceessing() { mProcessed = true; }
-	void resetProcessState() { mProcessed = false; }
-	bool hasProcessed() { return mProcessed; }
+	/// Tick audio sample. Remember to fill the Outlets with respective values
+	void Process() 
+	{ 
+		// Process all dependent nodes
+		DSP(); 
+		doneProceessing(); 
+	}
+
+	bool isDoneProcessing() { return mProcessed; }
 
 	static void resetAll_ProcessState();
 	static Node* getNodeRef(int nodeID);
@@ -55,6 +60,9 @@ public:
 	static void resetSampleDelayState(bool state = false);
 
 private:
+	void doneProceessing() { mProcessed = true; }
+	void resetProcessState() { mProcessed = false; }
+
 	std::vector<Inlet> inlets;
 	std::vector<Outlet> outlets;
 	static int ID_counter;
