@@ -8,9 +8,10 @@ add_library(lithe_modules STATIC
 )
 
 add_subdirectory(OutputModule)
+add_subdirectory(Oscillator)
 
 # Link to allocore
-target_link_libraries(lithe_modules lithe_core)
+target_link_libraries(lithe_modules lithe_core Gamma)
 
 # Specify here the include directories exported
 # by this library

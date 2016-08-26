@@ -8,7 +8,7 @@ add_library(lithe_core STATIC
 )
 
 # Link to allocore
-target_link_libraries(lithe_core allocore)
+target_link_libraries(lithe_core allocore portaudio)
 
 # Specify here the include directories exported
 # by this library

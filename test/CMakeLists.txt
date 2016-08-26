@@ -54,5 +54,7 @@ add_subdirectory(testInlet)
 add_subdirectory(testNode)
 add_subdirectory(testSink)
 add_subdirectory(testSorter)
+add_subdirectory(testSample)
 
 add_subdirectory(testOutputModule)
+add_subdirectory(testOscillator)
