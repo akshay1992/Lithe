@@ -9,7 +9,7 @@ void OutputModuleTest::SetUp(void) {}
 
 void OutputModuleTest::TearDown(void) {}
 
-TEST_F(OutputModuleTest, outdeviceTest)
+TEST_F(OutputModuleTest, defaultoutdevice_nChannels_Test)
 {
 	OutputModule outputModule(2);
 	al::AudioIO io(al::AudioIOData::DUMMY);
@@ -18,7 +18,7 @@ TEST_F(OutputModuleTest, outdeviceTest)
 }
 
 // TEST OTHER THINGS
-TEST_F(OutputModuleTest, other)
+TEST_F(OutputModuleTest, processingTest)
 {
-	EXPECT_FALSE(true);
+	EXPECT_EQ(1, 2)
 }

@@ -1,8 +1,6 @@
 #ifndef OUTLET_H
 #define OUTLET_H
 
-#include "allocore/types/al_Buffer.hpp"
-
 #include "Inlet.h"
 #include "Node.h"
 #include "Sample.h"

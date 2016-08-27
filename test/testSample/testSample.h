@@ -21,4 +21,8 @@ protected:
     // Code here will be called immediately after each test (right
     // before the destructor).
     virtual void TearDown();
+
+    void test_toSpherical_Az(float az, float expected);
+    void test_toSpherical_El(float el, float expected);
+
 };

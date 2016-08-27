@@ -28,7 +28,7 @@ public:
 	virtual void DSP(void) override;
 
 private:
-	al::Parameter<float>gi frequency = 440;
+	float frequency = 440;
 	float az = 0;
 	float el = 0;
 	float d = 0;

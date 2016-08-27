@@ -11,7 +11,7 @@ add_subdirectory(OutputModule)
 add_subdirectory(Oscillator)
 
 # Link to allocore
-target_link_libraries(lithe_modules lithe_core Gamma)
+target_link_libraries(lithe_modules lithe_core allocore Gamma portaudio)
 
 # Specify here the include directories exported
 # by this library
