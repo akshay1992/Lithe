@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testSample
 
 add_test(NAME testSample 
 		COMMAND testSample)
+
+add_dependencies(check testSample)

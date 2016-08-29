@@ -7,9 +7,6 @@
 
 /**
 	@brief An oscillator that outputs Sine, Square, Saw, and Triangle waves. 
-
-
-
 */
 class Oscillator : public Node
 {

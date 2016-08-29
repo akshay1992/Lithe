@@ -1,20 +1,26 @@
-file(GLOB lithe_modules_folders ${CMAKE_CURRENT_SOURCE_DIR}/*/)
-
-file(GLOB lithe_modules_sources ${lithe_modules_folders}/*.cpp)
+file(GLOB_RECURSE lithe_modules_sources ${CMAKE_CURRENT_SOURCE_DIR} *.cpp)
 
 # Declare the library
-add_library(lithe_modules STATIC
-    ${lithe_modules_sources}
+add_library(lithe_modules STATIC ${lithe_modules_sources})
+
+# Link to lithe_core and other dependencies
+target_link_libraries(lithe_modules 
+	lithe_core
+	allocore 
+	Gamma 
+	portaudio
+	# Add any additional dependencies here
 )
 
-add_subdirectory(OutputModule)
-add_subdirectory(Oscillator)
+# Add all subfolders as include directories.
+file(GLOB _ALL_FILES ${CMAKE_CURRENT_SOURCE_DIR}/*)
+foreach(_FILE ${_ALL_FILES})
+  if(IS_DIRECTORY ${_FILE})
+    target_include_directories(lithe_modules PUBLIC ${_FILE})
+  endif()
+endforeach()
 
-# Link to allocore
-target_link_libraries(lithe_modules lithe_core allocore Gamma portaudio)
 
-# Specify here the include directories exported
-# by this library
-# target_include_directories(lithe_modules PUBLIC
-#     ${lithe_modules_folders}
-# )
+file(GLOB_RECURSE lithe_modules_headers ${CMAKE_CURRENT_SOURCE_DIR} *.h)
+install( TARGETS lithe_modules DESTINATION lib )
+install( FILES ${lithe_modules_headers} DESTINATION include/Lithe/modules )

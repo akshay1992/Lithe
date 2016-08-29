@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testOscillator
 
 add_test(NAME testOscillator 
 		COMMAND testOscillator)
+
+add_dependencies(check testOscillator)

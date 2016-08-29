@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testInlet
 
 add_test(NAME testInlet 
 		COMMAND testInlet)
+
+add_dependencies(check testInlet)

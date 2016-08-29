@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testTemplate
 
 add_test(NAME testTemplate 
 		COMMAND testTemplate)
+
+add_dependencies(check testTemplate)

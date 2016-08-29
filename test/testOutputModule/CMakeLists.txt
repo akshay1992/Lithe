@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testOutputModule
 
 add_test(NAME testOutputModule 
 		COMMAND testOutputModule)
+
+add_dependencies(check testOutputModule)

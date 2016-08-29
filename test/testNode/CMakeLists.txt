@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testNode
 
 add_test(NAME testNode 
 		COMMAND testNode)
+
+add_dependencies(check testNode)

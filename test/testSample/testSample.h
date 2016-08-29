@@ -24,5 +24,5 @@ protected:
 
     void test_toSpherical_Az(float az, float expected);
     void test_toSpherical_El(float el, float expected);
-
+    void toCartExpected(float az, float el, float r, float& x, float& y, float& z);
 };

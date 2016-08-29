@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testSink
 
 add_test(NAME testSink 
 		COMMAND testSink)
+
+add_dependencies(check testSink)

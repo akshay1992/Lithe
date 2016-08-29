@@ -9,14 +9,14 @@
 class OutputModule : public Sink
 {
 public:
-	OutputModule(int numInlets);
+	OutputModule(int numInlets, int AUDIO_BLOCK_SIZE);
 	~OutputModule();
 
-	/// Pull from connnected audiogra graph and pan it
+	/// Pull from connnected audiograph and pan it
 	virtual void DSP(void) override ;
 
 	/// Fills outframe with appropriate number of samples (depending on speaker layout)
-	void getFrame(float outframe[]);	// DEPRECEATED
+	void getFrame(float outframe[]);	///< DEPRECEATED
 
 	void startProcessing(void);
 	void haltProcessing(void) { mRun = false; }
@@ -25,8 +25,6 @@ public:
 	al::AudioIO io;
 	
 private:
-	/** @brief This private variable is used to start and stop the processing and output of audio
-	*/
 	bool mRun;
 
 	int audio_block_size;

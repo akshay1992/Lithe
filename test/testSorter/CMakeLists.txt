@@ -10,3 +10,5 @@ TARGET_LINK_LIBRARIES(testSorter
 
 add_test(NAME testSorter 
 		COMMAND testSorter)
+
+add_dependencies(check testSorter)

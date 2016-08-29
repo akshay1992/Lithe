@@ -1,12 +1,12 @@
 #include "OutputModule.h"
 
-OutputModule::OutputModule(int numInlets) :	
+OutputModule::OutputModule(int numInlets, int AUDIO_BLOCK_SIZE) :	
 	Sink(numInlets),  
-	io(al::AudioIOData::DUMMY)
+	io(al::AudioIOData::DUMMY), 
+	audio_block_size(AUDIO_BLOCK_SIZE)
 {
 	al::AudioDevice outdevice = al::AudioDevice::defaultOutput();
 	io.deviceOut(outdevice);
-
 
 	speaker_layout = al::HeadsetSpeakerLayout();
 	panner = new al::StereoPanner(speaker_layout);
@@ -51,9 +51,27 @@ void OutputModule::DSP(void)
 		for(int i=0; i<numInlets(); ++i)
 		{
 			if( getInlet(i).isConnected() )
+			{
 				Sample sample = getInlet(i).getSample();
-			// Write sample into respective audio scene object
+				float x, y, z;
+				sample.to_cartesian(x, y, z);
+				sources[i]->pos(x, y, z);
+				sources[i]->writeSample(sample.audio);
+			}
+			else
+			{
+				sources[i]->writeSample( 0.0 );
+			}
 		}
-		scene->render(io); // Need an equivalent for this			
+		// Write audioscene to io channels
+		scene->render(io);
+	}
+	else
+	{
+		// Write zeros to the individual io channels
+		for(int i=0; i<= io.channelsOut(); ++i)
+		{
+			io.out(i, 0.0);
+		}
 	}
 }
