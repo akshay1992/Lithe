@@ -1,7 +1,5 @@
 #include "Oscillator.h"
 
-#include "Sample.h"
-
 Oscillator::Oscillator(void) : 
 	Node(0, 4)
 {

@@ -1,12 +1,12 @@
 #ifndef LITHE_CORE_H
 #define LITHE_CORE_H
 
-#include "core/Inlet.h"    
-#include "core/Node.h"     
-#include "core/Outlet.h"   
-#include "core/Patcher.h"  
-#include "core/Sample.h"   
-#include "core/Sink.h"     
-#include "core/Sorter.h"
+#include "Inlet.h"    
+#include "Node.h"     
+#include "Outlet.h"   
+#include "Patcher.h"  
+#include "Sample.h"   
+#include "Sink.h"     
+#include "Sorter.h"
 
 #endif // LITHE_CORE_H

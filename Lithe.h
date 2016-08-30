@@ -1,4 +1,4 @@
-#ifdef LITHE_LIB_H
+#ifndef LITHE_LIB_H
 #define LITHE_LIB_H
 
 #include "core/LitheCore.h"

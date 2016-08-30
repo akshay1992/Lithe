@@ -1,9 +1,9 @@
 #ifndef OSCILLATOR_H
 #define OSCILLATOR_H
 
-#include "Node.h"
+#include "Lithe/core/LitheCore.h"
 #include "Gamma/Oscillator.h"
-#include "allocore/ui/al_Parameter.hpp"
+// #include "allocore/ui/al_Parameter.hpp"
 
 /**
 	@brief An oscillator that outputs Sine, Square, Saw, and Triangle waves. 

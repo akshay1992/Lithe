@@ -1,7 +1,7 @@
 #ifndef OUTPUT_MODULE_H
 #define OUTPUT_MODULE_H
 
-#include "Sink.h"
+#include "Lithe/core/LitheCore.h"
 #include "allocore/io/al_AudioIO.hpp"
 #include "allocore/sound/al_AudioScene.hpp"
 #include "allocore/sound/al_StereoPanner.hpp"

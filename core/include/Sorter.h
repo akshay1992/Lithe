@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <algorithm> // for std::min
-#include <Sink.h>
+#include "Sink.h"
 
 #include <iostream>
 using namespace std;
