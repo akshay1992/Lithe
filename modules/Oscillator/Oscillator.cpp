@@ -3,6 +3,7 @@
 Oscillator::Oscillator(void) : 
 	Node(0, 4)
 {
+	set_DSP_method( (DSP_Method)& Oscillator::DSP );
 	freq(440.0);
 }
 

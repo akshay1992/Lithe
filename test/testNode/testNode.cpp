@@ -1,5 +1,6 @@
 #include "testNode.h"
 #include "Node.h"
+#include "InheritedNode.hpp"
 
 NodeTest::NodeTest(void) {}
 
@@ -65,4 +66,22 @@ TEST_F(NodeTest, ProcessState)
 	EXPECT_TRUE(n1.isDoneProcessing());
 	Node::resetAll_ProcessState();
 	EXPECT_FALSE(n1.isDoneProcessing());
+}
+
+TEST_F(NodeTest, ChangeDSP)
+{
+	Node n1(1, 1);	// Singleoutlet node
+	InheritedNode n2; // Single inlet/outlet node with a bypass DSP
+
+	Patcher::connect(n2.getInlet(0), n1.getOutlet(0));
+
+	Sample s = Sample(1, 2, 4, 5);
+	n1.getOutlet(0).setSample( s); // inject sample into n1's outlet
+
+	Sample output = n2.getOutlet(0).getSample(); 	// Implicitly processes n2
+
+	EXPECT_EQ(output.audio, s.audio);
+	EXPECT_EQ(output.az, s.az);
+	EXPECT_EQ(output.el, s.el);
+	EXPECT_EQ(output.d, s.d);
 }

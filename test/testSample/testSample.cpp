@@ -30,9 +30,12 @@ void SampleTest::toCartExpected(float az, float el, float r, float& x, float& y,
 	// x - front
 	// y - left
 	// z - up
-	x = r * cos(az) * sin(el);
-	y = r * -sin(az) * sin(el);
-	z = r * cos(el);
+	az = az * M_PI;
+	el = el * M_PI/2.0; 
+	r = Sample::getGlobalRadius() *(1-r);
+	x = r * cos(az) * cos(el);
+	y = r * -sin(az) * cos(el);
+	z = r * sin(el);
 }
 
 TEST_F(SampleTest, constructorTest)
@@ -97,7 +100,7 @@ TEST_F(SampleTest, az_toCartesianTest)
 	{
 		float x, y, z;
 		float _x, _y, _z; //expected values
-		toCartExpected(samples[i].az * M_PI, samples[i].el * M_PI/2.0, Sample::getGlobalRadius() * ( 1 - samples[i].d), _x, _y, _z);
+		toCartExpected(samples[i].az, samples[i].el, samples[i].d, _x, _y, _z);
 		samples[i].to_cartesian(x, y, z);
 		EXPECT_FLOAT_EQ(x, _x);
 		EXPECT_FLOAT_EQ(y, _y);

@@ -1,7 +1,7 @@
 #ifndef OUTPUT_MODULE_H
 #define OUTPUT_MODULE_H
 
-#include "Lithe/core/LitheCore.h"
+#include "LitheCore.h"
 #include "allocore/io/al_AudioIO.hpp"
 #include "allocore/sound/al_AudioScene.hpp"
 #include "allocore/sound/al_StereoPanner.hpp"
@@ -13,18 +13,18 @@ public:
 	~OutputModule();
 
 	/// Pull from connnected audiograph and pan it
-	virtual void DSP(void) override ;
+	void DSP(void);
 
 	/// Fills outframe with appropriate number of samples (depending on speaker layout)
 	void getFrame(float outframe[]);	///< DEPRECEATED
 
 	void startProcessing(void);
 	void haltProcessing(void) { mRun = false; }
-	bool isProcessing() { return mRun; } 
+	bool isProcessing() { return mRun; }
 
 	al::AudioIO io;
-	
 private:
+
 	bool mRun;
 
 	int audio_block_size;

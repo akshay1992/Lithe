@@ -12,16 +12,20 @@
 class Sink : public Node
 {
 public:
-	Sink(int inlets) :
-		Node::Node(inlets, 0) {}
+	Sink(int inlets);
+
+	void DSP()
+	{
+
+	}
 
 	void refreshProcessOrder();
 	std::vector<int> getProcessOrder(void);
 
-private:
+protected:
 	std::vector<int> NodeID_sequence;
-	using Node::getOutlet;
-	using Node::numOutlets;
+	// using Node::getOutlet;
+	// using Node::numOutlets;
 
 };
 

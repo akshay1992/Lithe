@@ -1,4 +1,5 @@
 #include "OutputModule.h"
+#include "Node.h"
 
 OutputModule::OutputModule(int numInlets, int AUDIO_BLOCK_SIZE) :	
 	Sink(numInlets),  
@@ -20,6 +21,8 @@ OutputModule::OutputModule(int numInlets, int AUDIO_BLOCK_SIZE) :
 
 	listener = scene->createListener(panner);
 	listener->compile();
+
+	set_DSP_method((DSP_Method)& OutputModule::DSP);
 }
 
 OutputModule::~OutputModule()
@@ -65,6 +68,7 @@ void OutputModule::DSP(void)
 		}
 		// Write audioscene to io channels
 		scene->render(io);
+		Node::resetAll_ProcessState();
 	}
 	else
 	{

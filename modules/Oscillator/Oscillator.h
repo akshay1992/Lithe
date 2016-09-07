@@ -1,7 +1,7 @@
 #ifndef OSCILLATOR_H
 #define OSCILLATOR_H
 
-#include "Lithe/core/LitheCore.h"
+#include "LitheCore.h"
 #include "Gamma/Oscillator.h"
 // #include "allocore/ui/al_Parameter.hpp"
 
@@ -22,7 +22,7 @@ public:
 	/// Sets the frequency of the oscillator
 	void freq(float freq);
 
-	virtual void DSP(void) override;
+	void DSP(void);
 
 private:
 	float frequency = 440;

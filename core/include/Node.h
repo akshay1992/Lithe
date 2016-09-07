@@ -8,6 +8,13 @@
 
 class Inlet;
 class Outlet;
+class Node;
+
+/** A pointer to a DSP method. This is used by Node::set_DSP_method to set the current DSP function. 
+*/
+typedef void(Node::* DSP_Method) (void);
+
+#define SET_DSP_METHOD(methodName) set_DSP_method( (DSP_Method)& thisClass::method)
 
 /** @brief An audiograph node that has inlets and outlets. 
 
@@ -28,16 +35,11 @@ public:
 
 	int getID();
 
-	/// This is where the guts of the module's functionaliy goes
-	virtual void DSP()  {}
+	/// This is the default DSP mode of a Node (Outputs all zeroes) Change this using SET_DSP_METHOD
+	void DSP_Mute()  {}
 
 	/// Tick audio sample. Remember to fill the Outlets with respective values
-	void Process() 
-	{ 
-		// Process all dependent nodes
-		DSP(); 
-		doneProceessing(); 
-	}
+	void Process() ;
 
 	bool isDoneProcessing() { return mProcessed; }
 
@@ -59,10 +61,16 @@ public:
 	/// Used to set the sample delay for Inlets in all available Node instances. Used by Sorter.h  
 	static void resetSampleDelayState(bool state = false);
 
-private:
+protected:
+	/** @brief Use this to set the DSP method (which may be re-defined within a derived class). 
+		This is merely a way to do function overriding without using virtual (makes it C compatible)
+	*/
+	void set_DSP_method( DSP_Method new_DSP_Method );
+
 	void doneProceessing() { mProcessed = true; }
 	void resetProcessState() { mProcessed = false; }
 
+	DSP_Method DSP;
 	std::vector<Inlet> inlets;
 	std::vector<Outlet> outlets;
 	static int ID_counter;

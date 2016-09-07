@@ -1,5 +1,6 @@
 #include "testSink.h"
 #include "Sink.h"
+#include "DSPSink.hpp"
 
 SinkTest::SinkTest(void) {}
 
@@ -29,3 +30,19 @@ TEST_F(SinkTest, numInletsTest)
 // 	s1.resetAll_ProcessState();
 // 	EXPECT_FALSE(s1.isDoneProcessing());
 // }
+
+TEST_F(SinkTest, setCustomDSP_Test)
+{
+	/// Raw Sink = no DSP processing
+	RawSink raw;
+	int value = raw.value  ;
+
+	raw.Process();
+	EXPECT_EQ(raw.value, value);	// Value should not change on processing
+
+	DSPSink s;
+	// DSPSink increments value everytime it is processed. 
+	value = s.value;
+	s.Process();
+	EXPECT_EQ( s.value, value+1  ); // This ensures that the new process method is being called
+}

@@ -20,7 +20,6 @@ foreach(_FILE ${_ALL_FILES})
   endif()
 endforeach()
 
-
 file(GLOB_RECURSE lithe_modules_headers ${CMAKE_CURRENT_SOURCE_DIR} *.h)
 install( TARGETS lithe_modules DESTINATION lib )
-install( FILES ${lithe_modules_headers} DESTINATION include/Lithe/modules )
+install( FILES ${lithe_modules_headers} DESTINATION include/Lithe )
