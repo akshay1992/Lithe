@@ -28,13 +28,13 @@ TEST_F(OutputModuleTest, ProducesOutput_test)
 
 	out.startProcessing();
 
-	for(int i=0; i<1; i++)
+	for(int i=0; i<10; i++)
 	{
 		Sample s(0.2, 01, 0, +0.1);
 		node.inject(s);
 
 		out.Process();
-		EXPECT_TRUE(false);
+		// EXPECT_TRUE();
+		std::cout << out.io.out(0) << " -------- " << out.io.out(1) << std::endl;
 	}
-
 }

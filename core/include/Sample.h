@@ -45,9 +45,9 @@ public:
 	void to_cartesian(float& x, float& y, float& z)
 	{
 		Sample sph = to_spherical();
-		x = sph.r() * cos( sph.az ) * sin( sph.el );
-		y = sph.r() * -sin( sph.az) * sin( sph.el );
-		z = sph.r() * cos( sph.el );
+		x = sph.r() * cos( sph.az ) * cos( sph.el );
+		y = sph.r() * -sin( sph.az) * cos( sph.el );
+		z = sph.r() * sin( sph.el );
 	}
 
 	sample_t audio;

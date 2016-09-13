@@ -11,6 +11,7 @@ public:
 	{
 		set_DSP_method( (DSP_Method)& DummyNode::DSP);
 	}
+	
 	Sample outSample;
 	void inject(Sample sample)
 	{

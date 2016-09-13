@@ -1,8 +1,6 @@
 #include "Sink.h"
 #include "Sorter.h"
 
-#define thisClass Sink
-
 Sink::Sink(int inlets) :
 		Node::Node(inlets, 0)
 {

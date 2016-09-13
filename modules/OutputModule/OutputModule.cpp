@@ -1,6 +1,9 @@
 #include "OutputModule.h"
 #include "Node.h"
 
+#include <iostream>
+using namespace std;
+
 OutputModule::OutputModule(int numInlets, int AUDIO_BLOCK_SIZE) :	
 	Sink(numInlets),  
 	io(al::AudioIOData::DUMMY), 
@@ -55,6 +58,7 @@ void OutputModule::DSP(void)
 		{
 			if( getInlet(i).isConnected() )
 			{
+				cout << "HERE" << endl;
 				Sample sample = getInlet(i).getSample();
 				float x, y, z;
 				sample.to_cartesian(x, y, z);
