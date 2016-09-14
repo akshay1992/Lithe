@@ -38,7 +38,7 @@ public:
 	float v_cart(float x, float y, float z);
 
 	/// Returns the radius of the sphere for a given cartesian co-ordinate (x, y, z)
-	float radius(float x, float y, float z);
+	static float radius(float x, float y, float z);
 
 	/// Returns u co-ordinate for a given cartesian co-ordinate (theta, phi, r)
 	float u_sph(float theta, float phi, float r);
@@ -81,7 +81,11 @@ protected:
 	float u_low, u_high, v_low, v_high;
 	float _radius;
 
+/// This constant is used to compute the antipodal reflection
+	float reflect_constant;
+
 	float u_range, v_range;
+	float u_half_range, v_half_range;
 	float u_mid, v_mid;
 };
 

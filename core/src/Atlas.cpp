@@ -17,8 +17,13 @@ void SphericalAtlas::init()
 	u_range = u_high - u_low;
 	v_range = v_high - v_low;
 
-	u_mid = ( u_high - u_low ) * 0.5;
-	v_mid = ( v_high - v_low ) * 0.5;
+	u_half_range = u_range / 2;
+	v_half_range = v_range / 2;
+
+	u_mid = u_low + ( u_range * 0.5 );
+	v_mid = v_low + ( v_range * 0.5 );
+
+	reflect_constant = u_mid * u_half_range - (u_half_range * u_half_range) - u_mid;
 }
 
 float SphericalAtlas::u_cart(float x, float y, float z)
@@ -41,25 +46,25 @@ float SphericalAtlas::radius(float x, float y, float z)
 float SphericalAtlas::u_sph(float theta, float phi, float r)
 {
 	check_sph_range(theta, phi, r);
-	return ( theta / M_PI * u_range ) + u_range;
+	return ( theta / M_PI * u_half_range ) + u_mid;
 }
 
 float SphericalAtlas::v_sph(float theta, float phi, float r)
 {
 	check_sph_range(theta, phi, r);
-	return ( phi / M_PI * 2.0 * v_range ) + v_mid;
+	return ( phi / M_PI_2 * v_half_range ) + v_mid;
 }
 
 float SphericalAtlas::theta(float u, float v)
 {
 	check_uv_range(u, v);
-	return (u-u_mid) / u_range * M_PI;
+	return (u-u_mid) / u_half_range * M_PI;
 }
 
-float SphericalAtlas::phi( float u, float v)
+float SphericalAtlas::phi(float u, float v)
 {
 	check_uv_range(u, v);
-	return (v-v_mid) / v_range * M_PI * 0.5;
+	return (v-v_mid) / v_half_range * M_PI_2;
 }
 
 float SphericalAtlas::x(float u, float v)
@@ -87,9 +92,16 @@ float SphericalAtlas::distanceFunction(float u1, float v1, float u2, float v2)
 
 void SphericalAtlas::reflect(float u_in, float v_in, float& u_out, float& v_out)
 {
-	/// TODO
-
+	v_out = -v_in + 2.0 * v_mid;
+	u_out =  reflect_constant + u_in;
+	
+	/// u = u_mid maps to -u_half_range; hence there is a tendancy for it to go negative
+	if( u_out < u_low ) u_out += u_range;	//< This takes care of that condition
+	check_uv_range(u_out, v_out);
 }
+
+/// Custom epsilon for comparisons in check_uv_range and check_sph_range
+#define EPS_ATLAS 0.000001
 
 void SphericalAtlas::check_uv_range(float u, float v)
 {
@@ -102,8 +114,8 @@ void SphericalAtlas::check_uv_range(float u, float v)
 
 void SphericalAtlas::check_sph_range(float theta, float phi, float r)
 {
-	if( theta < -M_PI || theta > M_PI )
+	if( (theta+M_PI) < -EPS_ATLAS || (theta-M_PI) > EPS_ATLAS )
 		throw std::range_error("theta out of range");		
-	if( phi < (-M_PI*0.5) || phi > (M_PI*0.5) )
+	if( (phi+M_PI_2) < -EPS_ATLAS || (phi-M_PI_2) > EPS_ATLAS )
 		throw std::range_error("phi out of range");
 }

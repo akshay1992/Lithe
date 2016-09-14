@@ -2,7 +2,7 @@
 
 echo "== Installing Lithe =="
 mkdir build
-cd build
+pushd build
 cmake ..
 make
 make install
