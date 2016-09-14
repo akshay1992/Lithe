@@ -7,6 +7,8 @@
 
 /**
 	@brief An oscillator that outputs Sine, Square, Saw, and Triangle waves. 
+
+	@ingroup LitheModules
 */
 class Oscillator : public Node
 {

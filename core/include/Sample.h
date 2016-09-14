@@ -6,6 +6,10 @@
 
 typedef float sample_t;
 
+/** @brief A single audio sample as defined by Lithe
+	
+	@ingroup GraphUtils
+*/
 class Sample
 {
 public:

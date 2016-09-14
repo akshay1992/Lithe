@@ -1,18 +1,11 @@
 #include "Atlas.h"
 #include <stdexcept>
 
-SphericalAtlas::SphericalAtlas(float u_low, float u_high, float v_low, float v_high, float radius) :
+AtlasBase::AtlasBase(float u_low, float u_high, float v_low, float v_high) :
 	u_low (u_low),
 	u_high(u_high), 
 	v_low(v_low), 
-	v_high(v_high), 
-	_radius(radius),
-	type(ATLAS_TYPE_SPHERICAL)
-{
-	init();
-}
-
-void SphericalAtlas::init()
+	v_high(v_high)
 {
 	u_range = u_high - u_low;
 	v_range = v_high - v_low;
@@ -22,7 +15,14 @@ void SphericalAtlas::init()
 
 	u_mid = u_low + ( u_range * 0.5 );
 	v_mid = v_low + ( v_range * 0.5 );
+}
 
+
+SphericalAtlas::SphericalAtlas(float u_low, float u_high, float v_low, float v_high, float radius) :
+	AtlasBase(u_low, u_high, v_low, v_high),
+	_radius(radius),
+	type(ATLAS_TYPE_SPHERICAL)
+{
 	reflect_constant = u_mid * u_half_range - (u_half_range * u_half_range) - u_mid;
 }
 
@@ -103,7 +103,7 @@ void SphericalAtlas::reflect(float u_in, float v_in, float& u_out, float& v_out)
 /// Custom epsilon for comparisons in check_uv_range and check_sph_range
 #define EPS_ATLAS 0.000001
 
-void SphericalAtlas::check_uv_range(float u, float v)
+void AtlasBase::check_uv_range(float u, float v)
 {
 	if( u < u_low || u > u_high )
 		throw std::range_error("U value out of range");

@@ -7,8 +7,11 @@
 class Inlet;
 class Outlet;
 
-/// @brief Utility class for all patching and unpacthing
-/// All NodeBase instances internally call these methods within their connect or disconnect methods. 
+/** @brief Utility class for all patching and unpacthing
+	All Node instances internally call these methods within their connect or disconnect methods. 
+	
+	@ingroup GraphUtils 
+*/
 class Patcher
 {
 public:

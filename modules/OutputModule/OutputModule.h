@@ -6,6 +6,12 @@
 #include "allocore/sound/al_AudioScene.hpp"
 #include "allocore/sound/al_StereoPanner.hpp"
 
+/**
+	@brief A Sink module that wraps Allosystem's AudioScene to pan audio sources.
+
+	@ingroup LitheModules
+
+*/
 class OutputModule : public Sink
 {
 public:

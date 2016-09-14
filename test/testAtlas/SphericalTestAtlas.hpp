@@ -8,7 +8,6 @@ class SphericalTestAtlas : public SphericalAtlas
 public:
 	using SphericalAtlas::SphericalAtlas;
 
-	using SphericalAtlas::init;
 	using SphericalAtlas::u_low;
 	using SphericalAtlas::u_high;
 	using SphericalAtlas::v_low;

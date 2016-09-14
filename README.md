@@ -22,7 +22,7 @@ Lithe dependencies:
 
 The following steps describe how to build Lithe along with its dependencies.
 
-##### Building and installing AlloSystem 
+### Building and installing AlloSystem 
 Note: Gamma and cuttlebone are automatically built by AlloSystem if found alongside it. Therefore, building AlloSystem with in this way will also cover Lithe's dependencies.
 
 Clone AlloSystem, Gamma, and cuttlebone into the same directory using the following commands:
@@ -40,33 +40,46 @@ Build and install AlloSystem using the following commands (it automatically find
         make
         make install
 
-##### Building and installing Lithe
+### Building and installing Lithe
 
 Clone Lithe from the git repo  
 
-    git clone git@github.com:akshay1992/Lithe
+        git clone git@github.com:akshay1992/Lithe
 
-Build and install Lithe
+To build Lithe  
 
-    cd Lithe
-    mkdir build
-    cd build
-    cmake ..
-    make
-    make install
+        cd Lithe
+        mkdir build
+        cd build
+        cmake ..
+        make
+
+To install  
+
+        make install
+
+Note that the above command will will install in the default location (usually `/usr/local/`). To specify a different install location, you can manually specify install directory in the last command:
     
-Lithe will be installed by default in `/usr/local/`. To specify a different install location, specify it during the install step as follows: 
-
         make install <path_to_install_directory>
 
-##### Building and running tests
+Note: The install and uninstall scripts are provided as a shorthand. `install.sh` installs in the default directory `/use/local/` and `uninstall.sh` removes Lithe from those locations (if found).
+
+### Building and running tests
 To build and run the tests run this command from within the `Lithe/build/` directory created in the above build step:
+
     make check
     
 Note: Lithe uses [GoogleTest](https://github.com/google/googletest/archive/master.zip) for testing. It automatically downloads and builds it when testing. Therefore, be sure to be connected to the internet while building the test cases (at least the first time).
 
--------------------  
-Author: Akshay Cadambi  
-Graduate student in the _Media, Arts, and Technology_ program  
-at the _University of California, Santa Barbara_
+### Documentation
+To generate the documentation, from within the `Lithe/build/` directory created in the above build step, run the following command:
 
+    make docs
+
+The documentation can be found within `Lithe/docs` in html and latex forms. 
+    
+Note: Lithe uses [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) for generating documentation. First make sure Doxygen is installed before running the above command.
+
+-------------------  
+Author: Akshay Cadambi  \n
+Email: akshay (at) mat.ucsb.edu

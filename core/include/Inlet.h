@@ -8,8 +8,13 @@
 class Outlet;
 class Node;
 
-/** An inlet is inherited from TERMINAL and can get() samples from it's connected outlet. (to be used for processing within the block)
-It also contains the mechanism for 1-sample delay of the input signal
+/** @brief An inlet terminal of a graph Node
+
+	An inlet can get samples getSamples() from it's connected outlet. 
+	It contains a mechanism to add 1-sample delay on an incoming input signal. Further, an inlet is _active_
+	in the sense that it can instigate processing of any connected blocks via the 'pull' mechanism.
+
+	@ingroup GraphElements 
 */
 class Inlet 
 {

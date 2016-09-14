@@ -11,6 +11,8 @@ class Outlet;
 class Node;
 
 /** A pointer to a DSP method. This is used by Node::set_DSP_method to set the current DSP function. 
+
+	For more details on this mechanism see set_DSP_method
 */
 typedef void(Node::* DSP_Method) (void);
 
@@ -20,6 +22,7 @@ typedef void(Node::* DSP_Method) (void);
 
 	This is a base class on top of which a Module is built
 
+	@ingroup GraphElements 
 */
 class Node
 {

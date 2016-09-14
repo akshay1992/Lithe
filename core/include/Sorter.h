@@ -12,6 +12,7 @@ using namespace std;
     
     It does a breadth-first traversal starting at the sink and if any back edges are found at
     connected inlets, it enables it's single-sample delay
+	@ingroup Sorter
  */
 class BFS
 {
@@ -25,6 +26,7 @@ public:
 /** @brief [INCOMEPLTE/UNTESTED] Topologically sorts all nodes connected to a sink to establish a processing order.
 
 	This is done using Tarjan's algorithm. 
+	@ingroup Sorter
 
 */ 
 class TarjanSort
@@ -35,6 +37,5 @@ private:
 public:
 	static void sort(Sink& sink);
 };
-
 
 #endif //SORTER_HPP

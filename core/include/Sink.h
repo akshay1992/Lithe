@@ -7,7 +7,8 @@
 	@brief A sink is a type of node that only has inlets. 
 
 	All processing is initiated by a sink. 
-
+	
+	@ingroup GraphElements 
 */
 class Sink : public Node
 {
