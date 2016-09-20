@@ -9,10 +9,10 @@ enable_testing()
 # Declare the library
 file(GLOB lithe_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
 add_library(lithe_core STATIC ${lithe_sources} )
-target_include_directories( lithe_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Lithe )
+target_include_directories( lithe_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
 
 # Install
-file(GLOB_RECURSE lithe_headers ${CMAKE_CURRENT_SOURCE_DIR}/Lithe *.h )
+file(GLOB lithe_headers ${CMAKE_CURRENT_SOURCE_DIR}/Lithe/*.h )
 install( TARGETS lithe_core DESTINATION lib )
 install( FILES ${lithe_headers} DESTINATION include/Lithe )
 

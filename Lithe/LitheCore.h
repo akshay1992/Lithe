@@ -3,13 +3,13 @@
 
 /** @defgroup LitheCore */
 
-#include "Inlet.h"    
-#include "Node.h"     
-#include "Outlet.h"   
-#include "Patcher.h"  
-#include "Sample.h"   
-#include "Sink.h"     
-#include "Sorter.h"
+#include "Lithe/Inlet.h"    
+#include "Lithe/Node.h"     
+#include "Lithe/Outlet.h"   
+#include "Lithe/Patcher.h"  
+#include "Lithe/Sample.h"   
+#include "Lithe/Sink.h"     
+#include "Lithe/Sorter.h"
 
 /** 
 	@addtogroup LitheCore

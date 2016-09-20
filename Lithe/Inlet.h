@@ -1,9 +1,9 @@
 #ifndef INLET_H
 #define INLET_H
 
-#include "Outlet.h"
-#include "Node.h"
-#include "Sample.h"
+#include "Lithe/Outlet.h"
+#include "Lithe/Node.h"
+#include "Lithe/Sample.h"
 
 class Outlet;
 class Node;

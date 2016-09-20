@@ -1,4 +1,4 @@
-#include "Inlet.h"
+#include "Lithe/Inlet.h"
 
 Inlet::Inlet(Node* parent_node) :
 	parent_node(parent_node),

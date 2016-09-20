@@ -1,4 +1,4 @@
-#include "Outlet.h"
+#include "Lithe/Outlet.h"
 
 Outlet::Outlet(Node* parent_node) :
 	parent_node(parent_node)

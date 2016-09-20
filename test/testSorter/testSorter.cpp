@@ -1,5 +1,5 @@
 #include "testSorter.h"
-#include "Sorter.h"
+#include "Lithe/Sorter.h"
 
 SorterTest::SorterTest(void) {}
 

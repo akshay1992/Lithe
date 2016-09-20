@@ -1,3 +1,3 @@
-#include "Sample.h"
+#include "Lithe/Sample.h"
 
 float Sample::mRadius = 1;

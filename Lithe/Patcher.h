@@ -1,8 +1,8 @@
 #ifndef PATCHING_UTILS_H
 #define PATCHING_UTILS_H
 
-#include "Inlet.h"
-#include "Outlet.h"
+#include "Lithe/Inlet.h"
+#include "Lithe/Outlet.h"
 
 class Inlet;
 class Outlet;

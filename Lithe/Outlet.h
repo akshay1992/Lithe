@@ -1,10 +1,10 @@
 #ifndef OUTLET_H
 #define OUTLET_H
 
-#include "Inlet.h"
-#include "Node.h"
-#include "Sample.h"
-#include "Patcher.h"
+#include "Lithe/Inlet.h"
+#include "Lithe/Node.h"
+#include "Lithe/Sample.h"
+#include "Lithe/Patcher.h"
 
 class Node;
 class Inlet;

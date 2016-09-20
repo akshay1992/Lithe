@@ -1,5 +1,5 @@
 #include "testSink.h"
-#include "Sink.h"
+#include "Lithe/Sink.h"
 #include "DSPSink.hpp"
 
 SinkTest::SinkTest(void) {}

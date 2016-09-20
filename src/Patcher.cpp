@@ -1,4 +1,4 @@
-#include "Patcher.h"
+#include "Lithe/Patcher.h"
 
 void Patcher::connect(Inlet& inlet, Outlet& outlet)
 {

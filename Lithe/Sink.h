@@ -1,7 +1,7 @@
 #ifndef SINK_H
 #define SINK_H
 
-#include "Node.h"
+#include "Lithe/Node.h"
 #include <vector>
 /**
 	@brief A sink is a type of node that only has inlets. 

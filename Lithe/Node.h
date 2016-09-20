@@ -2,9 +2,9 @@
 #define NODE_H
 
 #include <vector>
-#include "Inlet.h"
-#include "Outlet.h"
-#include "Sample.h"
+#include "Lithe/Inlet.h"
+#include "Lithe/Outlet.h"
+#include "Lithe/Sample.h"
 
 class Inlet;
 class Outlet;

@@ -1,5 +1,5 @@
 #ifndef INHERITED_NODE_HPP
-#include "Node.h"
+#include "Lithe/Node.h"
 
 /// Used to test the set_DSP_method functionality
 class InheritedNode : public Node

@@ -1,5 +1,5 @@
 #include "testSample.h"
-#include "Sample.h"
+#include "Lithe/Sample.h"
 #include <vector>
 SampleTest::SampleTest(void) {}
 

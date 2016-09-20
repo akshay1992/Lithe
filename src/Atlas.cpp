@@ -1,4 +1,4 @@
-#include "Atlas.h"
+#include "Lithe/Atlas.h"
 #include <stdexcept>
 
 AtlasBase::AtlasBase(float u_low, float u_high, float v_low, float v_high) :

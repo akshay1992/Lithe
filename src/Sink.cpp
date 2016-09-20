@@ -1,5 +1,5 @@
-#include "Sink.h"
-#include "Sorter.h"
+#include "Lithe/Sink.h"
+#include "Lithe/Sorter.h"
 
 Sink::Sink(int inlets) :
 		Node::Node(inlets, 0)

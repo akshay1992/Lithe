@@ -1,6 +1,6 @@
 #ifndef SPHERICAL_TEST_ATLAS_HPP
 #define SPHERICAL_TEST_ATLAS_HPP
-#include "Atlas.h"
+#include "Lithe/Atlas.h"
 
 /// Merely exposes all parameters for testing.
 class SphericalTestAtlas : public SphericalAtlas
