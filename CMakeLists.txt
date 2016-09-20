@@ -6,8 +6,15 @@ set(CMAKE_CXX_FLAGS "-std=c++11 -stdlib=libc++")
 
 enable_testing()
 
-add_subdirectory(core)
-add_subdirectory(modules)
+# Declare the library
+file(GLOB lithe_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
+add_library(lithe_core STATIC ${lithe_sources} )
+target_include_directories( lithe_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/Lithe )
+
+# Install
+file(GLOB_RECURSE lithe_headers ${CMAKE_CURRENT_SOURCE_DIR}/Lithe *.h )
+install( TARGETS lithe_core DESTINATION lib )
+install( FILES ${lithe_headers} DESTINATION include/Lithe )
 
 # Custom target to build docs
 add_subdirectory(docs)
@@ -15,5 +22,3 @@ add_subdirectory(docs)
 # Custom target to build and run test 
 add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
 add_subdirectory(test EXCLUDE_FROM_ALL) 
-
-install(FILES Lithe.h DESTINATION include/Lithe)

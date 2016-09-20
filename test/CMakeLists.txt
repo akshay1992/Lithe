@@ -50,6 +50,3 @@ add_subdirectory(testSink)
 add_subdirectory(testSorter)
 add_subdirectory(testSample)
 add_subdirectory(testAtlas)
-
-add_subdirectory(testOutputModule)
-add_subdirectory(testOscillator)
