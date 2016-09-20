@@ -20,5 +20,4 @@ install( FILES ${lithe_headers} DESTINATION include/Lithe )
 add_subdirectory(docs)
 
 # Custom target to build and run test 
-add_custom_target(check COMMAND ${CMAKE_CTEST_COMMAND})
 add_subdirectory(test EXCLUDE_FROM_ALL) 
