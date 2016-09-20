@@ -14,7 +14,7 @@
 /** 
 	@addtogroup LitheCore
 	@{
-		@defgroup GraphUtils 
+		@defgroup Utils 
 		@{
 			@brief Contains utilities for working with the audiograph
 
@@ -26,10 +26,14 @@
 
 			@defgroup Sorter
 			@{
-				@brief Contains utilities for graph sorting and graph traversal
+				@brief Utilities for graph sorting and graph traversal
+			@}
+
+			@defgroup Other
+			@{
+				@brief Other classes and utilities
 			@}
 		@}
-
 
 		@defgroup GraphElements
 		@{

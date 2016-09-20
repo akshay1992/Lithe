@@ -4,41 +4,14 @@ Lithe
 Lithe is a modular synthesizer-inspired patching workflow for spatial audio. 
 
 Lithe is split into two libraries: 
-* lithe_core
-* lithe_modules
+* Lithe (this repo) - contains the core framework for patching and processing an spatial audio graph. 
+* [LitheModules](https://github.com/akshay1992/LitheModules) - contains modules built using the above framework. 
 
-_Core_ provides all the basic frameworks for patching and processing an audio graph. _Modules_ contains modules built using the _Core_ framework that can be used to directly produce sound.
-
-Lithe intentionally does not include a built in GUI, which allows it to be used with any GUI framework or application. 
+Lithe can be installed as a static library from this repo. It doesn't have any dependencies. 
 
 Build instructions:
 -------------------
 Note: All builds require CMake
-
-Lithe dependencies:
-* [AlloSystem](https://github.com/akshay1992/AlloSystem) - For sound spatialization,
-* [Gamma](https://github.com/AlloSphere-Research-Group/Gamma) - For sound synthesis/DSP
-* [cuttlebone](https://github.com/rbtsx/cuttlebone) - a required dependency of AlloSystem 
-
-The following steps describe how to build Lithe along with its dependencies.
-
-### Building and installing AlloSystem 
-Note: Gamma and cuttlebone are automatically built by AlloSystem if found alongside it. Therefore, building AlloSystem with in this way will also cover Lithe's dependencies.
-
-Clone AlloSystem, Gamma, and cuttlebone into the same directory using the following commands:
-
-        git clone git@github.com:akshay1992/AlloSystem 
-        git clone git@github.com:AlloSphere-Research-Group/Gamma.git 
-        git clone git@github.com:rbtsx/cuttlebone.git
-
-Build and install AlloSystem using the following commands (it automatically finds Gamma and cuttlebone). 
-
-        cd AlloSystem
-        mkdir build
-        cd build
-        cmake ..
-        make
-        make install
 
 ### Building and installing Lithe
 
