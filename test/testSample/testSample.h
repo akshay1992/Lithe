@@ -1,9 +1,11 @@
 #include "gtest/gtest.h"
+#include "Lithe/Atlas.h"
 
 // The fixture for testing class Block.
 class SampleTest : public ::testing::Test {
 
 protected:
+    SphericalAtlas atlas;
 
     // You can do set-up work for each test here.
     SampleTest();

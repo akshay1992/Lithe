@@ -7,8 +7,9 @@
 	@ingroup Atlas
 */
 
-enum ATLAS_TYPE
+enum AtlasType
 {
+	ATLAS_TYPE_DEFAULT,
 	ATLAS_TYPE_SPHERICAL,
 	ATLAS_TYPE_UNKOWN
 };
@@ -82,10 +83,10 @@ public:
 	SphericalAtlas( float u_low = -1, float u_high = 1, float v_low = -1, float v_high = 1, float radius = 1);
 
 	/// Returns u co-ordinate for a given cartesian co-ordinate (x, y, z)
-	float u_cart(float x, float y, float z);
+	virtual float u_cart(float x, float y, float z) override;
 
 	/// Returns the v co-ordinate for a given spherical co-ordinate (x, y, z)
-	float v_cart(float x, float y, float z);
+	virtual float v_cart(float x, float y, float z) override;
 
 	/// Returns the radius of the sphere for a given cartesian co-ordinate (x, y, z)
 	static float radius(float x, float y, float z);
@@ -103,16 +104,16 @@ public:
 	float phi( float u, float v);
 
 	/// Returns the cartesian co-ordinate x. For conventions see SphericalAtlas
-	float x(float u, float v); 
+	virtual float x(float u, float v) override; 
 
 	/// Returns the cartesian co-ordinate y. For conventions see SphericalAtlas
-	float y(float u, float v); 
+	virtual float y(float u, float v) override; 
 
 	/// Returns the cartesian co-ordinate z. For conventions see SphericalAtlas
-	float z(float u, float v); 
+	virtual float z(float u, float v) override; 
 
 	/// Returns distance between (u1, v1) and (u2, v2) as mapped onto the sphereical surface
-	float distanceFunction(float u1, float v1, float u2, float v2);
+	virtual float distanceFunction(float u1, float v1, float u2, float v2) override;
 
 	/// Reflects (u_in, v_in) antipodally on the sphere. 
 	void reflect(float u_in, float v_in, float& u_out, float& v_out);
@@ -120,7 +121,7 @@ public:
 	/// Throws an exception if input co-ordinates are out of range. For conventions see SphericalAtlas
 	void check_sph_range(float theta, float phi, float r);
 
-	ATLAS_TYPE type;
+	AtlasType type;
 
 protected:
 	/** @brief The radius of the sphere that (u, v) is mapped to. 
