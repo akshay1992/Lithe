@@ -16,8 +16,15 @@ file(GLOB lithe_headers ${CMAKE_CURRENT_SOURCE_DIR}/Lithe/*.h )
 install( TARGETS lithe_core DESTINATION lib )
 install( FILES ${lithe_headers} DESTINATION include/Lithe )
 
-# Custom target to build docs
-add_subdirectory(docs)
+# If this is built as a git submodule to LitheModules, then ignore the test cases and docs. 
+if(BUILDING_LITHE_MODULES)
+	message("-- Ignoring docs & test targets for Lithe")
 
-# Custom target to build and run test 
-add_subdirectory(test EXCLUDE_FROM_ALL) 
+else()
+	message("-- Setting up docs target for Lithe")
+	# Custom target to build docs
+	add_subdirectory(docs)
+	message("-- Setting up test target for Lithe")
+	# Custom target to build and run test 
+	add_subdirectory(test EXCLUDE_FROM_ALL) 
+endif()
