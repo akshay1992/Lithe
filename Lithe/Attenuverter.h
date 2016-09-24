@@ -14,17 +14,6 @@ class AttenuverterT
 	int inletIndex = -1;
 	int sampleValIndex = 0;
 	Node* node_ref = NULL;
-
-	Sample<T> getSample(Parameter param, );
-	
-	RangeT<T> mappingBounds;
-
-	/// @brief TODO MAPPING HERE
-	virtual T map( T value );
-
-	virtual T wrap( T value );
-
-	virtual T shift( T value );
 };
 typedef AttenuverterT<float> Attenuverter;
 

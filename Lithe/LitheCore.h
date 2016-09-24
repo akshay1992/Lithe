@@ -3,12 +3,16 @@
 
 /** @defgroup LitheCore */
 
-#include "Lithe/Inlet.h"    
-#include "Lithe/Node.h"     
-#include "Lithe/Outlet.h"   
-#include "Lithe/Patcher.h"  
-#include "Lithe/Sample.h"   
-#include "Lithe/Sink.h"     
+#include "Lithe/Atlas.h"
+#include "Lithe/Inlet.h"
+#include "Lithe/Node.h"
+#include "Lithe/Parameter.h"
+#include "Lithe/Patcher.h"
+#include "Lithe/Sink.h"
+#include "Lithe/Attenuverter.h"
+#include "Lithe/Outlet.h"
+#include "Lithe/ParameterField.h"
+#include "Lithe/Sample.h"
 #include "Lithe/Sorter.h"
 
 /** 

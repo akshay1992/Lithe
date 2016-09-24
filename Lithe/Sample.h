@@ -7,6 +7,67 @@
 #include "Lithe/Atlas.h"
 #include "Lithe/Parameter.h"
 
+/** @brief A convenience struct to specify the range of a parameter.
+
+	Defaults to a float in (-1, 1)
+
+	@ingroup Other
+*/
+template< typename T = float >
+struct RangeT
+{
+	RangeT( T min = -1, T max = 1) : minVal(min), maxVal(max) 
+	{ 
+		range = maxVal - minVal; 
+		half_range =  (T) range / 2.0;
+		if( range <=0 )
+			throw std::range_error("RangeT invalid. Is <= 0" );
+	};
+
+	T minVal;
+	T maxVal;
+	T range;
+	T half_range;
+};
+
+/// @brief Shorthand for a float RangeT
+typedef RangeT<float> Range;
+
+/// @brief Utility function for mapping from one range to another
+template<typename T >
+T map(T value, RangeT<T> fromRange, RangeT<T> toRange)
+{
+	/// Linear mapping function (for now)
+	return ( (value-fromRange.minVal)*(toRange.maxVal-toRange.minVal)/(fromRange.maxVal-fromRange.minVal) ) + toRange.minVal;
+}
+
+/// @brief Wraps a value to the other side if out of range. 
+template<typename T> 
+T wrap(T value, RangeT<T> wrapRange)
+{
+	if( value > wrapRange.maxVal )
+	{
+		return wrap(value-wrapRange.range, wrapRange);
+
+	}
+	else if( value < wrapRange.minVal )
+	{
+		return wrap(value+wrapRange.range, wrapRange);
+	}
+	else
+	{	
+		return value;
+	}
+}
+
+/// @brief DC Shifts an input value by a an amount specified. Wraps if the shift puts it out of range.
+template< typename T> 
+T dc_shift(T value, T shift, RangeT<T> range)
+{
+	return wrap(value + shift, range);
+}
+
+
 /** @brief A single audio sample as defined by Lithe
 	
 	@ingroup Other
@@ -22,6 +83,7 @@ public:
 		d(d), 
 		preferred_atlas(preferred_atlas)
 	{	}
+	~SampleT() {}
 
 	/// @brief A single sample of audio. This is in mono only. 
 	T audio;

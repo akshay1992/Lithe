@@ -1,5 +1,5 @@
-#ifndef SORTER_HPP
-#define SORTER_HPP
+#ifndef SORTER_H
+#define SORTER_H
 
 #include <vector>
 #include <algorithm> // for std::min
@@ -38,4 +38,4 @@ public:
 	static void sort(Sink& sink);
 };
 
-#endif //SORTER_HPP
+#endif //SORTER_H
