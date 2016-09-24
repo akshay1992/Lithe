@@ -5,6 +5,7 @@
 #include <stdexcept>
 
 #include "Lithe/Atlas.h"
+#include "Lithe/Parameter.h"
 
 /** @brief A single audio sample as defined by Lithe
 	
@@ -31,11 +32,42 @@ public:
 	/// @brief The third parameter. Usually this is used to denote distance. However, the metric is defined by downstream modules.
 	T d;
 
+	/// @brief For the convenience of accessing using an index
+	T operator[](int index)
+	{
+		switch(index)
+		{	
+			case 0: return audio;
+			case 1: return az;
+			case 2: return el;
+			case 3: return d;
+			default: throw std::range_error("Invalid index for accessing Sample");
+		}
+	}
+
+	/** @brief Used to set the range of the values of the values in Sample
+
+		Warning: This sets it for all SampleT instances in the program. 
+	*/
+	static void setRange(RangeT<T> newRange) { SampleRange = newRange; }
+
+	/// @brief Returns the default ranges for SampleT
+	static inline RangeT<T> getRange(void) { return SampleRange; }
+
 	/** @brief Used to communicate a preferred atlas to downstream Node instances. Does not enforce.
 	*/
 	AtlasType preferred_atlas;
+
+private:
+	/// @brief specifies the of a sample's values (applied the same to audio, az, el, and d)
+	static RangeT<T> SampleRange;
 };
 
+// Allocating SampleRange
+template< typename T >
+RangeT<T> SampleT<T>::SampleRange;
+
+/// @brief A shorthand for a Sample with float
 typedef SampleT<float> Sample;
 
 #endif //SAMPLE_H
