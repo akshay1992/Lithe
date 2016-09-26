@@ -3,11 +3,8 @@
 
 #include <stdexcept>
 #include "Lithe/Sample.h"
-#include "Lithe/Inlet.h"
 
-#ifndef SAMPLE_H
-pooop
-#endif
+class Inlet; // Forward declaration because of circular dependencies
 
 /** @brief A parameter used within a module. TODO:  make everything thread safe
 
@@ -21,13 +18,13 @@ class ParameterT
 	~ParameterT()
 	{	}
 
-	RangeT<T> mappingBounds;
+	// RangeT<T> mappingBounds;
 
 	T get() { return mVal; }
 	void set(T val) { mVal = val; }
 	void reset(void) { mVal = mDefaultVal; }
 
-	/// @brief sets up a paremeter to be modulated by an inlet signal
+	/// @brief sets up a paremeter to be modulated by an inlet signal. (Do this only once!
 	void link(Inlet& inlet, int sampleValIndex)
 	{
 		inlet_ref = &inlet;
