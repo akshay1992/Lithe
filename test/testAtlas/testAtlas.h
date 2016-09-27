@@ -1,4 +1,5 @@
 #include "gtest/gtest.h"
+#include "Lithe/LitheCore.h"
 #include "SphericalTestAtlas.hpp"
 
 #include <vector>

@@ -1,5 +1,5 @@
 #include "testOutlet.h"
-#include "Lithe/Outlet.h"
+#include "Lithe/LitheCore.h"
 
 OutletTest::OutletTest(void) {}
 

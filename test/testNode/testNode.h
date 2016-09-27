@@ -1,5 +1,4 @@
 #include "gtest/gtest.h"
-#include "Lithe/Node.h"
 
 // The fixture for testing class Block.
 class NodeTest : public ::testing::Test {

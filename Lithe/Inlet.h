@@ -1,10 +1,7 @@
 #ifndef INLET_H
 #define INLET_H
 
-#include "Lithe/Outlet.h"
-#include "Lithe/Node.h"
 #include "Lithe/Sample.h"
-
 class Outlet;
 class Node;
 
@@ -29,15 +26,14 @@ public:
 
 	Node* parent_node;
 
-	void enableSampleDelay(void) { sampleDelay = true; sampleBuffer = Sample(); }
-	void disableSampleDelay(void) { sampleDelay = false; sampleBuffer = Sample(-2, -2, -2, -2); }
-	bool sampleDelayEnabled(void) { return sampleDelay; }
+	void enableSampleDelay(void);
+	void disableSampleDelay(void);
+	bool sampleDelayEnabled(void);
 
 	Outlet* connected_outlet = NULL;
 private:
 	bool sampleDelay;
 	Sample sampleBuffer;
 };
-
 
 #endif //INLET_H

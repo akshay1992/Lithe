@@ -1,4 +1,6 @@
 #include "Lithe/Sorter.h"
+#include "Lithe/Inlet.h"
+#include "Lithe/Outlet.h"
 
 void BFS::visit(Node& node, int level)
 {

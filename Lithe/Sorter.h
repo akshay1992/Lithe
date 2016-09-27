@@ -5,9 +5,6 @@
 #include <algorithm> // for std::min
 #include "Lithe/Sink.h"
 
-#include <iostream>
-using namespace std;
-
 /** @brief BFS-based algorithm that enables appropriate sample-delays on the inlets of a graph.
     
     It does a breadth-first traversal starting at the sink and if any back edges are found at

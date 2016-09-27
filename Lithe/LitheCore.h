@@ -9,9 +9,8 @@
 #include "Lithe/Parameter.h"
 #include "Lithe/Patcher.h"
 #include "Lithe/Sink.h"
-#include "Lithe/Attenuverter.h"
 #include "Lithe/Outlet.h"
-#include "Lithe/ParameterField.h"
+// #include "Lithe/ParameterField.h"
 #include "Lithe/Sample.h"
 #include "Lithe/Sorter.h"
 

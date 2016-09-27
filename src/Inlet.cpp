@@ -1,4 +1,5 @@
 #include "Lithe/Inlet.h"
+#include "Lithe/Patcher.h"
 
 Inlet::Inlet(Node* parent_node) :
 	parent_node(parent_node),
@@ -16,6 +17,23 @@ void Inlet::disconnect()
 { 
 	Patcher::disconnect( *this, *connected_outlet);
 }
+
+void Inlet::enableSampleDelay(void) 
+{ 
+	sampleDelay = true; sampleBuffer = Sample(); 
+}
+
+void Inlet::disableSampleDelay(void) 
+{ 
+	sampleDelay = false; sampleBuffer = Sample(-2, -2, -2, -2); 
+}
+
+bool Inlet::sampleDelayEnabled(void) 
+{ 
+	return sampleDelay; 
+}
+
+
 
 Sample Inlet::getSample() 
 { 

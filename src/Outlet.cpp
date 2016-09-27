@@ -1,4 +1,8 @@
 #include "Lithe/Outlet.h"
+#include "Lithe/Inlet.h"
+#include "Lithe/Node.h"
+#include "Lithe/Sample.h"
+#include "Lithe/Patcher.h"
 
 Outlet::Outlet(Node* parent_node) :
 	parent_node(parent_node)

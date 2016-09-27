@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "Lithe/Parameter.h"
+#include "Lithe/LitheCore.h"
 // The fixture for testing class Block.
 class ParameterTest : public ::testing::Test {
 

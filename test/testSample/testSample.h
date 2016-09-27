@@ -1,5 +1,5 @@
 #include "gtest/gtest.h"
-#include "Lithe/Atlas.h"
+#include "Lithe/LitheCore.h"
 
 // The fixture for testing class Block.
 class SampleTest : public ::testing::Test {

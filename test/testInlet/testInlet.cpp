@@ -1,5 +1,5 @@
 #include "testInlet.h"
-#include "Lithe/Outlet.h"
+#include "Lithe/LitheCore.h"
 
 InletTest::InletTest(void) {}
 

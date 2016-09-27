@@ -5,7 +5,6 @@
 #include <stdexcept>
 
 #include "Lithe/Atlas.h"
-#include "Lithe/Parameter.h"
 
 /** @brief A convenience struct to specify the range of a parameter.
 
@@ -28,6 +27,15 @@ struct RangeT
 	T maxVal;
 	T range;
 	T half_range;
+
+	/// @brief Checks if a value is within the specified range. 
+	void check(T val)
+	{
+		if( val > maxVal )
+			throw std::range_error("RangeT value exceeds range");
+		if( val < minVal )
+			throw std::range_error("RangeT value beneath range");
+	}
 };
 
 /// @brief Shorthand for a float RangeT
@@ -47,12 +55,11 @@ T wrap(T value, RangeT<T> wrapRange)
 {
 	if( value > wrapRange.maxVal )
 	{
-		return wrap(value-wrapRange.range, wrapRange);
-
+		return wrap<T>(value-wrapRange.range, wrapRange);
 	}
 	else if( value < wrapRange.minVal )
 	{
-		return wrap(value+wrapRange.range, wrapRange);
+		return wrap<T>(value+wrapRange.range, wrapRange);
 	}
 	else
 	{	
@@ -64,9 +71,8 @@ T wrap(T value, RangeT<T> wrapRange)
 template< typename T> 
 T dc_shift(T value, T shift, RangeT<T> range)
 {
-	return wrap(value + shift, range);
+	return wrap<T>(value + wrap<T>(shift, range), range);
 }
-
 
 /** @brief A single audio sample as defined by Lithe
 	

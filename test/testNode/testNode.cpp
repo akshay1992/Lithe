@@ -1,5 +1,5 @@
 #include "testNode.h"
-#include "Lithe/Node.h"
+#include "Lithe/LitheCore.h"
 #include "InheritedNode.hpp"
 
 NodeTest::NodeTest(void) {}
