@@ -61,6 +61,10 @@ TEST_F(SampleTest, range_test)
 	EXPECT_EQ(r2.maxVal, 128);
 	EXPECT_EQ(r2.half_range, 128);
 	EXPECT_EQ(r2.range, 256);
+
+	// Min value is more than max value. 
+	EXPECT_THROW( r2 = Range(12, -2), std::range_error);
+	EXPECT_THROW( RangeT<int> r4 = RangeT<int>(12, -2), std::range_error);
 }
 
 TEST_F(SampleTest, map_test)

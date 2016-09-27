@@ -17,7 +17,7 @@ public:
 
 
 template < class TAtlas >
-class ConstantPField public : ParameterFieldBase< TAtlas >
+class ConstantPField : ParameterFieldBase< TAtlas >
 {
 private:
 	ConstantPField( float value = 0 )  : mValue(value)

@@ -38,10 +38,10 @@ public:
 
 		switch(att_type)
 		{
-			case ATTENUATOR: att = new ParameterT<float>(0, Range(0,1)); break;
-			case ATTENUVERTER: att = new ParameterT<float>(0, Range(-1,1)); break;
+			case ATTENUATOR: att = new ParameterT<float>(0, Range(0,1)); selectedAtt = ATTENUATOR; break;
+			case ATTENUVERTER: att = new ParameterT<float>(0, Range(-1,1)); selectedAtt = ATTENUVERTER; break;
 			default:
-			case NONE: att = NULL;
+			case NONE: att = NULL; selectedAtt = NONE;
 		}
 	}
 
@@ -60,7 +60,7 @@ public:
 		/// Lock mVal??	
 		if( linked_to_inlet && inlet_ref->isConnected() ) 
 		{
-			return_val = modulate();
+			return_val = modulate( inlet_ref->getSample()[sampleValueIndex] );
 		}
 		else
 		{
@@ -71,12 +71,25 @@ public:
 	}
 
 
-	/** @brief Default type of modulation using an inlet. 
+	/** @brief Default modulation using an inlet. 
+		Modulates from mVal linearly until it reaches one of the ends of the mappingRange. 
+		If it reaches the end of a range, it wraps around.
+
+		Override to modulate using a different function. 
 	*/
-	virtual inline T modulate()
+	virtual inline T modulate( T modulating_signal)
 	{
-		T modulating_signal = att->get() * inlet_ref->getSample()[sampleValueIndex];
-		return mVal + map<T>(modulating_signal , SampleT<T>::getRange(), mappingRange);
+		T attenuated_modulating_signal;
+		if( selectedAtt == NONE )
+		{ 	/// If AttenuatorType is NONE, full scale signal is used to modulate. (useful if using external ettenuator/attenuvertor)
+			attenuated_modulating_signal = modulating_signal;
+		}
+		else	
+		{
+			attenuated_modulating_signal = att->get() * inlet_ref->getSample()[sampleValueIndex];
+		}
+
+		return mVal + map<T>(attenuated_modulating_signal , SampleT<T>::getRange(), mappingRange);
 	}
 
 	void set(T val) 
@@ -99,7 +112,7 @@ public:
 	}
 
 	ParameterT<float>* att; ///< Attenuator/Attenuverter (instantiated in constructor)
-
+	AttenuatorType selectedAtt;
 private:
 	Inlet* inlet_ref;	///< inlet of the modulating signal
 	int sampleValueIndex; ///< selects between audio, el, az, d
