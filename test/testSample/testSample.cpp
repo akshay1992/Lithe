@@ -108,3 +108,22 @@ TEST_F(SampleTest, dc_shift_test)
 	EXPECT_FLOAT_EQ( dc_shift<float>(0.7, -3, r), -0.3);
 	EXPECT_FLOAT_EQ( dc_shift<float>(-0.4, +5, r), +0.6);
 }
+
+TEST_F(SampleTest, dc_shift_clip_test)
+{
+	Range r( -1, 1);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(0, +0.2, r), 0.2);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(0.6, -0.2, r), 0.4);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(-0.3, +0.2, r), -0.1);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(-0.9, 0.02, r), -0.88);
+	
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(0.8, +0.3, r), +1);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(-0.7, -2, r), -1);
+
+	/// Looks like an error accumulates
+	// float eps = 0.00001;
+	// EXPECT_NEAR( dc_shift<float>(0.7, -3, r), -0.7, eps);
+	// EXPECT_NEAR( dc_shift<float>(-0.4, +5, r), -0.4, eps);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(0.7, -3, r), -1);
+	EXPECT_FLOAT_EQ( dc_shift_clip<float>(-0.4, +5, r), +1);
+}

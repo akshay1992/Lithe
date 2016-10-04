@@ -67,11 +67,36 @@ T wrap(T value, RangeT<T> wrapRange)
 	}
 }
 
+/// @brief Clips a value to the bounds of clipRange if it exceeds
+template< typename T>
+T clip( T value, RangeT<T> clipRange)
+{
+	if( value > clipRange.maxVal )
+	{
+		return clipRange.maxVal;
+	}
+	else if( value < clipRange.minVal )
+	{
+		return clipRange.minVal;
+	}
+	else 
+	{
+		return value;
+	}
+}
+
 /// @brief DC Shifts an input value by a an amount specified. Wraps if the shift puts it out of range.
 template< typename T> 
 T dc_shift(T value, T shift, RangeT<T> range)
 {
 	return wrap<T>(value + wrap<T>(shift, range), range);
+}
+
+/// @brief DC Shifts an input value by a an amount specified. Clips if the shift puts it out of range.
+template< typename T>
+T dc_shift_clip(T value, T shift, RangeT<T> range)
+{
+	return clip<T>(value+shift, range);
 }
 
 /** @brief A single audio sample as defined by Lithe
