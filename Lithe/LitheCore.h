@@ -6,7 +6,6 @@
 #include "Lithe/Atlas.h"
 #include "Lithe/Inlet.h"
 #include "Lithe/Node.h"
-#include "Lithe/Parameter.h"
 #include "Lithe/Patcher.h"
 #include "Lithe/Sink.h"
 #include "Lithe/Outlet.h"
