@@ -8,10 +8,9 @@ public:
 	InheritedNode(void) :
 		Node(1, 1)
 	{
-		set_DSP_method((DSP_Method)& InheritedNode::customDSP);
 	}
 
-	void customDSP()
+	virtual void DSP() override
 	{
 		// Simple bypass node
 		Sample s = getInlet(0).getSample();

@@ -15,19 +15,14 @@ class Sink : public Node
 public:
 	Sink(int inlets);
 
-	void DSP()
-	{
-
-	}
+	/// @brief Processes graph and then refreshes process state of all nodes in the graph
+	virtual void Process(void) override;
 
 	void refreshProcessOrder();
 	std::vector<int> getProcessOrder(void);
 
 protected:
 	std::vector<int> NodeID_sequence;
-	// using Node::getOutlet;
-	// using Node::numOutlets;
-
 };
 
 #endif // SINK_H

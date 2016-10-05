@@ -57,11 +57,11 @@ T wrap(T value, RangeT<T> wrapRange)
 {
 	if( value > wrapRange.maxVal )
 	{
-		return wrap<T>(value-wrapRange.range, wrapRange);
+		return wrap<T>(value-(T)wrapRange.range, wrapRange);
 	}
 	else if( value < wrapRange.minVal )
 	{
-		return wrap<T>(value+wrapRange.range, wrapRange);
+		return wrap<T>(value+ (T)wrapRange.range, wrapRange);
 	}
 	else
 	{	
@@ -98,7 +98,7 @@ T dc_shift_wrap(T value, T shift, RangeT<T> range)
 template< typename T>
 T dc_shift_clip(T value, T shift, RangeT<T> range)
 {
-	return clip<T>(value+shift, range);
+	return clip<T>(value+ (T)shift, range);
 }
 
 /* @brief Modulates about parameter_val using the modulation_signal. 

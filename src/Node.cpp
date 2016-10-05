@@ -11,8 +11,6 @@ Node::Node(int numInlets, int numOutlets)
 	mID = ID_counter;
 	ID_counter++;
 
-	set_DSP_method((DSP_Method)& Node::DSP_Mute);
-
 	node_refs.push_back(this);
 	mProcessed = false;
 
@@ -26,12 +24,6 @@ Node::Node(int numInlets, int numOutlets)
 	}
 }
 
-void Node::set_DSP_method( DSP_Method new_DSP_Method )
-{
-	DSP = new_DSP_Method;
-}
-
-
 Node::~Node(void)
 {
 	node_refs[getID()] = NULL;
@@ -39,11 +31,9 @@ Node::~Node(void)
 
 void Node::Process(void)
 { 
-	// Process all dependent nodes
-	(this->*DSP)(); 
+	DSP(); 
 	doneProceessing(); 
 }
-
 
 int Node::numInlets(void) 
 { 

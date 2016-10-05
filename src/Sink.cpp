@@ -4,7 +4,13 @@
 Sink::Sink(int inlets) :
 		Node::Node(inlets, 0)
 {
-	set_DSP_method((DSP_Method)& Sink::DSP);
+}
+
+void Sink::Process(void)
+{
+	DSP();
+	Node::resetAll_ProcessState();
+	doneProceessing();
 }
 
 void Sink::refreshProcessOrder(void)
