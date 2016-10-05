@@ -18,6 +18,7 @@ struct RangeT
 	RangeT( T min = -1, T max = 1) : minVal(min), maxVal(max) 
 	{ 
 		range = maxVal - minVal; 
+		mid = range*0.5 + minVal;
 		half_range =  (T) range / 2.0;
 		if( range <=0 )
 			throw std::range_error("RangeT invalid. Is <= 0" );
@@ -27,6 +28,7 @@ struct RangeT
 	T maxVal;
 	T range;
 	T half_range;
+	T mid;
 
 	/// @brief Checks if a value is within the specified range. 
 	void check(T val)
@@ -43,10 +45,10 @@ typedef RangeT<float> Range;
 
 /// @brief Utility function for mapping from one range to another
 template<typename T >
-T map(T value, RangeT<T> fromRange, RangeT<T> toRange)
+T linear_map(T value, RangeT<T> fromRange, RangeT<T> toRange)
 {
-	/// Linear mapping function (for now)
-	return ( (value-fromRange.minVal)*(toRange.maxVal-toRange.minVal)/(fromRange.maxVal-fromRange.minVal) ) + toRange.minVal;
+	return ( (value - fromRange.minVal) * toRange.range / fromRange.range ) + toRange.minVal;
+	// return ( (value-fromRange.minVal)*(toRange.maxVal-toRange.minVal)/(fromRange.maxVal-fromRange.minVal) ) + toRange.minVal;
 }
 
 /// @brief Wraps a value to the other side if out of range. 
@@ -87,7 +89,7 @@ T clip( T value, RangeT<T> clipRange)
 
 /// @brief DC Shifts an input value by a an amount specified. Wraps if the shift puts it out of range.
 template< typename T> 
-T dc_shift(T value, T shift, RangeT<T> range)
+T dc_shift_wrap(T value, T shift, RangeT<T> range)
 {
 	return wrap<T>(value + wrap<T>(shift, range), range);
 }
@@ -98,6 +100,26 @@ T dc_shift_clip(T value, T shift, RangeT<T> range)
 {
 	return clip<T>(value+shift, range);
 }
+
+/* @brief Modulates about parameter_val using the modulation_signal. 
+
+	NOTE: The modulation_signal is mapped to the same range as the parameter_val to enaure proper modulation. 
+*/
+template< typename T> 
+T modulate_clip(T parameter_val, T modulation_signal, RangeT<T> modulation_range, RangeT<T> parameter_range)
+{
+	T modulation_signal_mapped = linear_map<float>(modulation_signal, modulation_range, parameter_range);
+	return dc_shift_clip<T>( modulation_signal, parameter_val, parameter_range);
+}
+
+/// @brief Modulates about parameter_val using the modulation_signal. If it exceeds range, it clips
+template< typename T> 
+T modulate_wrap(T parameter_val, T modulation_signal, RangeT<T> modulation_range, RangeT<T> parameter_range)
+{
+	T modulation_signal_mapped = linear_map<float>(modulation_signal, modulation_range, parameter_range);
+	return dc_shift_wrap<T>( modulation_signal, parameter_val, parameter_range);
+}
+
 
 /** @brief A single audio sample as defined by Lithe
 	
