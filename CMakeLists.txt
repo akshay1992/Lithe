@@ -17,7 +17,7 @@ install( TARGETS lithe_core DESTINATION lib )
 install( FILES ${lithe_headers} DESTINATION include/Lithe )
 
 # If this is built as a git submodule to LitheModules, then ignore the test cases and docs. 
-if(BUILDING_LITHE_MODULES)
+if(LITHE_DONT_BUILD_TESTS)
 	message("-- Ignoring docs & test targets for Lithe")
 
 else()
