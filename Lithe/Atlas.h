@@ -3,6 +3,8 @@
 
 #include <cmath>
 
+namespace lithe {
+
 /** @brief Used to identify the type of Atlas
 	@ingroup Atlas
 */
@@ -134,6 +136,9 @@ protected:
 	float reflect_constant;
 };
 
+}; //namespace lithe
+
 /// @}
+
 
 #endif //ATLAS_H

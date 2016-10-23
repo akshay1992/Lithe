@@ -3,6 +3,8 @@
 
 #include <vector>
 
+namespace lithe {
+
 class Inlet;
 class Outlet;
 class Node;
@@ -64,5 +66,7 @@ protected:
 	int mID;
 	bool mProcessed;
 };
+
+}; // namespace lithe
 
 #endif	// NODE_H 

@@ -3,6 +3,8 @@
 
 #include "Lithe/Atlas.h"
 
+namespace lithe {
+
 template< class TAtlas >
 class ParamterFieldBase
 {
@@ -37,5 +39,7 @@ private:
 };
 
 typedef ConstantPField<float> ConstantPFieldF;
+
+}; // namespace lithe
 
 #endif // PARAMETER_FIELD_H

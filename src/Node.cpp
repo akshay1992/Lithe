@@ -3,6 +3,8 @@
 #include "Lithe/Outlet.h"
 #include <exception>
 
+namespace lithe{ 
+
 int Node::ID_counter = 0;
 std::vector< Node* > Node::node_refs;
 
@@ -118,3 +120,5 @@ void Node::resetSampleDelayState(bool state)
 		}
 	}
 }
+
+}; // namespace lithe

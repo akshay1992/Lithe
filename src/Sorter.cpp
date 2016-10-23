@@ -2,6 +2,8 @@
 #include "Lithe/Inlet.h"
 #include "Lithe/Outlet.h"
 
+namespace lithe {
+
 void BFS::visit(Node& node, int level)
 {
 	std::vector<Node*> next_node_set;
@@ -109,5 +111,6 @@ void TarjanSort::sort(Sink& sink)
 		 // cout << " }" << endl;
 		sccs.pop_back();
 	}
-
 }
+
+};  // namespace lithe

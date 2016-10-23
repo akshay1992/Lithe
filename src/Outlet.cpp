@@ -4,6 +4,8 @@
 #include "Lithe/Sample.h"
 #include "Lithe/Patcher.h"
 
+namespace lithe {
+
 Outlet::Outlet(Node* parent_node) :
 	parent_node(parent_node)
 {
@@ -26,3 +28,5 @@ void Outlet::setSample(Sample s)
 { 
 	mSample = s; 
 }
+
+}; // namespace lithe

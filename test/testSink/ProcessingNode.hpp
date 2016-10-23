@@ -1,5 +1,6 @@
 #ifndef PROCESSING_NODE_HPP
 #include "Lithe/LitheCore.h"
+using namespace lithe;
 
 /// Used to test the set_DSP_method functionality
 class ProcessingNode : public Node

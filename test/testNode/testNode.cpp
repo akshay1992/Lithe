@@ -2,6 +2,8 @@
 #include "Lithe/LitheCore.h"
 #include "InheritedNode.hpp"
 
+using namespace lithe;
+
 NodeTest::NodeTest(void) {}
 
 NodeTest::~NodeTest(void) {}

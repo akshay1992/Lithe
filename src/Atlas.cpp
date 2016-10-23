@@ -1,6 +1,8 @@
 #include "Lithe/Atlas.h"
 #include <stdexcept>
 
+namespace lithe{
+
 AtlasBase::AtlasBase(float u_low, float u_high, float v_low, float v_high) :
 	u_low (u_low),
 	u_high(u_high), 
@@ -119,3 +121,5 @@ void SphericalAtlas::check_sph_range(float theta, float phi, float r)
 	if( (phi+M_PI_2) < -EPS_ATLAS || (phi-M_PI_2) > EPS_ATLAS )
 		throw std::range_error("phi out of range");
 }
+
+}; // namespace lithe

@@ -3,6 +3,8 @@
 
 #include "Lithe/Node.h"
 #include <vector>
+
+namespace lithe {
 /**
 	@brief A sink is a type of node that only has inlets. 
 
@@ -24,6 +26,8 @@ public:
 protected:
 	std::vector<int> NodeID_sequence;
 };
+
+} // namespace lithe
 
 #endif // SINK_H
 

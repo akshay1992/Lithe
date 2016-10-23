@@ -6,6 +6,8 @@
 
 #include "Lithe/Atlas.h"
 
+namespace lithe{
+
 /** @brief A convenience struct to specify the range of a parameter.
 
 	Defaults to a float in (-1, 1)
@@ -184,5 +186,7 @@ RangeT<T> SampleT<T>::SampleRange;
 
 /// @brief A shorthand for a Sample with float
 typedef SampleT<float> Sample;
+
+}; // namespace lithe
 
 #endif //SAMPLE_H

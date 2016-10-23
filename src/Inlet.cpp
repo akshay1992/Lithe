@@ -1,6 +1,8 @@
 #include "Lithe/Inlet.h"
 #include "Lithe/Patcher.h"
 
+namespace lithe{
+
 Inlet::Inlet(Node* parent_node) :
 	parent_node(parent_node),
 	sampleDelay(false)
@@ -61,3 +63,5 @@ bool Inlet::isConnected(void)
 {
 	return (connected_outlet != NULL);
 }
+
+}; // namespace lithe

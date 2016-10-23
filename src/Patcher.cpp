@@ -1,5 +1,7 @@
 #include "Lithe/Patcher.h"
 
+namespace lithe {
+
 void Patcher::connect(Inlet& inlet, Outlet& outlet)
 {
 	if( inlet.isConnected() )	inlet.disconnect();
@@ -14,3 +16,5 @@ void Patcher::disconnect(Inlet& inlet, Outlet& outlet)
 	inlet.connected_outlet = NULL;
 	// outlet.connected_inlet = NULL;
 }
+
+}; 

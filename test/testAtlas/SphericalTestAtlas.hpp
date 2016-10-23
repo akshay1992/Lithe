@@ -2,6 +2,8 @@
 #define SPHERICAL_TEST_ATLAS_HPP
 #include "Lithe/Atlas.h"
 
+using namespace lithe;
+
 /// Merely exposes all parameters for testing.
 class SphericalTestAtlas : public SphericalAtlas
 {
