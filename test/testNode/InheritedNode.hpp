@@ -13,8 +13,12 @@ public:
 
 	virtual void DSP() override
 	{
-		// Simple bypass node
+		// add 0.01 to all input samples
 		Sample s = getInlet(0).getSample();
+		s.audio+= 0.01;
+		s.az+= 0.01;
+		s.el+= 0.01;
+		s.d+= 0.01;
 		getOutlet(0).setSample(s);
 	}
 };

@@ -82,8 +82,8 @@ TEST_F(NodeTest, ChangeDSP)
 
 	Sample output = n2.getOutlet(0).getSample(); 	// Implicitly processes n2
 
-	EXPECT_EQ(output.audio, s.audio);
-	EXPECT_EQ(output.az, s.az);
-	EXPECT_EQ(output.el, s.el);
-	EXPECT_EQ(output.d, s.d);
+	EXPECT_FLOAT_EQ(output.audio, s.audio+0.01);
+	EXPECT_FLOAT_EQ(output.az, s.az+0.01);
+	EXPECT_FLOAT_EQ(output.el, s.el+0.01);
+	EXPECT_FLOAT_EQ(output.d, s.d+0.01);
 }
