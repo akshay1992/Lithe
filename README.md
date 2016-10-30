@@ -3,9 +3,7 @@ Lithe
 
 Lithe is a modular synthesizer-inspired patching workflow for spatial audio. 
 
-Lithe is split into two libraries: 
-* Lithe (this repo) - contains the core framework for patching and processing an spatial audio graph. 
-* [LitheModules](https://github.com/akshay1992/LitheModules) - contains modules built using the above framework. 
+This repository builds a static library `lithe_core` and contains a framework for patching and processing a spatial audio graph. It also has utilities for processing spatial 'signals'. It's intended use is for creating effects for object-based spatial audio.
 
 Lithe can be installed as a static library from this repo. It doesn't have any dependencies. 
 
@@ -35,7 +33,7 @@ Note that the above command will will install in the default location (usually `
     
         make install <path_to_install_directory>
 
-Note: The install and uninstall scripts are provided as a shorthand. `install.sh` installs in the default directory `/use/local/` and `uninstall.sh` removes Lithe from those locations (if found).
+Note: The install and uninstall scripts are provided as a shorthand. `install.sh` installs in the default directory `/usr/local/` and `uninstall.sh` removes Lithe from those locations (if found).
 
 ### Building and running tests
 To build and run the tests run this command from within the `Lithe/build/` directory created in the above build step:
@@ -55,4 +53,4 @@ Note: Lithe uses [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) for 
 
 -------------------  
 Author: Akshay Cadambi  \n
-Email: akshay (at) mat.ucsb.edu
+Email: akshay19.92@gmail.com
