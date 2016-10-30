@@ -52,5 +52,5 @@ The documentation can be found within `Lithe/docs` in html and latex forms.
 Note: Lithe uses [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) for generating documentation. First make sure Doxygen is installed before running the above command.
 
 -------------------  
-Author: Akshay Cadambi  \n
+Author: Akshay Cadambi  
 Email: akshay19.92@gmail.com
