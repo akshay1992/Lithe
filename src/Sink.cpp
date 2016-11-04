@@ -1,6 +1,8 @@
 #include "Lithe/Sink.h"
 #include "Lithe/Sorter.h"
 
+/// DEPRECATED
+
 namespace lithe {
 
 Sink::Sink(int inlets) :

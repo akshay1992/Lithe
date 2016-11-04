@@ -18,7 +18,7 @@ class Node;
 class Node
 {
 public:
-	Node(int numInlets, int numOutlets);
+	Node(int numInlets, int numOutlets=0);
 	~Node();
 
 	int numInlets(void);

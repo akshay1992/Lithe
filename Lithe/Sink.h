@@ -4,6 +4,8 @@
 #include "Lithe/Node.h"
 #include <vector>
 
+/// DEPRECATED
+
 namespace lithe {
 /**
 	@brief A sink is a type of node that only has inlets. 

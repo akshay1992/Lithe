@@ -36,7 +36,7 @@ void BFS::visit(Node& node, int level)
 	}
 }
 
-void BFS::sort(Sink& sink)
+void BFS::sort(Node& sink)
 {
 	Node::resetSortParams(-1, -1, false);
 	Node::resetSampleDelayState(false);
@@ -90,7 +90,7 @@ void TarjanSort::visit(Node& node, int& index, std::vector<Node*>& stack, std::v
 	}
 }
 
-void TarjanSort::sort(Sink& sink)
+void TarjanSort::sort(Node& sink)
 {
 	Node::resetSortParams(-1, -1, false);
 	int index = 0;

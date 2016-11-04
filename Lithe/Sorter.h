@@ -3,7 +3,7 @@
 
 #include <vector>
 #include <algorithm> // for std::min
-#include "Lithe/Sink.h"
+#include "Lithe/Node.h"
 
 namespace lithe {
 
@@ -19,7 +19,7 @@ private:
 	static void visit(Node& node, int level);
 
 public:	
-	static void sort(Sink& sink);
+	static void sort(Node& sink);
 };
 
 /** @brief [INCOMEPLTE/UNTESTED] Topologically sorts all nodes connected to a sink to establish a processing order.
@@ -34,7 +34,7 @@ private:
 	static void visit(Node& node, int& index, std::vector<Node*>& stack, std::vector< std::vector<Node *> > & sccs);
 
 public:
-	static void sort(Sink& sink);
+	static void sort(Node& sink);
 };
 
 }; // namespace lithe

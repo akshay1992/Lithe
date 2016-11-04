@@ -14,7 +14,7 @@ TEST_F(SorterTest, BFS_SimpleTest)
 {
 	// [n3]->[n2]->[n1]->[sink]
 
-	Sink sink(1);
+	Node sink(1);
 	Node n1(1, 1);
 	Patcher::connect(sink.getInlet(), n1.getOutlet());
 	Node n2(1, 1);
@@ -37,7 +37,7 @@ TEST_F(SorterTest, BFS_FeedbackTest)
 	//   v           |
 	// [n3]->[n2]->[n1]->[sink]
 
-	Sink sink(1);
+	Node sink(1);
 	Node n1(1, 1);
 	Patcher::connect(sink.getInlet(), n1.getOutlet());
 	Node n2(1, 1);
@@ -58,7 +58,7 @@ TEST_F(SorterTest, BFS_DoubleFeedbackTest)
 {
 	// A more complicated graph with two inlets being feed by feedback paths (F and C)
 
-	Sink sink(1);
+	Node sink(1);
 
 	Node B(2, 1);
 	Node E(2, 1);
@@ -85,11 +85,11 @@ TEST_F(SorterTest, BFS_DoubleFeedbackTest)
 	EXPECT_TRUE( F.getInlet(0).sampleDelayEnabled() );
 }
 
-TEST_F(SorterTest, BFS_DoubleFeedbackTest_Sink2)
+TEST_F(SorterTest, BFS_DoubleFeedbackTest_Node2)
 {
 	// Same as BFS_DoubleFeedbackTest with two sink inputs
 
-	Sink sink(2);
+	Node sink(2);
 
 	Node B(2, 1);
 	Node E(2, 1);
