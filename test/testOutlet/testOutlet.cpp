@@ -1,5 +1,6 @@
 #include "testOutlet.h"
 #include "Lithe/LitheCore.h"
+using namespace lithe;
 
 OutletTest::OutletTest(void) {}
 

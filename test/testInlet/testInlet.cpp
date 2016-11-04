@@ -1,6 +1,8 @@
 #include "testInlet.h"
 #include "Lithe/LitheCore.h"
 
+using namespace lithe;
+
 InletTest::InletTest(void) {}
 
 InletTest::~InletTest(void) {}

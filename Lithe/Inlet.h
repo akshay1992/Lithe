@@ -2,6 +2,9 @@
 #define INLET_H
 
 #include "Lithe/Sample.h"
+
+namespace lithe {
+	
 class Outlet;
 class Node;
 
@@ -35,5 +38,7 @@ private:
 	bool sampleDelay;
 	Sample sampleBuffer;
 };
+
+}; // namespace lithe
 
 #endif //INLET_H

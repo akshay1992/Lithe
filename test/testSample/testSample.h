@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "Lithe/LitheCore.h"
 
+using namespace lithe;
+
 // The fixture for testing class Block.
 class SampleTest : public ::testing::Test {
 

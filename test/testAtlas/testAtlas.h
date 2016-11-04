@@ -4,6 +4,7 @@
 
 #include <vector>
 using namespace std;
+using namespace lithe;
 
 // The fixture for testing class Block.
 class AtlasTest : public ::testing::Test {

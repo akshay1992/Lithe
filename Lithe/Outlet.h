@@ -2,6 +2,9 @@
 #define OUTLET_H
 
 #include "Lithe/Sample.h"
+
+namespace lithe {
+
 class Node;
 class Inlet;
 
@@ -29,6 +32,8 @@ public:
 private:
 	Sample mSample;
 };
+
+}; // namespace lithe
 
 
 #endif // OUTLET_H

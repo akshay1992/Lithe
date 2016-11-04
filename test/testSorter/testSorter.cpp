@@ -1,5 +1,6 @@
 #include "testSorter.h"
 #include "Lithe/LitheCore.h"
+using namespace lithe;
 
 SorterTest::SorterTest(void) {}
 

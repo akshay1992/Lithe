@@ -1,6 +1,9 @@
 #ifndef DSPSINK
 #define DSPSINK
 
+#include "Lithe/LitheCore.h"
+using namespace lithe;
+
 class DSPSink : public Sink
 {
 public:

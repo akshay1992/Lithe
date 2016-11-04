@@ -2,6 +2,7 @@
 #include "Lithe/LitheCore.h"
 #include "DSPSink.hpp"
 #include "ProcessingNode.hpp"
+using namespace lithe;
 
 SinkTest::SinkTest(void) {}
 

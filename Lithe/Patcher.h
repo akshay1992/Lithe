@@ -5,6 +5,8 @@
 #include "Lithe/Inlet.h"
 #include "Lithe/Outlet.h"
 
+namespace lithe {
+
 class Inlet;
 class Outlet;
 
@@ -19,5 +21,7 @@ public:
 	static void connect(Inlet& inlet, Outlet& outlet);
 	static void disconnect(Inlet& inlet, Outlet& outlet);
 };
+
+}; // namespace lithe
 
 #endif
