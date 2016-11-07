@@ -56,7 +56,7 @@ public:
 	static void resetSampleDelayState(bool state = false);
 
 protected:
-	void doneProceessing() { mProcessed = true; }
+	void doneProcessing() { mProcessed = true; }
 	void resetProcessState() { mProcessed = false; }
 
 	std::vector<Inlet> inlets;
