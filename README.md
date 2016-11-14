@@ -1,9 +1,9 @@
 Lithe
 =====
 
-Lithe is a modular synthesizer-inspired patching workflow for spatial audio. 
+Lithe was concieved as a proof of concept for a patching workflow for spatial audio. 
 
-This repository builds a static library `lithe_core` and contains a framework for patching and processing a spatial audio graph. It also has utilities for processing spatial 'signals'. It's intended use is for creating effects for object-based spatial audio.
+This repository builds a static library `lithe_core` and contains a framework for patching and processing an object-based audio graph. It also has utilities for using parameter fields that are mapped to 2D-manifolds. It's intended use is for creating effects for object-based spatial audio.
 
 Lithe can be installed as a static library from this repo. It doesn't have any dependencies. 
 
