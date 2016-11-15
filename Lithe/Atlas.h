@@ -14,10 +14,10 @@ namespace lithe {
 
 enum class AtlasType : unsigned int
 {
-	DEFAULT, 
+	DEFAULT, // Whatever the default is for your application
 	SPHERICAL,
 	TORIC,
-	UNKOWN
+	OTHER
 };
 
 /** @brief Abstract base class for defining an Atlas
@@ -56,6 +56,9 @@ public:
 
 	/// @brief Returns true if the manifold is a riemannian manifold (i.e., it has a valid distance function)
 	bool isRiemannian(void) { return is_riemannian; }
+
+	/// @breif Returns the type of Atlas this is.
+	virtual AtlasType getType(void)=0;
 
 protected:
 	float _radius;

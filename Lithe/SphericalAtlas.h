@@ -70,7 +70,7 @@ public:
 	/// Throws an exception if input co-ordinates are out of range. For conventions see SphericalAtlas
 	void check_sph_range(float theta, float phi, float r);
 
-	AtlasType type;
+	virtual AtlasType getType(void) override {return AtlasType::SPHERICAL; }
 
 protected:
 	using AtlasBase::AtlasBase;

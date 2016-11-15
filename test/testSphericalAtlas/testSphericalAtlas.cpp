@@ -25,7 +25,7 @@ TEST_F(SphericalAtlasTest, SphericalAtlas_init)
 	EXPECT_FLOAT_EQ(default_atlas.u_range.half_range, 1);
 	EXPECT_FLOAT_EQ(default_atlas.v_range.half_range, 1);
 
-	EXPECT_TRUE(default_atlas.type == AtlasType::SPHERICAL);
+	EXPECT_TRUE(default_atlas.getType() == AtlasType::SPHERICAL);
 
 	SphericalTestAtlas atlas_init_test(-2, 1, 0, 10, 3.5);
 	EXPECT_FLOAT_EQ(atlas_init_test._radius, 3.5);
@@ -42,7 +42,7 @@ TEST_F(SphericalAtlasTest, SphericalAtlas_init)
 	EXPECT_FLOAT_EQ(atlas_init_test.u_range.half_range, 1.5);
 	EXPECT_FLOAT_EQ(atlas_init_test.v_range.half_range, 5);
 
-	EXPECT_TRUE(atlas_init_test.type == AtlasType::SPHERICAL);
+	EXPECT_TRUE(atlas_init_test.getType() == AtlasType::SPHERICAL);
 }
 
 TEST_F(SphericalAtlasTest, SphericalAtlas_radius)
@@ -200,4 +200,10 @@ TEST_F(SphericalAtlasTest, SphericalAtlas_check_range)
 	EXPECT_NO_THROW(custom_atlas.check_sph_range( 0, -M_PI_2, 1));
 	EXPECT_NO_THROW(custom_atlas.check_sph_range( M_PI, 0, 1));
 	EXPECT_NO_THROW(custom_atlas.check_sph_range( -M_PI, 0, 1));
+}
+
+TEST_F(SphericalAtlasTest, isRiemannian)
+{
+	SphericalTestAtlas atlas(1, 40);
+	EXPECT_TRUE( atlas.isRiemannian() );
 }

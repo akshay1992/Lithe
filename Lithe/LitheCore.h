@@ -4,11 +4,14 @@
 /** @defgroup Lithe */
 
 #include "Lithe/Atlas.h"
+#include "Lithe/ToricAtlas.h"
 #include "Lithe/SphericalAtlas.h"
+
 #include "Lithe/Inlet.h"
 #include "Lithe/Node.h"
 #include "Lithe/Patcher.h"
 #include "Lithe/Outlet.h"
+
 // #include "Lithe/ParameterField.h"
 #include "Lithe/Sample.h"
 #include "Lithe/Sorter.h"

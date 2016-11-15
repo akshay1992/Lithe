@@ -9,3 +9,11 @@ Pulled spherical atlas to separate file
 Pulled range and util functions to separate file
 Made atlas constructor take Range instead of individual values. -- Modified spherical atlas to pass test cases
 Started skeleton class and test target for ToricAtlas
+
+-------
+Nov 15 2016
+
+Added co-ordinate conversion functions for ToricAtlas. Tests pass.
+
+Added getType to replate the type variable in AtlasBase (and derived classes) 
+Added getAtlasType into the test cases for spherical atlas 

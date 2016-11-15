@@ -5,8 +5,7 @@ namespace lithe {
 
 SphericalAtlas::SphericalAtlas(float radius, Range u_range, Range v_range) :
 	AtlasBase(u_range, v_range),
-	_radius(radius),
-	type(AtlasType::SPHERICAL)
+	_radius(radius)
 {
 	is_riemannian = true;
 	reflect_constant = u_range.mid * u_range.half_range - (u_range.half_range * u_range.half_range) - u_range.mid;
