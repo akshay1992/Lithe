@@ -20,7 +20,6 @@ namespace lithe{
 		[u_low, u_high] --> [-pi, pi] ("Azimuth" - measured from centre of torus, with respect to +x axis)
 		[v_low, v_high] --> [-pi, pi] ("Elevation" - measured slong the girth of the torus)		
 
-
 	@ingroup Atlas
 
 */
@@ -30,10 +29,18 @@ class ToricAtlas : public AtlasBase
 public:
 	ToricAtlas(float R, float r, Range u_range = Range(-1, 1), Range v_range = Range(-1, 1));
 
-	/// @brief Returns u co-ordinate for a given cartesian co-ordinate (x, y, z)
+	/** @brief Returns u co-ordinate for a given cartesian co-ordinate (x, y, z)
+
+		If the point doesn't lie on the defined torus, it projects the point onto the 
+		torus.
+	*/
 	virtual float u_cart(float x, float y, float z) override;
 
-	/// Returns v co-ordinate for a given spherical co-ordinate (x, y, z)
+	/** @brief Returns v co-ordinate mapped to a Torus for a given cartesian co-ordinate (x, y, z)
+
+		If the point doesn't lie on the defined torus, it projects the point onto the 
+		torus.
+	*/
 	virtual float v_cart(float x, float y, float z) override;
 
 	/// @brief Returns the cartesian co-ordinate x for given manifold co-ordinates (u, v). 
