@@ -10,7 +10,7 @@ namespace lithe{
 
 	Defaults to a float in (-1, 1)
 
-	@ingroup Other
+	@ingroup Utilities
 */
 template< typename T = float >
 struct RangeT

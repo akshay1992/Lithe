@@ -5,6 +5,13 @@
 
 namespace lithe{
 
+/** @brief 
+	
+
+	@ingroup Atlas
+
+*/
+
 class ToricAtlas : public AtlasBase
 {
 	ToricAtlas(float R, float r, float u_low = -1, float u_high = 1, float v_low = -1, float v_high = 1);

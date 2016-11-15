@@ -14,7 +14,7 @@ class Node;
 	It contains a mechanism to add 1-sample delay on an incoming input signal. Further, an inlet is _active_
 	in the sense that it can instigate processing of any connected blocks via the 'pull' mechanism.
 
-	@ingroup GraphElements 
+	@ingroup AudioGraph 
 */
 class Inlet 
 {

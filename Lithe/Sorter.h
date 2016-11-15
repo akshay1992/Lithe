@@ -15,7 +15,7 @@ namespace lithe {
     Node: It treats a given node as a sink and traverses upstream. Behaviour is unknown when
     the node is actually in the middle of a complex graph.
 
-	@ingroup Sorter
+	@ingroup AudioGraph
  */
 class BFS
 {

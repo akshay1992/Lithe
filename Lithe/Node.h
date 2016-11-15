@@ -13,7 +13,7 @@ class Node;
 
 	This is a base class on top of which a Module is built
 
-	@ingroup GraphElements 
+	@ingroup AudioGraph 
 */
 class Node
 {

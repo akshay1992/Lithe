@@ -9,7 +9,7 @@ namespace lithe{
 
 /** @brief A single audio sample as defined by Lithe
 	
-	@ingroup Other
+	@ingroup Utilities
 */
 template<typename T = float>
 class SampleT
