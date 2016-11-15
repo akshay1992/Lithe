@@ -14,7 +14,7 @@ class Inlet;
  	An Outlet is passive and unaware of any inlets connected to it. Therefore, any number of inlets may
  	be reading from the same outlet. This is the patch cable equivalent of mult-ing.
 	
-	@ingroup GraphElements 
+	@ingroup AudioGraph 
  */
 class Outlet
 {

@@ -1,46 +1,35 @@
 #ifndef LITHE_CORE_H
 #define LITHE_CORE_H
 
-/** @defgroup LitheCore */
+/** @defgroup Lithe */
 
 #include "Lithe/Atlas.h"
+#include "Lithe/SphericalAtlas.h"
 #include "Lithe/Inlet.h"
 #include "Lithe/Node.h"
 #include "Lithe/Patcher.h"
-#include "Lithe/Sink.h"
 #include "Lithe/Outlet.h"
 // #include "Lithe/ParameterField.h"
 #include "Lithe/Sample.h"
 #include "Lithe/Sorter.h"
 
 /** 
-	@addtogroup LitheCore
+	@addtogroup Lithe
 	@{
-		@defgroup Utils 
+		@defgroup AudioGraph
 		@{
-			@brief Contains utilities for working with the audiograph
-
-			@defgroup Atlas
-			@{
-				@brief Atlas contains a set of utilities to convert from 2-D generic rectangles
-				to 3-D manifolds.	
-			@}
-
-			@defgroup Sorter
-			@{
-				@brief Utilities for graph sorting and graph traversal
-			@}
-
-			@defgroup Other
-			@{
-				@brief Other classes and utilities
-			@}
+			@brief Contains utilities for working with the audiograph and building graph nodes
 		@}
 
-		@defgroup GraphElements
+		@defgroup Atlas
 		@{
-			@brief Contains utilities to build graph Nodes. 
-	
+			@brief Atlas contains a set of utilities to map from 2-D rectangles
+			to manifolds.
+		@}
+
+		@defgroup Utilities
+		@{
+			@brief Other classes and utilities
 		@}
 	@}
 */

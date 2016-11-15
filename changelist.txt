@@ -1,0 +1,11 @@
+Removed DSP method API. 
+Added casting in wrap and dc_shift functions
+Added reset process state of all nodes into sink mechanism
+
+--------
+Nov 14 2016
+
+Pulled spherical atlas to separate file
+Pulled range and util functions to separate file
+Made atlas constructor take Range instead of individual values. -- Modified spherical atlas to pass test cases
+Started skeleton class and test target for ToricAtlas

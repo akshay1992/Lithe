@@ -13,12 +13,12 @@ class Node;
 
 	This is a base class on top of which a Module is built
 
-	@ingroup GraphElements 
+	@ingroup AudioGraph 
 */
 class Node
 {
 public:
-	Node(int numInlets, int numOutlets);
+	Node(int numInlets, int numOutlets=0);
 	~Node();
 
 	int numInlets(void);
@@ -56,7 +56,7 @@ public:
 	static void resetSampleDelayState(bool state = false);
 
 protected:
-	void doneProceessing() { mProcessed = true; }
+	void doneProcessing() { mProcessed = true; }
 	void resetProcessState() { mProcessed = false; }
 
 	std::vector<Inlet> inlets;

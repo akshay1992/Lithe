@@ -34,7 +34,7 @@ Node::~Node(void)
 void Node::Process(void)
 { 
 	DSP(); 
-	doneProceessing(); 
+	doneProcessing(); 
 }
 
 int Node::numInlets(void) 
