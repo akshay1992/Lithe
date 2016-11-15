@@ -4,6 +4,7 @@
 /** @defgroup LitheCore */
 
 #include "Lithe/Atlas.h"
+#include "Lithe/SphericalAtlas.h"
 #include "Lithe/Inlet.h"
 #include "Lithe/Node.h"
 #include "Lithe/Patcher.h"

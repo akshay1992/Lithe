@@ -38,8 +38,6 @@ private:
 	float mValue;
 };
 
-typedef ConstantPField<float> ConstantPFieldF;
-
 }; // namespace lithe
 
 #endif // PARAMETER_FIELD_H

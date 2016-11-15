@@ -1,58 +1,58 @@
-#include "testAtlas.h"
+#include "testSphericalAtlas.h"
 
-AtlasTest::AtlasTest(void) {}
+SphericalAtlasTest::SphericalAtlasTest(void) {}
 
-AtlasTest::~AtlasTest(void) {}
+SphericalAtlasTest::~SphericalAtlasTest(void) {}
 
-void AtlasTest::SetUp(void) {}
+void SphericalAtlasTest::SetUp(void) {}
 
-void AtlasTest::TearDown(void) {}
+void SphericalAtlasTest::TearDown(void) {}
 
-TEST_F(AtlasTest, SphericalAtlas_init)
+TEST_F(SphericalAtlasTest, SphericalAtlas_init)
 {
 	/// Tests if atlas is initialized properly
 	EXPECT_FLOAT_EQ(default_atlas._radius, 1);
 
-	EXPECT_FLOAT_EQ(default_atlas.u_low, -1);
-	EXPECT_FLOAT_EQ(default_atlas.u_high, 1);
-	EXPECT_FLOAT_EQ(default_atlas.v_low, -1);
-	EXPECT_FLOAT_EQ(default_atlas.v_high, 1);
+	EXPECT_FLOAT_EQ(default_atlas.u_range.minVal, -1);
+	EXPECT_FLOAT_EQ(default_atlas.u_range.maxVal, 1);
+	EXPECT_FLOAT_EQ(default_atlas.v_range.minVal, -1);
+	EXPECT_FLOAT_EQ(default_atlas.v_range.maxVal, 1);
 
-	EXPECT_FLOAT_EQ(default_atlas.u_mid, 0);
-	EXPECT_FLOAT_EQ(default_atlas.v_mid, 0);
-	EXPECT_FLOAT_EQ(default_atlas.u_range, 2);
-	EXPECT_FLOAT_EQ(default_atlas.v_range, 2);
-	EXPECT_FLOAT_EQ(default_atlas.u_half_range, 1);
-	EXPECT_FLOAT_EQ(default_atlas.v_half_range, 1);
+	EXPECT_FLOAT_EQ(default_atlas.u_range.mid, 0);
+	EXPECT_FLOAT_EQ(default_atlas.v_range.mid, 0);
+	EXPECT_FLOAT_EQ(default_atlas.u_range.range, 2);
+	EXPECT_FLOAT_EQ(default_atlas.v_range.range, 2);
+	EXPECT_FLOAT_EQ(default_atlas.u_range.half_range, 1);
+	EXPECT_FLOAT_EQ(default_atlas.v_range.half_range, 1);
 
-	EXPECT_FLOAT_EQ(default_atlas.type, ATLAS_TYPE_SPHERICAL);
+	EXPECT_TRUE(default_atlas.type == AtlasType::SPHERICAL);
 
 	SphericalTestAtlas atlas_init_test(-2, 1, 0, 10, 3.5);
 	EXPECT_FLOAT_EQ(atlas_init_test._radius, 3.5);
 
-	EXPECT_FLOAT_EQ(atlas_init_test.u_low, -2);
-	EXPECT_FLOAT_EQ(atlas_init_test.u_high, 1);
-	EXPECT_FLOAT_EQ(atlas_init_test.v_low, 0);
-	EXPECT_FLOAT_EQ(atlas_init_test.v_high, 10);
+	EXPECT_FLOAT_EQ(atlas_init_test.u_range.minVal, -2);
+	EXPECT_FLOAT_EQ(atlas_init_test.u_range.maxVal, 1);
+	EXPECT_FLOAT_EQ(atlas_init_test.v_range.minVal, 0);
+	EXPECT_FLOAT_EQ(atlas_init_test.v_range.maxVal, 10);
 
-	EXPECT_FLOAT_EQ(atlas_init_test.u_mid, -0.5);
-	EXPECT_FLOAT_EQ(atlas_init_test.v_mid, 5);
-	EXPECT_FLOAT_EQ(atlas_init_test.u_range, 3);
-	EXPECT_FLOAT_EQ(atlas_init_test.v_range, 10);
-	EXPECT_FLOAT_EQ(atlas_init_test.u_half_range, 1.5);
-	EXPECT_FLOAT_EQ(atlas_init_test.v_half_range, 5);
+	EXPECT_FLOAT_EQ(atlas_init_test.u_range.mid, -0.5);
+	EXPECT_FLOAT_EQ(atlas_init_test.v_range.mid, 5);
+	EXPECT_FLOAT_EQ(atlas_init_test.u_range.range, 3);
+	EXPECT_FLOAT_EQ(atlas_init_test.v_range.range, 10);
+	EXPECT_FLOAT_EQ(atlas_init_test.u_range.half_range, 1.5);
+	EXPECT_FLOAT_EQ(atlas_init_test.v_range.half_range, 5);
 
-	EXPECT_FLOAT_EQ(atlas_init_test.type, ATLAS_TYPE_SPHERICAL);
+	EXPECT_TRUE(atlas_init_test.type == AtlasType::SPHERICAL);
 }
 
-TEST_F(AtlasTest, SphericalAtlas_radius)
+TEST_F(SphericalAtlasTest, SphericalAtlas_radius)
 {
 	EXPECT_FLOAT_EQ(default_atlas.radius(1,1,1), sqrt(1+1+1));
 	EXPECT_FLOAT_EQ(custom_atlas.radius(2, 1, 4), sqrt(2*2+1*1+4*4));
 	EXPECT_FLOAT_EQ(SphericalAtlas::radius(2, 1, 4), sqrt(2*2+1*1+4*4));
 }
 
-TEST_F(AtlasTest, SphericalAtlas_u_sph)
+TEST_F(SphericalAtlasTest, SphericalAtlas_u_sph)
 {
 	EXPECT_FLOAT_EQ(default_atlas.u_sph(-M_PI, 0, 1),-1 );
 	EXPECT_FLOAT_EQ(default_atlas.u_sph(-M_PI_2, 0, 1), -0.5);
@@ -72,7 +72,7 @@ TEST_F(AtlasTest, SphericalAtlas_u_sph)
 	EXPECT_FLOAT_EQ(custom_atlas.u_sph(1*M_PI, 0, 1), 5 );
 }
 
-TEST_F(AtlasTest, SphericalAtlas_v_sph)
+TEST_F(SphericalAtlasTest, SphericalAtlas_v_sph)
 {
 	EXPECT_FLOAT_EQ(default_atlas.v_sph(0, -M_PI_2, 1), -1);
 	EXPECT_FLOAT_EQ(default_atlas.v_sph(0, -M_PI_4, 1), -0.5);
@@ -92,7 +92,7 @@ TEST_F(AtlasTest, SphericalAtlas_v_sph)
 	EXPECT_FLOAT_EQ(custom_atlas.v_sph(0, 1*M_PI_2, 1), 10 );
 }
 
-TEST_F(AtlasTest, SphericalAtlas_theta)
+TEST_F(SphericalAtlasTest, SphericalAtlas_theta)
 {
 	EXPECT_FLOAT_EQ(default_atlas.theta(0, 0), 0);
 	EXPECT_FLOAT_EQ(default_atlas.theta(+0.5, 0), M_PI_2);
@@ -114,7 +114,7 @@ TEST_F(AtlasTest, SphericalAtlas_theta)
 	EXPECT_THROW(custom_atlas.theta(0, +10.2), std::range_error);
 }
 
-TEST_F(AtlasTest, SphericalAtlas_phi)
+TEST_F(SphericalAtlasTest, SphericalAtlas_phi)
 {
 	EXPECT_FLOAT_EQ(default_atlas.phi(0, 0), 0);
 	EXPECT_FLOAT_EQ(default_atlas.phi(0, +0.5), M_PI_4);
@@ -137,7 +137,7 @@ TEST_F(AtlasTest, SphericalAtlas_phi)
 }
 
 
-TEST_F(AtlasTest, SphericalAtlas_x_y_z)
+TEST_F(SphericalAtlasTest, SphericalAtlas_x_y_z)
 {
 	for(int i=0; i<uv.size(); i++)
 	{
@@ -149,12 +149,13 @@ TEST_F(AtlasTest, SphericalAtlas_x_y_z)
 	}
 }
 
-TEST_F(AtlasTest, SphericalAtlas_DistanceFunction)
+TEST_F(SphericalAtlasTest, SphericalAtlas_DistanceFunction)
 {
-	///TODO
+	///TODO 
+	EXPECT_TRUE(false);
 }
 
-TEST_F(AtlasTest, SphericalAtlas_reflect)
+TEST_F(SphericalAtlasTest, SphericalAtlas_reflect)
 {
 	for( int i=0; i< uv_antipodal.size(); i++)
 	{
@@ -176,7 +177,7 @@ TEST_F(AtlasTest, SphericalAtlas_reflect)
 
 }
 
-TEST_F(AtlasTest, SphericalAtlas_check_range)
+TEST_F(SphericalAtlasTest, SphericalAtlas_check_range)
 {
 	custom_atlas = SphericalTestAtlas(-2, 1, -3, 2, 5);
 	EXPECT_THROW(custom_atlas.check_uv_range(-3, 1), std::range_error);
