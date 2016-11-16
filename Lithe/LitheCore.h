@@ -3,6 +3,8 @@
 
 /** @defgroup Lithe */
 
+#include "Lithe/Exceptions.h"
+
 #include "Lithe/Atlas.h"
 #include "Lithe/ToricAtlas.h"
 #include "Lithe/SphericalAtlas.h"

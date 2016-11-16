@@ -1,19 +1,22 @@
 #include "Lithe/Node.h"
 #include "Lithe/Inlet.h"
 #include "Lithe/Outlet.h"
+#include "Lithe/Exceptions.h"
 #include <exception>
-
+#include <iostream>
 namespace lithe{ 
 
 int Node::ID_counter = 0;
-std::vector< Node* > Node::node_refs;
+// std::vector< Node* > Node::node_refs;
+std::map <int, Node*> Node::activeNodes;
 
 Node::Node(int numInlets, int numOutlets)
 {
-	mID = ID_counter;
+	mID = NODEID_START_VALUE + ID_counter;
 	ID_counter++;
+	// node_refs.push_back(this);
+	activeNodes[mID] = this;
 
-	node_refs.push_back(this);
 	mProcessed = false;
 
 	for(int i=0; i<numInlets; i++)
@@ -28,7 +31,8 @@ Node::Node(int numInlets, int numOutlets)
 
 Node::~Node(void)
 {
-	node_refs[getID()] = NULL;
+	// node_refs[getID()] = NULL;
+	activeNodes.erase(this->getID());
 }
 
 void Node::Process(void)
@@ -52,7 +56,7 @@ Outlet& Node::getOutlet(int index)
 	if(index < numOutlets())
 		return outlets[index]; 
 	else
-		throw std::range_error("Invalid Outlet");
+		throw InvalidOutletException(index, getID());
 }
 
 Inlet& Node::getInlet(int index) 
@@ -60,7 +64,7 @@ Inlet& Node::getInlet(int index)
 	if(index < numInlets())
 		return inlets[index]; 
 	else
-		throw std::range_error("Invalid Outlet");
+		throw InvalidInletException(index, getID());
 }
 
 int Node::getID(void)
@@ -70,55 +74,86 @@ int Node::getID(void)
 
 void Node::resetAll_ProcessState()
 {
-	for( int i=0; i<node_refs.size(); ++i)
+	// for( int i=0; i<node_refs.size(); ++i)
+	// {
+	// 	if(node_refs[i] != NULL)
+	// 	{
+	// 		node_refs[i]->resetProcessState();
+	// 	}
+	// }
+
+	for(auto const& node_it : activeNodes) 
 	{
-		if(node_refs[i] != NULL)
-		{
-			node_refs[i]->resetProcessState();
-		}
+		node_it.second->resetProcessState();
 	}
+
 }
 
 Node* Node::getNodeRef(int nodeID)
 {
-	if(nodeID < node_refs.size())
+	try
 	{
-		return node_refs[nodeID];
+		return activeNodes.at(nodeID);
 	}
-	else
+	catch (std::out_of_range e)
 	{
-		return NULL;
+		throw NodeNotFoundException(nodeID);
 	}
+	// if(nodeID < node_refs.size())
+	// {
+	// 	return node_refs[nodeID];
+	// }
+	// else
+	// {
+	// 	return NULL;
+	// }
 }
 
 void Node::resetSortParams(int index = -1, int lowLink = -1, bool onStack = false)
 {	
-	for( int i=0; i<node_refs.size(); ++i)
+	// for( int i=0; i<node_refs.size(); ++i)
+	// {
+	// 	if(node_refs[i] != NULL)
+	// 	{
+	// 		node_refs[i]->index = index;
+	// 		node_refs[i]->lowLink = lowLink;
+	// 		node_refs[i]->onStack = onStack;
+	// 	}
+	// }
+
+	for( auto const& node_it : activeNodes) 
 	{
-		if(node_refs[i] != NULL)
-		{
-			node_refs[i]->index = index;
-			node_refs[i]->lowLink = lowLink;
-			node_refs[i]->onStack = onStack;
-		}
+		node_it.second->index = index;
+		node_it.second->lowLink = lowLink;
+		node_it.second->onStack = onStack;
 	}
 }
 
-void Node::resetSampleDelayState(bool state)
+void Node::resetAll_SampleDelayState(bool state)
 {	
-	for( int i=0; i<node_refs.size(); ++i)
+	for( auto const& node_it : activeNodes )
 	{
-		if(node_refs[i] != NULL)
+		for(int i=0; i<node_it.second->numInlets(); ++i)
 		{
-			for(int j=0; j<node_refs[i]->numInlets(); ++j)
-			{
-				if( state )				
-					node_refs[i]->getInlet(j).enableSampleDelay();
-				else
-					node_refs[i]->getInlet(j).disableSampleDelay();
-			}
+			if( state ) 
+				node_it.second->getInlet(i).enableSampleDelay();
+			else
+				node_it.second->getInlet(i).disableSampleDelay();			
 		}
 	}
+	// for( int i=0; i<node_refs.size(); ++i)
+	// {
+	// 	if(node_refs[i] != NULL)
+	// 	{
+	// 		for(int j=0; j<node_refs[i]->numInlets(); ++j)
+	// 		{
+	// 			if( state )				
+	// 				node_refs[i]->getInlet(j).enableSampleDelay();
+	// 			else
+	// 				node_refs[i]->getInlet(j).disableSampleDelay();
+	// 		}
+	// 	}
+	// }
 }
 
 }; // namespace lithe

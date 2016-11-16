@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <vector>
+#include <map>
 
 namespace lithe {
 
@@ -53,7 +54,7 @@ public:
 	static void resetSortParams(int index, int lowLink, bool onStack);
 
 	/// Used to set the sample delay for Inlets in all available Node instances. Used by Sorter.h  
-	static void resetSampleDelayState(bool state = false);
+	static void resetAll_SampleDelayState(bool state = false);
 
 protected:
 	void doneProcessing() { mProcessed = true; }
@@ -61,8 +62,13 @@ protected:
 
 	std::vector<Inlet> inlets;
 	std::vector<Outlet> outlets;
+	// static std::vector< Node* > node_refs;
+	static std::map<int, Node*> activeNodes;
+
 	static int ID_counter;
-	static std::vector< Node* > node_refs;
+	/// @brief NodeIDs are alotted starting from this value
+	const int NODEID_START_VALUE = 0;
+
 	int mID;
 	bool mProcessed;
 };

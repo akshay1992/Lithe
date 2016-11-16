@@ -39,7 +39,7 @@ void BFS::visit(Node& node, int level)
 void BFS::sort(Node& sink)
 {
 	Node::resetSortParams(-1, -1, false);
-	Node::resetSampleDelayState(false);
+	Node::resetAll_SampleDelayState(false);
 	sink.index = 0;
 	visit(sink, 1);
 	// Node::resetSortParams(-1, -1, false); 	// Since they are not used further

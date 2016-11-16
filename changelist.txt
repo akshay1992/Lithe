@@ -16,4 +16,12 @@ Nov 15 2016
 Added co-ordinate conversion functions for ToricAtlas. Tests pass.
 
 Added getType to replate the type variable in AtlasBase (and derived classes) 
-Added getAtlasType into the test cases for spherical atlas 
+Added getAtlasType into the test cases for spherical atlas
+
+-------
+Nov 16 2016
+
+Changed the node_refs (from Node) to a std::map
+Changed appropriate implementations in cpp file. Test cases pass. 
+API: change resetSampleDelay to resetAll_SampleDelayState
+Added exceptions for node/inlet/outlet not found 

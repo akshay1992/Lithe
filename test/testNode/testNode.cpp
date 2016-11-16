@@ -49,14 +49,14 @@ TEST_F(NodeTest, getNodeRef_InvalidID)
 
 	int id;
 	Node* nodeptr;
-	{ // Scoping the node
+	{ // Scoping the node so it gets removed
 		Node n2(2, 1);
 		id = n2.getID();
 	}
-	
-	EXPECT_TRUE(Node::getNodeRef(id) == NULL);
-	EXPECT_FALSE(Node::getNodeRef(id-1) == NULL);
-	EXPECT_EQ(Node::getNodeRef(id-1), &n1);
+
+	EXPECT_THROW( Node::getNodeRef(id), NodeNotFoundException);
+	EXPECT_NO_THROW(Node::getNodeRef(n1.getID()));
+	EXPECT_EQ(Node::getNodeRef(n1.getID()), &n1);
 }
 
 TEST_F(NodeTest, ProcessState)
@@ -86,4 +86,21 @@ TEST_F(NodeTest, ChangeDSP)
 	EXPECT_FLOAT_EQ(output.az, s.az+0.01);
 	EXPECT_FLOAT_EQ(output.el, s.el+0.01);
 	EXPECT_FLOAT_EQ(output.d, s.d+0.01);
+}
+
+TEST_F(NodeTest, resetSampleDelayState)
+{
+	Node n1( 4, 1);
+
+	n1.getInlet(0).enableSampleDelay();
+	n1.getInlet(1).enableSampleDelay();
+	n1.getInlet(2).disableSampleDelay();
+	n1.getInlet(3).enableSampleDelay();
+
+	Node::resetAll_SampleDelayState(false);
+
+	EXPECT_FALSE(n1.getInlet(0).sampleDelayEnabled());
+	EXPECT_FALSE(n1.getInlet(1).sampleDelayEnabled());
+	EXPECT_FALSE(n1.getInlet(2).sampleDelayEnabled());
+	EXPECT_FALSE(n1.getInlet(3).sampleDelayEnabled());
 }
