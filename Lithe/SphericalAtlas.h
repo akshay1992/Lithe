@@ -31,6 +31,8 @@ public:
 	/// Defines a spherical atlas based on range of (U, V) surface and radius of sphere
 	SphericalAtlas(float radius = 1, Range u_range = Range(-1, 1), Range v_range = Range(-1, 1));
 
+	float getRadius(void) { return _radius;}
+
 	/// Returns u co-ordinate for a given cartesian co-ordinate (x, y, z)
 	virtual float u_cart(float x, float y, float z) override;
 

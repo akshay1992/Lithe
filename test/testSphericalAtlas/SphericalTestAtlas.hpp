@@ -12,6 +12,8 @@ public:
 		SphericalAtlas(radius, Range(u_low, u_high), Range(v_low, v_high)) 
 	{	}
 
+	void setRadius(float radius) {_radius = radius;}
+
 	using SphericalAtlas::u_range;
 	using SphericalAtlas::v_range;
 	using SphericalAtlas::_radius;

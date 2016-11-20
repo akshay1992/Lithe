@@ -8,6 +8,7 @@ SphericalAtlas::SphericalAtlas(float radius, Range u_range, Range v_range) :
 	_radius(radius)
 {
 	is_riemannian = true;
+	if (_radius <=0 ) throw std::range_error("SphericalAtlas: Invalid radius. Cannot be <= 0");
 	reflect_constant = u_range.mid * u_range.half_range - (u_range.half_range * u_range.half_range) - u_range.mid;
 }
 
