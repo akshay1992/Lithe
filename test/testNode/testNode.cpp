@@ -88,6 +88,16 @@ TEST_F(NodeTest, ChangeDSP)
 	EXPECT_FLOAT_EQ(output.d, s.d+0.01);
 }
 
+TEST_F(NodeTest, destructor_test)
+{
+	Node* n1 = new Node(1,1);
+	Node n2(1,1);
+	Patcher::connect(n2.getInlet(), n1->getOutlet());
+
+	delete n1;
+	EXPECT_FALSE(n2.getInlet().isConnected());
+}
+
 TEST_F(NodeTest, resetSampleDelayState)
 {
 	Node n1( 4, 1);

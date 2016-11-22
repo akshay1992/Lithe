@@ -31,6 +31,16 @@ Node::Node(int numInlets, int numOutlets)
 
 Node::~Node(void)
 {
+	// disconnect all inlets and outlets
+	for (int i=0; i<numInlets(); ++i)
+	{
+		getInlet(i).disconnect();
+	}
+	for (int i=0; i<numOutlets(); ++i)
+	{
+		// getOutlet(i).disconnectAll();
+	}
+	
 	// node_refs[getID()] = NULL;
 	activeNodes.erase(this->getID());
 }

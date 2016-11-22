@@ -34,7 +34,7 @@ public:
 	T d;
 
 	/// @brief For the convenience of accessing using an index
-	T operator[](int index)
+	T& operator[](int index)
 	{
 		switch(index)
 		{	
