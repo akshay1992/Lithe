@@ -64,6 +64,7 @@ float ToricAtlas::distanceFunction(float u1, float v1, float u2, float v2)
 {
 	// No closed form expression available because inner ring has negative curvature and outer has positive.
 	//  Need to use conditionals? 
+	return -1;
 }
 
 }; // namespace lithe

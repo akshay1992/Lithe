@@ -24,4 +24,11 @@ Nov 16 2016
 Changed the node_refs (from Node) to a std::map
 Changed appropriate implementations in cpp file. Test cases pass. 
 API: change resetSampleDelay to resetAll_SampleDelayState
-Added exceptions for node/inlet/outlet not found 
+Added exceptions for node/inlet/outlet not found
+
+-------
+Nov 23 2016
+
+Added a RangeIsZeroExcption for constructor of RangeT<>
+Made Toric Atlas return -1 for a distance function - to get rid of warning. Also, this isn't implemented yet
+Added a modulation_add_value in Utils to modulate a parameter with a signal

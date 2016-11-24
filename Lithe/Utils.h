@@ -2,13 +2,13 @@
 #define LITHE_UTILS_H
 
 #include "math.h"
-#include <stdexcept>
+#include "Lithe/Exceptions.h"
 
 namespace lithe{
 
 /** @brief A convenience struct to specify the range of a parameter.
 
-	Defaults to a float in (-1, 1)
+	Defaults to a float in (-1, 1) (assumes that the template is a float)
 
 	@ingroup Utilities
 */
@@ -21,7 +21,7 @@ struct RangeT
 		mid = range*0.5 + minVal;
 		half_range =  (T) range / 2.0;
 		if( range <=0 )
-			throw std::range_error("RangeT invalid. Is <= 0" );
+			throw RangeIsZeroError( max, min);
 	};
 
 	T minVal;
@@ -118,6 +118,29 @@ T modulate_wrap(T parameter_val, T modulation_signal, RangeT<T> modulation_range
 {
 	T modulation_signal_mapped = linear_map<float>(modulation_signal, modulation_range, parameter_range);
 	return dc_shift_wrap<T>( modulation_signal, parameter_val, parameter_range);
+}
+
+/** @brief TODO: TESTS Returns a value to be added to a given parameter range for a modulation signal
+
+
+	After proper scaling. This uses a piecewise linear model to scale the input signal
+	to two line segments in the parameter range. One above parameter_val and one below
+	parameter_val.
+	
+*/
+template< typename T> 
+T modulation_add_value( T parameter_val, T modulation_signal_val, RangeT<T> parameter_range, RangeT<T> modulation_range)
+{
+	T scaled = (modulation_signal_val-modulation_range.mid) / modulation_range.half_range;
+
+	if( modulation_signal_val >= modulation_range.mid )
+	{
+		return scaled * (parameter_range.maxVal-parameter_val);
+	}
+	else // ( modulation_signal_val < modulation_range.mid )
+	{
+		return scaled * (parameter_val-parameter_range.minVal);
+	}
 }
 
 }; //namespace lithe

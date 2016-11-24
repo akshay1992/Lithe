@@ -56,6 +56,27 @@ private:
     static std::ostringstream message;
 };
 
+class RangeIsZeroError : public std::range_error
+{
+public:
+    RangeIsZeroError(float max, float min) : 
+        std::range_error("RangeT initialization error: Range can't be zero "), 
+        max(max), 
+        min(min) 
+    {}
+
+    virtual const char* what() const throw()
+    {
+        message.str( "" );
+        message << std::range_error::what() << " Provided max: " << max <<  " min: " << min;
+        return message.str().c_str();
+    }
+
+private:
+    float max, min;
+    static std::ostringstream message;
+};
+
 }; // namespace lithe
 
 #endif // LITHE_EXCEPTIONS_H
