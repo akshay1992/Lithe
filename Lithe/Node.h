@@ -56,6 +56,8 @@ public:
 	/// Used to set the sample delay for Inlets in all available Node instances. Used by Sorter.h  
 	static void resetAll_SampleDelayState(bool state = false);
 
+	friend Inlet;
+
 protected:
 	void doneProcessing() { mProcessed = true; }
 	void resetProcessState() { mProcessed = false; }

@@ -1,5 +1,6 @@
 #include "Lithe/Inlet.h"
 #include "Lithe/Patcher.h"
+#include "Lithe/Node.h"
 
 namespace lithe{
 
@@ -35,7 +36,17 @@ bool Inlet::sampleDelayEnabled(void)
 	return sampleDelay; 
 }
 
-
+void Inlet::resetProcessState(void)
+{
+	if( isConnected() )
+	{
+		connected_outlet->parent_node->resetProcessState();
+		for (int i=0; i<connected_outlet->parent_node->numInlets(); ++i)
+			connected_outlet->parent_node->getInlet(i).resetProcessState();
+	}
+	else
+		return;
+}
 
 Sample Inlet::getSample() 
 { 

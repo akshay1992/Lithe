@@ -27,6 +27,8 @@ public:
 
 	Sample getSample();
 
+	void resetProcessState();
+
 	Node* parent_node;
 
 	void enableSampleDelay(void);
