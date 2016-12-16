@@ -1,6 +1,7 @@
 #include "Lithe/Inlet.h"
 #include "Lithe/Patcher.h"
 #include "Lithe/Node.h"
+#include "Lithe/Exceptions.h"
 
 namespace lithe{
 
@@ -17,8 +18,21 @@ void Inlet::connect(Outlet& outlet)
 }
 
 void Inlet::disconnect() 
-{ 
-	Patcher::disconnect( *this, *connected_outlet);
+{
+	if( isConnected() )
+		Patcher::disconnect( *this, *connected_outlet);
+	else
+		throw lithe::InletCantDisconnectException();
+}
+
+Outlet* Inlet::getConnectedOutlet(void) const
+{
+	return connected_outlet;
+}
+
+Node* Inlet::getParentNode(void) const 
+{
+	return parent_node;
 }
 
 void Inlet::enableSampleDelay(void) 
@@ -40,9 +54,9 @@ void Inlet::resetProcessState(void)
 {
 	if( isConnected() )
 	{
-		connected_outlet->parent_node->resetProcessState();
-		for (int i=0; i<connected_outlet->parent_node->numInlets(); ++i)
-			connected_outlet->parent_node->getInlet(i).resetProcessState();
+		connected_outlet->getParentNode()->resetProcessState();
+		for (int i=0; i<connected_outlet->getParentNode()->numInlets(); ++i)
+			connected_outlet->getParentNode()->getInlet(i).resetProcessState();
 	}
 	else
 		return;

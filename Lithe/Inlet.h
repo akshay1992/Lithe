@@ -2,6 +2,7 @@
 #define INLET_H
 
 #include "Lithe/Sample.h"
+#include "Lithe/Patcher.h"
 
 namespace lithe {
 	
@@ -25,18 +26,25 @@ public:
 	void disconnect();
 	bool isConnected();
 
+	Outlet* getConnectedOutlet(void) const;
+
 	Sample getSample();
 
 	void resetProcessState();
 
-	Node* parent_node;
+	Node* getParentNode(void) const;
 
 	void enableSampleDelay(void);
 	void disableSampleDelay(void);
 	bool sampleDelayEnabled(void);
 
-	Outlet* connected_outlet = NULL;
+	friend class Patcher;
+	friend class BFS;
+	friend class TarjanSort;
+
 private:
+	Node* parent_node;
+	Outlet* connected_outlet = NULL;
 	bool sampleDelay;
 	Sample sampleBuffer;
 };

@@ -32,3 +32,15 @@ Nov 23 2016
 Added a RangeIsZeroExcption for constructor of RangeT<>
 Made Toric Atlas return -1 for a distance function - to get rid of warning. Also, this isn't implemented yet
 Added a modulation_add_value in Utils to modulate a parameter with a signal
+
+RELEASE v0.1.0
+*********
+------
+Dec 15 2016
+
+Starting the rewrite of Outlets and Inlets to function independent of parent node (involves moving the process state function to outlet),
+and making it a doubly linked list. All this is to ensure that the node only handles dsp and encapsulates outlets and inletss 
+
+First steps involved rewriting the test cases for inlets and outlet to not use nodes. Not completely functional at this point
+
+

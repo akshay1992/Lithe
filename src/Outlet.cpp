@@ -12,15 +12,52 @@ Outlet::Outlet(Node* parent_node) :
 
 }
 
+
 void Outlet::connect(Inlet& inlet)
 {
 	Patcher::connect(inlet, *this);
 }
 
-Sample Outlet::getSample() 
+Node* Outlet::getParentNode(void) const
+{
+	return parent_node;
+}
+
+void Outlet::disconnect(Inlet& inlet)
+{
+	// if( inlet.getConnectedOutlet() == this)
+	// 	Patcher::disconnect(inlet, *this);
+	// else
+	// 	throw std::runtime_error("I wasn't connected to this inlet");
+}
+
+void Outlet::disconnectAll(void)
+{
+	for( Inlet* inlet : connected_inlets )
+	{
+		disconnect(*inlet);
+	}
+}
+
+bool Outlet::isConnected(void)
+{
+	if( connected_inlets.size() != 0 )
+		return true;
+	else
+		return false;
+}
+
+std::vector<Inlet*> Outlet::getConnectedInlets(void) const
 { 
-	if(! parent_node->isDoneProcessing() )
-		parent_node->Process();
+	return connected_inlets; 
+} 
+
+
+Sample Outlet::getSample() 
+{
+	if( parent_node != NULL )
+		if(! parent_node->isDoneProcessing() )
+			parent_node->Process();
 	return mSample; 
 }
 

@@ -38,7 +38,7 @@ Node::~Node(void)
 	}
 	for (int i=0; i<numOutlets(); ++i)
 	{
-		// getOutlet(i).disconnectAll();
+		getOutlet(i).disconnectAll();
 	}
 	
 	// node_refs[getID()] = NULL;

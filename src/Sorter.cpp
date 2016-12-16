@@ -12,7 +12,7 @@ void BFS::visit(Node& node, int level)
 	{
 		if ( node.getInlet(i).isConnected() )
 		{
-			Node* successor_node = node.getInlet(i).connected_outlet->parent_node;
+			Node* successor_node = node.getInlet(i).getConnectedOutlet()->getParentNode();
 			if (successor_node->index == -1)
 			{
 				// Forward edge found (not previously discovered).
@@ -60,7 +60,7 @@ void TarjanSort::visit(Node& node, int& index, std::vector<Node*>& stack, std::v
 	{
 		if ( node.getInlet(i).isConnected() )
 		{
-			Node& successor_node = *node.getInlet(i).connected_outlet->parent_node;
+			Node& successor_node = *node.getInlet(i).getConnectedOutlet()->getParentNode();
 			if (successor_node.index == -1)
 			{
 				visit(successor_node, index, stack, sccs);

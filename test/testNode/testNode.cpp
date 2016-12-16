@@ -12,6 +12,20 @@ void NodeTest::SetUp(void) {}
 
 void NodeTest::TearDown(void) {}
 
+TEST_F(NodeTest, inlet_parentNodeTest)
+{
+	Node node1(2, 1);
+	EXPECT_EQ ( node1.getInlet(0).getParentNode(), &node1 );
+	EXPECT_EQ ( node1.getInlet(1).getParentNode(), &node1 );
+}
+
+TEST_F(NodeTest, outlet_parentNodeTest)
+{
+	Node node1(1, 2);
+	EXPECT_EQ ( node1.getOutlet(0).getParentNode(), &node1 );
+	EXPECT_EQ ( node1.getOutlet(1).getParentNode(), &node1 );
+}
+
 TEST_F(NodeTest, numInletsOutletsTest)
 {
 	int inlets = 3;

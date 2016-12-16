@@ -57,7 +57,6 @@ public:
 	static void resetAll_SampleDelayState(bool state = false);
 
 	friend Inlet;
-
 protected:
 	void doneProcessing() { mProcessed = true; }
 	void resetProcessState() { mProcessed = false; }
