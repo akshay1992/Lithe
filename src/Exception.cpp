@@ -2,10 +2,10 @@
 
 namespace lithe {
 
-std::ostringstream NodeNotFoundException::message = std::ostringstream(); 
-std::ostringstream InvalidOutletException::message = std::ostringstream(); 
-std::ostringstream InvalidInletException::message = std::ostringstream(); 
-std::ostringstream RangeIsZeroError::message = std::ostringstream(); 
+std::ostringstream NodeNotFoundException::message;
+std::ostringstream InvalidOutletException::message;
+std::ostringstream InvalidInletException::message;
+std::ostringstream RangeIsZeroError::message;
 
 }; // namespace lithe
 
