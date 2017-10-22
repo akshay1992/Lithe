@@ -104,6 +104,7 @@ TEST_F(InletTest, getSample)
 
 		Sample inletSample = inlet.getSample();
 		EXPECT_TRUE( sampleCompare(empty, inletSample) );
+		inletSample = inlet.getSample();
 		EXPECT_TRUE( sampleCompare(s, inletSample) );
 	}
 }
