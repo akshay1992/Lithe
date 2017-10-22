@@ -46,8 +46,8 @@ TEST_F(OutletTest, isConnected)
 		EXPECT_TRUE( outlet.getConnectedInlets()[2] == &i2 );
 
 		outlet.disconnect(i1);
-		EXPECT_TRUE(i1.isConnected());
-		EXPECT_EQ(outlet.getConnectedInlets().size(), 3);
+		EXPECT_FALSE(i1.isConnected());
+		EXPECT_EQ(outlet.getConnectedInlets().size(), 2);
 	}
 }
 
