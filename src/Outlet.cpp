@@ -27,8 +27,6 @@ void Outlet::disconnect(Inlet& inlet)
 {
 	if( inlet.getConnectedOutlet() == this)
 		Patcher::disconnect(inlet, *this);
-	else
-		throw std::runtime_error("I wasn't connected to this inlet");
 }
 
 void Outlet::disconnectAll(void)

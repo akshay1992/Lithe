@@ -54,9 +54,6 @@ TEST_F(InletTest, disconnect)
 	Inlet inlet(NULL);
 	Outlet outlet(NULL);
 
-	// Trying to disconnect an inlet that isn't connected to anything
-	EXPECT_THROW( inlet.disconnect(), lithe::InletCantDisconnectException );
-
 	inlet.connect(outlet);
 	EXPECT_TRUE(inlet.getConnectedOutlet() != NULL);
 	inlet.disconnect();
