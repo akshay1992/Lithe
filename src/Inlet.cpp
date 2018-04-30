@@ -21,8 +21,6 @@ void Inlet::disconnect()
 {
 	if( isConnected() )
 		Patcher::disconnect( *this, *connected_outlet);
-	else
-		throw lithe::InletCantDisconnectException();
 }
 
 Outlet* Inlet::getConnectedOutlet(void) const
