@@ -6,14 +6,6 @@
 
 namespace lithe{
 
-class InletCantDisconnectException : public std::runtime_error
-{
-public:
-    InletCantDisconnectException(void) : 
-        std::runtime_error("Trying to disconnect from inlet that isn't connected to anything")
-    {}
-};
-
 class InvalidInletException : public std::range_error
 {
 public:
