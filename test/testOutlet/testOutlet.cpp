@@ -26,8 +26,8 @@ TEST_F(OutletTest, isConnected)
 	// Fanned connections
 	{
 		/// Initializing outlets without parent nodes
-		Inlet i0(NULL), i1(NULL), i2(NULL);
-		Outlet outlet(NULL);
+		Inlet i0(nullptr), i1(nullptr), i2(nullptr);
+		Outlet outlet(nullptr);
 
 		EXPECT_FALSE(outlet.isConnected());
 		outlet.connect(i0);

@@ -42,7 +42,7 @@ public:
 
 private:
 	Node* parent_node;
-	Outlet* connected_outlet = NULL;
+	Outlet* connected_outlet = nullptr;
 	bool sampleDelay;
 	Sample sampleBuffer;
 };

@@ -12,12 +12,6 @@ Outlet::Outlet(Node* parent_node) :
 
 }
 
-
-void Outlet::connect(Inlet& inlet)
-{
-	Patcher::connect(inlet, *this);
-}
-
 Node* Outlet::getParentNode(void) const
 {
 	return parent_node;
@@ -39,7 +33,7 @@ std::vector<Inlet*> Outlet::getConnectedInlets(void) const
 
 Sample Outlet::getSample() 
 {
-	if( parent_node != NULL )
+	if( parent_node != nullptr )
 		if(! parent_node->isDoneProcessing() )
 			parent_node->Process();
 	return mSample; 

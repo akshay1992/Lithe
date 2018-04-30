@@ -23,9 +23,6 @@ class Outlet
 public:
 	Outlet(Node* parent_node);
 
-	/// @brief Connects the outlet to an inlet. It allows fanned connections (i.e., multiple inlets connected to the same outlet)
-	void connect(Inlet& inlet);	
-
 	Node* getParentNode(void) const;
 
 	bool isConnected(void);

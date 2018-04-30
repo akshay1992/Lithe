@@ -73,7 +73,7 @@ Sample Inlet::getSample()
 
 bool Inlet::isConnected(void)
 {
-	return (connected_outlet != NULL);
+	return (connected_outlet != nullptr);
 }
 
 }; // namespace lithe
