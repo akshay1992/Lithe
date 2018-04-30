@@ -26,16 +26,6 @@ public:
 	/// @brief Connects the outlet to an inlet. It allows fanned connections (i.e., multiple inlets connected to the same outlet)
 	void connect(Inlet& inlet);	
 
-	/// @brief Cisonnects the outlet from a specific inlet. If inlet wasn't connected to it, it throws an exception.
-	void disconnect(Inlet& inlet);	
-
-	/** @brief Disconnects from all connected inlets
-
-		Since the Lithe audiograph allows fanned outlet connections, it currently 
-		isn't possible to disconnect a specific patch from an outlet.
-	*/
-	void disconnectAll(); 	
-
 	Node* getParentNode(void) const;
 
 	bool isConnected(void);

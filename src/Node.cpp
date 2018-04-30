@@ -34,11 +34,17 @@ Node::~Node(void)
 	// disconnect all inlets and outlets
 	for (int i=0; i<numInlets(); ++i)
 	{
-		getInlet(i).disconnect();
+		Inlet& inlet = getInlet(i);
+		Outlet& outlet = *inlet.getConnectedOutlet();
+		Patcher::disconnect( inlet, outlet); 
 	}
 	for (int i=0; i<numOutlets(); ++i)
 	{
-		getOutlet(i).disconnectAll();
+		Outlet& outlet = getOutlet(i);
+		for(Inlet* inlet : outlet.getConnectedInlets())
+		{
+			Patcher::disconnect(*inlet, outlet);
+		}
 	}
 	
 	// node_refs[getID()] = NULL;

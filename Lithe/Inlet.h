@@ -22,8 +22,6 @@ class Inlet
 public:
 	Inlet(Node* parent_node);
 
-	void connect(Outlet& outlet);
-	void disconnect();
 	bool isConnected();
 
 	Outlet* getConnectedOutlet(void) const;

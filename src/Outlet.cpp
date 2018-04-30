@@ -23,20 +23,6 @@ Node* Outlet::getParentNode(void) const
 	return parent_node;
 }
 
-void Outlet::disconnect(Inlet& inlet)
-{
-	if( inlet.getConnectedOutlet() == this)
-		Patcher::disconnect(inlet, *this);
-}
-
-void Outlet::disconnectAll(void)
-{
-	for( Inlet* inlet : connected_inlets )
-	{
-		disconnect(*inlet);
-	}
-}
-
 bool Outlet::isConnected(void)
 {
 	if( connected_inlets.size() != 0 )

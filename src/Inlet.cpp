@@ -12,17 +12,6 @@ Inlet::Inlet(Node* parent_node) :
 
 }
 
-void Inlet::connect(Outlet& outlet) 
-{ 
-	Patcher::connect( *this, outlet );
-}
-
-void Inlet::disconnect() 
-{
-	if( isConnected() )
-		Patcher::disconnect( *this, *connected_outlet);
-}
-
 Outlet* Inlet::getConnectedOutlet(void) const
 {
 	return connected_outlet;
