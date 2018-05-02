@@ -28,6 +28,10 @@ public:
 	bool isConnected(void);
 	std::vector<Inlet*> getConnectedInlets(void) const;
 
+	void connect(Inlet& inlet);
+	void disconnect(Inlet& inlet);
+	void disconnectAll(void);
+
 	Sample getSample();
 	void setSample(Sample s);
 

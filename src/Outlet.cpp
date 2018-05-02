@@ -4,12 +4,33 @@
 #include "Lithe/Sample.h"
 #include "Lithe/Patcher.h"
 
+#include <cassert>
+
 namespace lithe {
 
 Outlet::Outlet(Node* parent_node) :
 	parent_node(parent_node)
 {
 
+}
+
+void Outlet::connect(Inlet& inlet)
+{
+	assert(inlet.getConnectedOutlet() != this);
+	Patcher::connect(inlet, *this);
+}
+
+void Outlet::disconnect(Inlet& inlet)
+{
+	Patcher::disconnect(inlet, *this);	
+}
+
+void Outlet::disconnectAll(void)
+{
+	for(Inlet* pInlet : connected_inlets)
+	{
+		disconnect(*pInlet);
+	}
 }
 
 Node* Outlet::getParentNode(void) const

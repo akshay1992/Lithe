@@ -32,6 +32,9 @@ public:
 
 	Node* getParentNode(void) const;
 
+	void connect(Outlet& outlet);
+	void disconnect(void);
+
 	void enableSampleDelay(void);
 	void disableSampleDelay(void);
 	bool sampleDelayEnabled(void);

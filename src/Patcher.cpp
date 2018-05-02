@@ -25,7 +25,8 @@ void Patcher::disconnect(Inlet& inlet, Outlet& outlet)
 	}
 	else
 	{
-		std::runtime_error("Not found");
+		// Outlet not found, nothing to do
+		return;
 	}
 	// outlet.connected_inlet = nullptr;
 
