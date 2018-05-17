@@ -22,8 +22,6 @@ class Inlet
 public:
 	Inlet(Node* parent_node);
 
-	void connect(Outlet& outlet);
-	void disconnect();
 	bool isConnected();
 
 	Outlet* getConnectedOutlet(void) const;
@@ -33,6 +31,9 @@ public:
 	void resetProcessState();
 
 	Node* getParentNode(void) const;
+
+	void connect(Outlet& outlet);
+	void disconnect(void);
 
 	void enableSampleDelay(void);
 	void disableSampleDelay(void);
@@ -44,7 +45,7 @@ public:
 
 private:
 	Node* parent_node;
-	Outlet* connected_outlet = NULL;
+	Outlet* connected_outlet = nullptr;
 	bool sampleDelay;
 	Sample sampleBuffer;
 };

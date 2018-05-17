@@ -1,33 +1,36 @@
 #include "Lithe/Patcher.h"
-#include <iostream> 
+#include <cassert>
+#include <stdio.h>
+
 using namespace std;
 namespace lithe {
 
 void Patcher::connect(Inlet& inlet, Outlet& outlet)
 {
-	if( inlet.isConnected() )	inlet.disconnect();
-	// if( outlet.isConnected() ) outlet.disconnect();
+	if( inlet.isConnected() )	
+		Patcher::disconnect(inlet, *inlet.getConnectedOutlet());
 
+	assert(inlet.connected_outlet == nullptr);
 	inlet.connected_outlet = &outlet;
 	outlet.connected_inlets.push_back(&inlet);
 }
 
 void Patcher::disconnect(Inlet& inlet, Outlet& outlet)
 {
-	inlet.connected_outlet = NULL;
-
 	auto it = std::find(outlet.connected_inlets.begin(), outlet.connected_inlets.end(), &inlet);
 	if(it != outlet.connected_inlets.end())
 	{
-		using std::swap;
-		swap(*it, outlet.connected_inlets.back());
+		std::swap(*it, outlet.connected_inlets.back());
 	    outlet.connected_inlets.pop_back();
 	}
 	else
 	{
-		std::runtime_error("Not found");
+		// Outlet not found, nothing to do
+		return;
 	}
-	// outlet.connected_inlet = NULL;
+	// outlet.connected_inlet = nullptr;
+
+	inlet.connected_outlet = nullptr;
 }
 
 }; 

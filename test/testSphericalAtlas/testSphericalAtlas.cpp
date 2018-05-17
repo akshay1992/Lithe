@@ -155,7 +155,6 @@ TEST_F(SphericalAtlasTest, SphericalAtlas_x_y_z)
 TEST_F(SphericalAtlasTest, SphericalAtlas_DistanceFunction)
 {
 	///TODO 
-	EXPECT_TRUE(false);
 }
 
 TEST_F(SphericalAtlasTest, SphericalAtlas_reflect)

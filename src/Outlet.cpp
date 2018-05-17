@@ -4,6 +4,8 @@
 #include "Lithe/Sample.h"
 #include "Lithe/Patcher.h"
 
+#include <cassert>
+
 namespace lithe {
 
 Outlet::Outlet(Node* parent_node) :
@@ -12,29 +14,28 @@ Outlet::Outlet(Node* parent_node) :
 
 }
 
-
 void Outlet::connect(Inlet& inlet)
 {
+	assert(inlet.getConnectedOutlet() != this);
 	Patcher::connect(inlet, *this);
+}
+
+void Outlet::disconnect(Inlet& inlet)
+{
+	Patcher::disconnect(inlet, *this);	
+}
+
+void Outlet::disconnectAll(void)
+{
+	for(Inlet* pInlet : connected_inlets)
+	{
+		disconnect(*pInlet);
+	}
 }
 
 Node* Outlet::getParentNode(void) const
 {
 	return parent_node;
-}
-
-void Outlet::disconnect(Inlet& inlet)
-{
-	if( inlet.getConnectedOutlet() == this)
-		Patcher::disconnect(inlet, *this);
-}
-
-void Outlet::disconnectAll(void)
-{
-	for( Inlet* inlet : connected_inlets )
-	{
-		disconnect(*inlet);
-	}
 }
 
 bool Outlet::isConnected(void)
@@ -53,7 +54,7 @@ std::vector<Inlet*> Outlet::getConnectedInlets(void) const
 
 Sample Outlet::getSample() 
 {
-	if( parent_node != NULL )
+	if( parent_node != nullptr )
 		if(! parent_node->isDoneProcessing() )
 			parent_node->Process();
 	return mSample; 

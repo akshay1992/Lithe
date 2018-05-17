@@ -42,28 +42,28 @@ void InletTest::TearDown(void) {}
 
 TEST_F(InletTest, connect)
 {
-	Inlet inlet(NULL);
-	Outlet outlet(NULL);
-	EXPECT_TRUE(inlet.getConnectedOutlet() == NULL);
+	Inlet inlet(nullptr);
+	Outlet outlet(nullptr);
+	EXPECT_TRUE(inlet.getConnectedOutlet() == nullptr);
 	inlet.connect(outlet);
 	EXPECT_TRUE(inlet.getConnectedOutlet() == &outlet);
 }
 
 TEST_F(InletTest, disconnect)
 {
-	Inlet inlet(NULL);
-	Outlet outlet(NULL);
+	Inlet inlet(nullptr);
+	Outlet outlet(nullptr);
 
 	inlet.connect(outlet);
-	EXPECT_TRUE(inlet.getConnectedOutlet() != NULL);
+	EXPECT_TRUE(inlet.getConnectedOutlet() != nullptr);
 	inlet.disconnect();
-	EXPECT_TRUE(inlet.getConnectedOutlet() == NULL);
+	EXPECT_TRUE(inlet.getConnectedOutlet() == nullptr);
 }
 
 TEST_F(InletTest, isConnected)
 {
-	Inlet inlet(NULL);
-	Outlet outlet(NULL);
+	Inlet inlet(nullptr);
+	Outlet outlet(nullptr);
 
 	EXPECT_FALSE(inlet.isConnected());
 	inlet.connect(outlet);
@@ -75,8 +75,8 @@ TEST_F(InletTest, isConnected)
 TEST_F(InletTest, getSample)
 {
 	{
-		Inlet inlet(NULL);
-		Outlet outlet(NULL);
+		Inlet inlet(nullptr);
+		Outlet outlet(nullptr);
 
 		inlet.connect(outlet);
 
@@ -89,8 +89,8 @@ TEST_F(InletTest, getSample)
 	}
 
 	{
-		Inlet inlet(NULL);
-		Outlet outlet(NULL);
+		Inlet inlet(nullptr);
+		Outlet outlet(nullptr);
 
 		inlet.connect(outlet);
 		inlet.enableSampleDelay();
