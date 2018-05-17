@@ -12,15 +12,14 @@ Inlet::Inlet(Node* parent_node) :
 
 }
 
-void Inlet::connect(Outlet& outlet) 
-{ 
-	Patcher::connect( *this, outlet );
+void Inlet::connect(Outlet& outlet)
+{
+	Patcher::connect(*this, outlet);
 }
 
-void Inlet::disconnect() 
+void Inlet::disconnect(void)
 {
-	if( isConnected() )
-		Patcher::disconnect( *this, *connected_outlet);
+	Patcher::disconnect(*this, *connected_outlet);
 }
 
 Outlet* Inlet::getConnectedOutlet(void) const
@@ -84,7 +83,7 @@ Sample Inlet::getSample()
 
 bool Inlet::isConnected(void)
 {
-	return (connected_outlet != NULL);
+	return (connected_outlet != nullptr);
 }
 
 }; // namespace lithe
