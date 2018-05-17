@@ -35,15 +35,21 @@ Node::~Node(void)
 	for (int i=0; i<numInlets(); ++i)
 	{
 		Inlet& inlet = getInlet(i);
-		Outlet& outlet = *inlet.getConnectedOutlet();
-		Patcher::disconnect( inlet, outlet); 
+		if(inlet.isConnected())
+		{
+			Outlet& outlet = *inlet.getConnectedOutlet();
+			Patcher::disconnect( inlet, outlet); 
+		}
 	}
 	for (int i=0; i<numOutlets(); ++i)
 	{
 		Outlet& outlet = getOutlet(i);
-		for(Inlet* inlet : outlet.getConnectedInlets())
+		if(outlet.isConnected())
 		{
-			Patcher::disconnect(*inlet, outlet);
+			for(Inlet* inlet : outlet.getConnectedInlets())
+			{
+				Patcher::disconnect(*inlet, outlet);
+			}
 		}
 	}
 	
