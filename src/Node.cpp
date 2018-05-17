@@ -34,14 +34,26 @@ Node::~Node(void)
 	// disconnect all inlets and outlets
 	for (int i=0; i<numInlets(); ++i)
 	{
-		getInlet(i).disconnect();
+		Inlet& inlet = getInlet(i);
+		if(inlet.isConnected())
+		{
+			Outlet& outlet = *inlet.getConnectedOutlet();
+			Patcher::disconnect( inlet, outlet); 
+		}
 	}
 	for (int i=0; i<numOutlets(); ++i)
 	{
-		getOutlet(i).disconnectAll();
+		Outlet& outlet = getOutlet(i);
+		if(outlet.isConnected())
+		{
+			for(Inlet* inlet : outlet.getConnectedInlets())
+			{
+				Patcher::disconnect(*inlet, outlet);
+			}
+		}
 	}
 	
-	// node_refs[getID()] = NULL;
+	// node_refs[getID()] = nullptr;
 	activeNodes.erase(this->getID());
 }
 
@@ -86,7 +98,7 @@ void Node::resetAll_ProcessState()
 {
 	// for( int i=0; i<node_refs.size(); ++i)
 	// {
-	// 	if(node_refs[i] != NULL)
+	// 	if(node_refs[i] != nullptr)
 	// 	{
 	// 		node_refs[i]->resetProcessState();
 	// 	}
@@ -115,7 +127,7 @@ Node* Node::getNodeRef(int nodeID)
 	// }
 	// else
 	// {
-	// 	return NULL;
+	// 	return nullptr;
 	// }
 }
 
@@ -123,7 +135,7 @@ void Node::resetSortParams(int index = -1, int lowLink = -1, bool onStack = fals
 {	
 	// for( int i=0; i<node_refs.size(); ++i)
 	// {
-	// 	if(node_refs[i] != NULL)
+	// 	if(node_refs[i] != nullptr)
 	// 	{
 	// 		node_refs[i]->index = index;
 	// 		node_refs[i]->lowLink = lowLink;
@@ -153,7 +165,7 @@ void Node::resetAll_SampleDelayState(bool state)
 	}
 	// for( int i=0; i<node_refs.size(); ++i)
 	// {
-	// 	if(node_refs[i] != NULL)
+	// 	if(node_refs[i] != nullptr)
 	// 	{
 	// 		for(int j=0; j<node_refs[i]->numInlets(); ++j)
 	// 		{

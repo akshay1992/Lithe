@@ -11,23 +11,23 @@ void OutletTest::SetUp(void) {}
 
 void OutletTest::TearDown(void) {}
 
-// TEST_F(OutletTest, constructorTest)
-// {
-// 	Node node1(1, 1);
-// 	Node node2(1, 1);
+TEST_F(OutletTest, constructorTest)
+{
+	Node node1(1, 1);
+	Node node2(1, 1);
 
-// 	EXPECT_EQ ( node1.getOutlet(0).getParentNode(), &node1 );
+	EXPECT_EQ ( node1.getOutlet(0).getParentNode(), &node1 );
 
-// 	EXPECT_NE ( node1.getOutlet(0).getParentNode(), &node2 );
-// }
+	EXPECT_NE ( node1.getOutlet(0).getParentNode(), &node2 );
+}
 
 TEST_F(OutletTest, isConnected)
 {
 	// Fanned connections
 	{
 		/// Initializing outlets without parent nodes
-		Inlet i0(NULL), i1(NULL), i2(NULL);
-		Outlet outlet(NULL);
+		Inlet i0(nullptr), i1(nullptr), i2(nullptr);
+		Outlet outlet(nullptr);
 
 		EXPECT_FALSE(outlet.isConnected());
 		outlet.connect(i0);
@@ -51,19 +51,19 @@ TEST_F(OutletTest, isConnected)
 	}
 }
 
-// TEST_F(OutletTest, get_set_Sample)
-// {
-// 	Node node(1, 1);
-// 	EXPECT_EQ( node.getOutlet().getSample().audio, 0);
-// 	EXPECT_EQ( node.getOutlet().getSample().az, 0);
-// 	EXPECT_EQ( node.getOutlet().getSample().el, 0);
-// 	EXPECT_EQ( node.getOutlet().getSample().d, 0);
+TEST_F(OutletTest, get_set_Sample)
+{
+	Node node(1, 1);
+	EXPECT_EQ( node.getOutlet().getSample().audio, 0);
+	EXPECT_EQ( node.getOutlet().getSample().az, 0);
+	EXPECT_EQ( node.getOutlet().getSample().el, 0);
+	EXPECT_EQ( node.getOutlet().getSample().d, 0);
 
-// 	Sample s(0.1, 0.3, -.7, -1.0);
-// 	node.getOutlet().setSample( s );
+	Sample s(0.1, 0.3, -.7, -1.0);
+	node.getOutlet().setSample( s );
 
-// 	EXPECT_EQ( node.getOutlet().getSample().audio, s.audio);
-// 	EXPECT_EQ( node.getOutlet().getSample().az, s.az);
-// 	EXPECT_EQ( node.getOutlet().getSample().el, s.el);
-// 	EXPECT_EQ( node.getOutlet().getSample().d, s.d);
-// }
+	EXPECT_EQ( node.getOutlet().getSample().audio, s.audio);
+	EXPECT_EQ( node.getOutlet().getSample().az, s.az);
+	EXPECT_EQ( node.getOutlet().getSample().el, s.el);
+	EXPECT_EQ( node.getOutlet().getSample().d, s.d);
+}
