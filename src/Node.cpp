@@ -7,7 +7,6 @@
 namespace lithe{ 
 
 int Node::ID_counter = 0;
-// std::vector< Node* > Node::node_refs;
 std::map <int, Node*> Node::activeNodes;
 
 Node::Node(int numInlets, int numOutlets)
@@ -129,26 +128,6 @@ Node* Node::getNodeRef(int nodeID)
 	// {
 	// 	return nullptr;
 	// }
-}
-
-void Node::resetSortParams(int index = -1, int lowLink = -1, bool onStack = false)
-{	
-	// for( int i=0; i<node_refs.size(); ++i)
-	// {
-	// 	if(node_refs[i] != nullptr)
-	// 	{
-	// 		node_refs[i]->index = index;
-	// 		node_refs[i]->lowLink = lowLink;
-	// 		node_refs[i]->onStack = onStack;
-	// 	}
-	// }
-
-	for( auto const& node_it : activeNodes) 
-	{
-		node_it.second->index = index;
-		node_it.second->lowLink = lowLink;
-		node_it.second->onStack = onStack;
-	}
 }
 
 void Node::resetAll_SampleDelayState(bool state)
