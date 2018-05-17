@@ -27,7 +27,7 @@ namespace lithe{
 class ToricAtlas : public AtlasBase
 {
 public:
-	ToricAtlas(float R, float r, Range u_range = Range(-1, 1), Range v_range = Range(-1, 1));
+	ToricAtlas(float R=5, float r=2, Range u_range = Range(-1, 1), Range v_range = Range(-1, 1));
 
 	/** @brief Returns u co-ordinate for a given cartesian co-ordinate (x, y, z)
 

@@ -22,7 +22,8 @@ void Outlet::connect(Inlet& inlet)
 
 void Outlet::disconnect(Inlet& inlet)
 {
-	Patcher::disconnect(inlet, *this);	
+	if( inlet.getConnectedOutlet() == this)
+		Patcher::disconnect(inlet, *this);
 }
 
 void Outlet::disconnectAll(void)

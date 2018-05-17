@@ -1,6 +1,5 @@
 #include "Lithe/Patcher.h"
 #include <cassert>
-#include <stdio.h>
 
 using namespace std;
 namespace lithe {
@@ -17,6 +16,10 @@ void Patcher::connect(Inlet& inlet, Outlet& outlet)
 
 void Patcher::disconnect(Inlet& inlet, Outlet& outlet)
 {
+	assert(inlet.connected_outlet == &outlet);
+	assert(outlet.connected_inlets.size() != 0);
+	inlet.connected_outlet = NULL;
+
 	auto it = std::find(outlet.connected_inlets.begin(), outlet.connected_inlets.end(), &inlet);
 	if(it != outlet.connected_inlets.end())
 	{
@@ -28,7 +31,6 @@ void Patcher::disconnect(Inlet& inlet, Outlet& outlet)
 		// Outlet not found, nothing to do
 		return;
 	}
-	// outlet.connected_inlet = nullptr;
 
 	inlet.connected_outlet = nullptr;
 }

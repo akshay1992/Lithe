@@ -19,7 +19,8 @@ void Inlet::connect(Outlet& outlet)
 
 void Inlet::disconnect(void)
 {
-	Patcher::disconnect(*this, *connected_outlet);
+	if( isConnected() )
+		Patcher::disconnect( *this, *connected_outlet);
 }
 
 Outlet* Inlet::getConnectedOutlet(void) const

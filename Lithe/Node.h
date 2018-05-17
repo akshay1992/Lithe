@@ -41,15 +41,6 @@ public:
 	static void resetAll_ProcessState();
 	static Node* getNodeRef(int nodeID);
 
-	/// Graph node parameter for pre-processing a graph. Used by Sorter.h
-	int index; 
-
-	/// Graph node parameter for pre-processing a graph. Used by Sorter.h
-	int lowLink;
-	
-	/// Graph node parameter for pre-processing a graph. Used by Sorter.h 
-	bool onStack;
-
 	/// Used to reset the sort parameters index, lowLink and onStack for all available Nodes
 	static void resetSortParams(int index, int lowLink, bool onStack);
 
@@ -63,7 +54,6 @@ protected:
 
 	std::vector<Inlet> inlets;
 	std::vector<Outlet> outlets;
-	// static std::vector< Node* > node_refs;
 	static std::map<int, Node*> activeNodes;
 
 	static int ID_counter;
