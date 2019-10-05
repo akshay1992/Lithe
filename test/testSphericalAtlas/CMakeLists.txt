@@ -6,8 +6,7 @@ ADD_EXECUTABLE(testSphericalAtlas ${SRCS})
 
 TARGET_LINK_LIBRARIES(testSphericalAtlas
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testSphericalAtlas 

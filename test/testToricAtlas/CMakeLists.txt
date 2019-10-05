@@ -6,8 +6,7 @@ ADD_EXECUTABLE(testToricAtlas ${SRCS})
 
 TARGET_LINK_LIBRARIES(testToricAtlas
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testToricAtlas 

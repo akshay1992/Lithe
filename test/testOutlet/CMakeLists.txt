@@ -6,8 +6,7 @@ ADD_EXECUTABLE(testOutlet ${SRCS})
 
 TARGET_LINK_LIBRARIES(testOutlet
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testOutlet 

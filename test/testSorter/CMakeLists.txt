@@ -6,8 +6,7 @@ ADD_EXECUTABLE(testSorter ${SRCS})
 
 TARGET_LINK_LIBRARIES(testSorter
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testSorter 

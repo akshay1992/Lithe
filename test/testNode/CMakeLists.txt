@@ -6,8 +6,7 @@ ADD_EXECUTABLE(testNode ${SRCS})
 
 TARGET_LINK_LIBRARIES(testNode
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testNode 

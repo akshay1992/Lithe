@@ -6,8 +6,7 @@ ADD_EXECUTABLE(testTemplate ${SRCS})
 
 TARGET_LINK_LIBRARIES(testTemplate
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testTemplate 
