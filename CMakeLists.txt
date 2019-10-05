@@ -1,6 +1,7 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.2)
 
-project(Lithe)
+project(Lithe 
+		LANGUAGES CXX)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
@@ -22,8 +23,13 @@ if(LITHE_DONT_BUILD_TESTS)
 
 else()
 	message("-- Setting up docs target for Lithe")
+
+	# Pull the integration code that builds gtest
+	include(cmake/gtest-integration.cmake)
+
 	# Custom target to build docs
 	add_subdirectory(docs)
+
 	message("-- Setting up test target for Lithe")
 	# Custom target to build and run test 
 	add_subdirectory(test EXCLUDE_FROM_ALL) 
