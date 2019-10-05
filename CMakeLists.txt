@@ -1,10 +1,23 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.2)
 
-project(Lithe)
+#-----------------------------------------------------------------
+#                  DEFAULT FLAGS 
+#-----------------------------------------------------------------
+if (NOT DEFINED LITHE_TESTS)
+	set(LITHE_TESTS FALSE)
+endif()
+
+# Print all the flags
+
+message(STATUS "LITHE_TESTS -- ${LITHE_TESTS}")
+
+#-----------------------------------------------------------------
+#                  CONFIGURE LITHE 
+#-----------------------------------------------------------------
+
+project(Lithe LANGUAGES CXX)
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
-
-enable_testing()
 
 # Declare the library
 file(GLOB lithe_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
@@ -16,15 +29,24 @@ file(GLOB lithe_headers ${CMAKE_CURRENT_SOURCE_DIR}/Lithe/*.h )
 install( TARGETS lithe_core DESTINATION lib )
 install( FILES ${lithe_headers} DESTINATION include/Lithe )
 
-# If this is built as a git submodule to LitheModules, then ignore the test cases and docs. 
-if(LITHE_DONT_BUILD_TESTS)
-	message("-- Ignoring docs & test targets for Lithe")
+#-----------------------------------------------------------------
+#             CONFIGURE DOXYGEN DOCUMENTATION 
+#-----------------------------------------------------------------
 
-else()
-	message("-- Setting up docs target for Lithe")
-	# Custom target to build docs
-	add_subdirectory(docs)
-	message("-- Setting up test target for Lithe")
+# Custom target to build docs
+add_subdirectory(docs EXCLUDE_FROM_ALL)
+
+#-----------------------------------------------------------------
+#             CONFIGURE LITHE UNIT TESTS 
+#-----------------------------------------------------------------
+
+if(LITHE_TESTS)
+	message(STATUS "Setting up test target for Lithe")
+
+	# Pull the integration code that builds gtest
+	include(cmake/gtest-integration.cmake)
+
 	# Custom target to build and run test 
 	add_subdirectory(test EXCLUDE_FROM_ALL) 
+	message(STATUS "Setting up test target for Lithe (done)")
 endif()
