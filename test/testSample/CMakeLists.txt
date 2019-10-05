@@ -5,9 +5,9 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR})
 ADD_EXECUTABLE(testSample ${SRCS})
 
 TARGET_LINK_LIBRARIES(testSample
+	PUBLIC
 	lithe_core
-	libgtest
-	libgmock
+	gtest_main
 )
 
 add_test(NAME testSample 
