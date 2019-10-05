@@ -5,8 +5,6 @@ project(Lithe
 
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
-enable_testing()
-
 # Declare the library
 file(GLOB lithe_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
 add_library(lithe_core STATIC ${lithe_sources} )
