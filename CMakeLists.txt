@@ -20,14 +20,35 @@ project(Lithe LANGUAGES CXX)
 set(CMAKE_CXX_FLAGS "-std=c++11")
 
 # Declare the library
-file(GLOB lithe_sources ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp )
-add_library(lithe_core STATIC ${lithe_sources} )
-target_include_directories( lithe_core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR} )
+file(GLOB lithe_sources 
+	${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp 
+	${CMAKE_CURRENT_SOURCE_DIR}/Lithe/*.h 
+	)
+
+add_library(
+	lithe_core 
+	STATIC 
+	${lithe_sources} 
+	)
+
+target_include_directories(
+	lithe_core 
+	PUBLIC 
+	${CMAKE_CURRENT_SOURCE_DIR} 
+	)
 
 # Install
-file(GLOB lithe_headers ${CMAKE_CURRENT_SOURCE_DIR}/Lithe/*.h )
-install( TARGETS lithe_core DESTINATION lib )
-install( FILES ${lithe_headers} DESTINATION include/Lithe )
+file(GLOB lithe_headers 
+	${CMAKE_CURRENT_SOURCE_DIR}/Lithe/*.h 
+	)
+install( 
+	TARGETS lithe_core 
+	DESTINATION lib 
+	)
+install( 
+	FILES ${lithe_headers} 
+	DESTINATION include/Lithe 
+	)
 
 #-----------------------------------------------------------------
 #             CONFIGURE DOXYGEN DOCUMENTATION 
