@@ -15,7 +15,7 @@ Note: All builds require CMake
 
 Clone Lithe from the git repo  
 
-        git clone git@github.com:akshay1992/Lithe
+        git clone git@code.cadambi.space:akshaycadambi/Lithe
 
 To build Lithe  
 
@@ -36,11 +36,18 @@ Note that the above command will will install in the default location (usually `
 Note: The install and uninstall scripts are provided as a shorthand. `install.sh` installs in the default directory `/usr/local/` and `uninstall.sh` removes Lithe from those locations (if found).
 
 ### Building and running tests
-To build and run the tests run this command from within the `Lithe/build/` directory created in the above build step:
+To configure the build with the unit test target follow the same steps as above but with the following cmake flag:
 
-    make check
-    
-Note: Lithe uses [GoogleTest](https://github.com/google/googletest/archive/master.zip) for testing. It automatically downloads and builds it when testing. Therefore, be sure to be connected to the internet while building the test cases (at least the first time).
+        cmake .. -DLITHE_TESTS=TRUE
+
+Note: Lithe uses [GoogleTest](https://github.com/google/googletest) for testing. It automatically downloads and builds this dependency when testing. Therefore, be sure to be connected to the internet while configuring cmake with the test target.
+
+Then to build the test target, do the following. 
+
+        make lithe_tests
+        ./lithe_tests
+
+This will run the tests and print the results. 
 
 ### Documentation
 To generate the documentation, from within the `Lithe/build/` directory created in the above build step, run the following command:
@@ -53,4 +60,4 @@ Note: Lithe uses [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html) for 
 
 -------------------  
 Author: Akshay Cadambi  
-Email: akshay19.92@gmail.com
+Email: akshaycadambi@gmail.com
