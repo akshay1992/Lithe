@@ -45,13 +45,13 @@ float ToricAtlas::v_cart(float x, float y, float z)
 float ToricAtlas::x(float u, float v)
 {
 	check_uv_range(u, v);
-	return ( _R + _r * cos(M_PI*v) ) * cos ( 2* M_PI * u);
+	return ( _R + _r * cos(M_PI*v) ) * cos (M_PI * u);
 }
 
 float ToricAtlas::y(float u, float v)
 {
 	check_uv_range( u, v);
-	return (_R + _r * cos(M_PI*v) ) * sin (2* M_PI * u);
+	return (_R + _r * cos(M_PI*v) ) * sin (M_PI * u);
 }
 
 float ToricAtlas::z(float u, float v)
